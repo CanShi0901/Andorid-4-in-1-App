@@ -34,7 +34,6 @@ public class ProjectMain extends AppCompatActivity {
                 intent=new Intent(ProjectMain.this, QuizMain.class);
                 startActivity(intent);
                 break;
-
             case R.id.patient:
                 intent=new Intent(ProjectMain.this, QuizMain.class);
                 startActivity(intent);

@@ -23,7 +23,7 @@
         android:layout_alignTop="@+id/hint"
         android:layout_toStartOf="@+id/hint"
         android:text="@string/yourQuiz"
-        android:textSize="15sp" />
+        android:textSize="20sp" />
 
     <Button
         android:id="@+id/hint"
