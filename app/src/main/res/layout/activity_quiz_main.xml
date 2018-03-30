@@ -7,6 +7,14 @@
     android:orientation="vertical"
     tools:context="com.example.shican.quizcreator.QuizMain">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolBar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@android:color/holo_green_light"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
+
     <TextView
         android:id="@+id/title"
         android:layout_width="match_parent"

@@ -6,12 +6,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class ChooseQuiz extends Activity {
+public class ChooseQuiz extends Toolbar {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_quiz);
+        initToolbar();
         Button mc = (Button) findViewById(R.id.multipleChoice);
         Button nu = (Button) findViewById(R.id.numeric);
         Button tf = (Button) findViewById(R.id.trueFalse);

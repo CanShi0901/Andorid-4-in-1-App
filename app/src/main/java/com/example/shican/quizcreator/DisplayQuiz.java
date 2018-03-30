@@ -13,13 +13,15 @@ import android.support.design.widget.Snackbar;
 import android.widget.Toast;
 import android.widget.TextView;
 
-public class DisplayQuiz extends Activity {
+public class DisplayQuiz extends Toolbar {
     AlertDialog.Builder builder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_quiz);
+        initToolbar();
+
         final Context context = this;
         builder = new AlertDialog.Builder(this);
         TextView quizDetail = (TextView)findViewById(R.id.quizDetail);

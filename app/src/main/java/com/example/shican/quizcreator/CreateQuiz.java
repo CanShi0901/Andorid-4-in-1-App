@@ -10,13 +10,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class CreateQuiz extends Activity {
+public class CreateQuiz extends Toolbar {
     EditText question;
     Button save;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_quiz);
+        initToolbar();
         question = (EditText)findViewById(R.id.question);
         save = (Button)findViewById(R.id.save);
         final QuizDatabaseHelper helper = new QuizDatabaseHelper(this);

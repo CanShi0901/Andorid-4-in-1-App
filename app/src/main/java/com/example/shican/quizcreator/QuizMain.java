@@ -10,6 +10,7 @@ import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -20,7 +21,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class QuizMain extends Activity {
+public class QuizMain extends Toolbar {
     protected static final String ACTIVITY_NAME = "QuizMain";
     ListView listViewMain;
     Button newQuiz;
@@ -36,6 +37,7 @@ public class QuizMain extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_main);
+        initToolbar();
 
         listViewMain = (ListView) findViewById(R.id.listviewMain);
         newQuiz = (Button) findViewById(R.id.newQuiz);

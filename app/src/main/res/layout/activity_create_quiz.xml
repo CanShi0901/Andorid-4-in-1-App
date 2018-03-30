@@ -6,18 +6,29 @@
     android:layout_height="match_parent"
     tools:context="com.example.shican.quizcreator.CreateQuiz">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolBar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@android:color/holo_green_light"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        android:layout_alignParentTop="true"/>
+
     <EditText
         android:id="@+id/question"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/typeHere"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:layout_below="@id/toolBar"/>
 
     <Button
         android:id="@+id/save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/question"
-        android:text="@string/save" />
+        android:text="@string/save"
+        />
 </RelativeLayout>
