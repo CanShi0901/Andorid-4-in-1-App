@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ProjectMain"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <item
+        android:id="@+id/quizCreator" android:title="@string/app_name1"
+        android:orderInCategory="100"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" app:showAsAction="ifRoom"
+        android:icon="@drawable/quiz" />
+
+    <item
+        android:id="@+id/patient"
+        android:orderInCategory="101"
+        android:title="@string/app_name2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" app:showAsAction="always"
+        android:icon="@drawable/patient" />
+
+    <item
+        android:id="@+id/octranspo"
+        android:orderInCategory="102"
+        android:title="@string/app_name3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" app:showAsAction="always"
+        android:icon="@drawable/octranspo"/>
+
+</menu>

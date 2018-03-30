@@ -1,0 +1,21 @@
+<resources>
+    <string name="project_name">Android Project</string>
+    <string name="app_name1">Quiz Creator</string>
+    <string name="app_name2">Patient Record</string>
+    <string name="app_name3">OCTranspo</string>
+    <string name="welcome">Thank you for choosing our product!</string>
+    <string name="quiz_creator">Your Quiz</string>
+    <string name="create">New Quiz</string>
+    <string name="choose">Choose Type of Quiz</string>
+    <string name="yourQuiz">The Quiz You Picked</string>
+    <string name="checkAnswer">Check</string>
+    <string name="hint">Hint</string>
+    <string name="multipleChoice">Multiple Choice</string>
+    <string name="Numeric">Numeric</string>
+    <string name="TrueFlase">True or False</string>
+    <string name="noHint">Sorry, I cannot give you any hint!</string>
+    <string name="like">Like</string>
+    <string name="dislike">Dislike</string>
+    <string name="save">Save Question</string>
+    <string name="typeHere">Type your question here</string>
+</resources>

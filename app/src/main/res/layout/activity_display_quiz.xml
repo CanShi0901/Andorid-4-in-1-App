@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/quizDisplay_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.shican.quizcreator.DisplayQuiz">
+
+    <TextView
+        android:id="@+id/yourQuiz"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/hint"
+        android:layout_alignBottom="@+id/hint"
+        android:layout_toStartOf="@+id/checkAnswer"
+        android:text="@string/yourQuiz"
+        android:textAlignment="center"
+        android:textSize="20sp" />
+
+    <FrameLayout
+        android:id="@+id/quizContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/checkAnswer"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/hint">
+
+        <TextView
+            android:id="@+id/quizDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp" />
+    </FrameLayout>
+
+    <EditText
+        android:id="@+id/enterAnswer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@id/checkAnswer"
+        android:ems="10"
+        android:hint="Enter your answer here"
+        android:inputType="textPersonName" />
+
+    <Button
+        android:id="@+id/checkAnswer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:text="@string/checkAnswer" />
+
+    <Button
+        android:id="@+id/hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:text="@string/hint" />
+
+</RelativeLayout>
