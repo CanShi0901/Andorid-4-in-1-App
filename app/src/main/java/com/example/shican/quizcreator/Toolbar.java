@@ -43,7 +43,7 @@ public class Toolbar extends AppCompatActivity {
                 startActivity(intent);
                 break;
             case R.id.octranspo:
-                intent=new Intent(Toolbar.this, QuizMain.class);
+                intent=new Intent(Toolbar.this, OCMain.class);
                 startActivity(intent);
                 break;
             default:
