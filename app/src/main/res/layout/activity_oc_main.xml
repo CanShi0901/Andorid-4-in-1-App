@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.shican.quizcreator.QuizMain">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolBar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@android:color/holo_green_light"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/oc_main"
+        android:textAlignment="center"
+        android:textSize="20sp" />
+
+    <ProgressBar
+        android:id="@+id/inProgress"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:progress="@android:integer/config_mediumAnimTime"
+        android:visibility="visible" />
+
+    <Button
+        android:id="@+id/addRoute"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:text="@string/addRoute" />
+
+    <Button
+        android:id="@+id/delRoute"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:text="@string/delRoute" />
+
+    <Button
+        android:id="@+id/routeInfor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/routeInfo" />
+
+    <ListView
+        android:id="@+id/listviewMain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:stackFromBottom="true"
+        android:transcriptMode="alwaysScroll" />
+
+
+
+</LinearLayout>

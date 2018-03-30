@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name = ".QuizMain" />
+        <activity android:name=".QuizMain" />
         <activity android:name=".ChooseQuiz" />
         <activity android:name=".DisplayQuiz" />
         <activity android:name=".CreateQuiz" />
@@ -20,6 +20,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".OCMain" />
+        <activity android:name=".OCAdd" />
+        <activity android:name=".OCDelete" />
+        <activity android:name=".OCInfor"></activity>
     </application>
 
 </manifest>

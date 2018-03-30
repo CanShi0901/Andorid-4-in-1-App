@@ -18,4 +18,14 @@
     <string name="dislike">Dislike</string>
     <string name="save">Save Question</string>
     <string name="typeHere">Type your question here</string>
+    <string name="oc_main">OCTranspo</string>
+    <string name="addRoute">Add Route</string>
+    <string name="delRoute">Delete Route</string>
+    <string name="typeoc">Please enter router number</string>
+    <string name="submit">Submit</string>
+    <string name="routeInfo">Route Information</string>
+    <string name="done">Done</string>
+
+
+    <string name="test">test</string>
 </resources>

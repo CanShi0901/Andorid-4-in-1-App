@@ -39,7 +39,7 @@ public class ProjectMain extends AppCompatActivity {
                 startActivity(intent);
                 break;
             case R.id.octranspo:
-                intent=new Intent(ProjectMain.this, QuizMain.class);
+                intent=new Intent(ProjectMain.this, OCMain.class);
                 startActivity(intent);
                 break;
             default:

@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://C:\Users\shican\AndroidStudioProjects\QuizCreator\Android-Group-Project.iml" filepath="C:\Users\shican\AndroidStudioProjects\QuizCreator\Android-Group-Project.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Android-Group-Project.iml" filepath="$PROJECT_DIR$/Android-Group-Project.iml" />
       <module fileurl="file://$PROJECT_DIR$/QuizCreator.iml" filepath="$PROJECT_DIR$/QuizCreator.iml" />
-      <module fileurl="file://C:\Users\jian0080\FinalProject\Android-Group-Project\QuizCreator.iml" filepath="C:\Users\jian0080\FinalProject\Android-Group-Project\QuizCreator.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://C:\Users\jian0080\FinalProject\Android-Group-Project\app\app.iml" filepath="C:\Users\jian0080\FinalProject\Android-Group-Project\app\app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
 </project>
