@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.jian0080.finalproject.DoctorFragmentDetailActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/GlassDateLayout"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Date of glasses purchase"
+            android:id="@+id/textView_glasses_date"
+            android:layout_alignParentStart="true" />
+
+        <EditText
+            android:id="@+id/glasses_purchase_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/textView_glasses_date"
+            android:layout_toRightOf="@+id/textView_glasses_date"
+            android:hint="Enter your glasses purchse date..."
+            android:inputType="date"
+            android:layout_marginStart="5dp"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/GlassStoreLayout"
+        android:layout_below="@id/GlassDateLayout">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Store of glasses purchase"
+            android:id="@+id/textView_glasses_store"
+            android:layout_alignParentStart="true"
+            />
+
+        <EditText
+            android:id="@+id/glasses_purchase_store"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/textView_glasses_store"
+            android:layout_toRightOf="@+id/textView_glasses_store"
+            android:hint="Enter your glasses purchase store..."
+            android:inputType="text"
+            android:layout_marginStart="5dp"/>
+    </RelativeLayout>
+
+</RelativeLayout>
+
