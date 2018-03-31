@@ -25,7 +25,5 @@
     <string name="submit">Submit</string>
     <string name="routeInfo">Route Information</string>
     <string name="done">Done</string>
-
-
-    <string name="test">test</string>
+    <string name="back">Back</string>
 </resources>
