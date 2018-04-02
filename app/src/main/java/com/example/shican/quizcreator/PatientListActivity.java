@@ -19,25 +19,26 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import static com.example.jian0080.finalproject.DatabaseHelper.KEY_ADDRESS;
-import static com.example.jian0080.finalproject.DatabaseHelper.KEY_AGE;
-import static com.example.jian0080.finalproject.DatabaseHelper.KEY_ALLERGY;
-import static com.example.jian0080.finalproject.DatabaseHelper.KEY_BIRTHDAY;
-import static com.example.jian0080.finalproject.DatabaseHelper.KEY_BRACE;
-import static com.example.jian0080.finalproject.DatabaseHelper.KEY_DESCRIPTIOIN;
-import static com.example.jian0080.finalproject.DatabaseHelper.KEY_GENDER;
-import static com.example.jian0080.finalproject.DatabaseHelper.KEY_GLASS_PURCHASE_DATE;
-import static com.example.jian0080.finalproject.DatabaseHelper.KEY_GLASS_PURCHASE_STORE;
-import static com.example.jian0080.finalproject.DatabaseHelper.KEY_HEALTH_CARD_NUMBER;
-import static com.example.jian0080.finalproject.DatabaseHelper.KEY_ID;
-import static com.example.jian0080.finalproject.DatabaseHelper.KEY_MEDICAL_BENEFIT;
-import static com.example.jian0080.finalproject.DatabaseHelper.KEY_NAME;
-import static com.example.jian0080.finalproject.DatabaseHelper.KEY_PATIENT_TYPE;
-import static com.example.jian0080.finalproject.DatabaseHelper.KEY_PHONE_NUMBER;
-import static com.example.jian0080.finalproject.DatabaseHelper.KEY_SURGERY;
-import static com.example.jian0080.finalproject.DatabaseHelper.TABLE_NAME;
+import static com.example.shican.quizcreator.DatabaseHelper.KEY_ADDRESS;
+import static com.example.shican.quizcreator.DatabaseHelper.KEY_AGE;
+import static com.example.shican.quizcreator.DatabaseHelper.KEY_ALLERGY;
+import static com.example.shican.quizcreator.DatabaseHelper.KEY_BIRTHDAY;
+import static com.example.shican.quizcreator.DatabaseHelper.KEY_BRACE;
+import static com.example.shican.quizcreator.DatabaseHelper.KEY_DESCRIPTIOIN;
+import static com.example.shican.quizcreator.DatabaseHelper.KEY_GENDER;
+import static com.example.shican.quizcreator.DatabaseHelper.KEY_GLASS_PURCHASE_DATE;
+import static com.example.shican.quizcreator.DatabaseHelper.KEY_GLASS_PURCHASE_STORE;
+import static com.example.shican.quizcreator.DatabaseHelper.KEY_HEALTH_CARD_NUMBER;
+import static com.example.shican.quizcreator.DatabaseHelper.KEY_ID;
+import static com.example.shican.quizcreator.DatabaseHelper.KEY_MEDICAL_BENEFIT;
+import static com.example.shican.quizcreator.DatabaseHelper.KEY_NAME;
+import static com.example.shican.quizcreator.DatabaseHelper.KEY_PATIENT_TYPE;
+import static com.example.shican.quizcreator.DatabaseHelper.KEY_PHONE_NUMBER;
+import static com.example.shican.quizcreator.DatabaseHelper.KEY_SURGERY;
+import static com.example.shican.quizcreator.DatabaseHelper.TABLE_NAME;
 
-public class PatientListActivity extends Activity {
+
+public class PatientListActivity extends Toolbar {
 
     protected LayoutInflater inflater;
     protected static PatientListAdapter patientListAdapter;
@@ -48,6 +49,7 @@ public class PatientListActivity extends Activity {
     protected static SQLiteDatabase readableDb, writableDb;
     protected ContentValues cValues ;
     protected Cursor cursor;
+
  //   private long id;
 
     String question1 = null, question2 = null;
@@ -56,6 +58,7 @@ public class PatientListActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_list);
+        initToolbar();
 
         setTitle("Patient List");
         //identify views: ListView
@@ -195,25 +198,25 @@ public class PatientListActivity extends Activity {
         patientListAdapter.notifyDataSetChanged();
     }
 
-    @Override
+    /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
-    }
+    }*/
 
-    @Override
+   /* @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()){
             case R.id.add:
-                Intent intent = new Intent(PatientListActivity.this, com.example.jian0080.finalproject.RegistrationFormActivity.class);
+                Intent intent = new Intent(PatientListActivity.this, com.example.shican.quizcreator.RegistrationFormActivity.class);
                 startActivity(intent);
                 break;
             default:
                 break;
         }
         return true;
-    }
+    }*/
 
     private class PatientListAdapter extends ArrayAdapter<String> {
 
@@ -256,7 +259,7 @@ public class PatientListActivity extends Activity {
             }
 
             TextView patientInfoView = (TextView) result.findViewById(R.id.patient_info_view);
-            patientInfoView.setTextSize(getResources().getDimension(R.dimen.fab_margin));
+           // patientInfoView.setTextSize(getResources().getDimension(R.dimen.fab_margin));
             patientInfoView.setText(getItem(position));
 
             return result;
