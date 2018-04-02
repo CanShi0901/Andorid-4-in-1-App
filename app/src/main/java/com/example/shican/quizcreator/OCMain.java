@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class OCMain extends AppCompatActivity {
+public class OCMain extends Toolbar {
     protected static final String ACTIVITY_NAME = "OCMain";
     private static final int ADD_REQUEST_CODE = 50;
     private static final int DEL_REQUEST_CODE = 60;
@@ -18,6 +18,7 @@ public class OCMain extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_oc_main);
+        initToolbar();
 
         final Button addRoute = (Button) findViewById(R.id.addRoute);
         addRoute.setOnClickListener(new View.OnClickListener() {

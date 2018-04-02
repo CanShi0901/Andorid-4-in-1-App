@@ -13,7 +13,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class OCInfor extends AppCompatActivity {
+public class OCInfor extends Toolbar {
     protected static final String ACTIVITY_NAME = "OCInfor";
 
 
@@ -21,6 +21,7 @@ public class OCInfor extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_oc_infor);
+        initToolbar();
 
         final Button done = (Button) findViewById(R.id.done);
         done.setOnClickListener(new View.OnClickListener() {
