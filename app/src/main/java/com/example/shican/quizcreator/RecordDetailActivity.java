@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import static com.example.jian0080.finalproject.PatientListActivity.dbBuffer;
+import static com.example.shican.quizcreator.PatientListActivity.dbBuffer;
 
 public class RecordDetailActivity extends Activity {
     String  name, address, age, birthday, phoneNumber, healthCardNumber, gender, description, patientType,
@@ -55,7 +55,7 @@ public class RecordDetailActivity extends Activity {
         editBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(RecordDetailActivity.this, com.example.jian0080.finalproject.RegistrationFormActivity.class);
+                Intent intent = new Intent(RecordDetailActivity.this, com.example.shican.quizcreator.RegistrationFormActivity.class);
                 intent.putExtra("id", id);
                 intent.putExtra("name", name);
                 intent.putExtra("address", address);

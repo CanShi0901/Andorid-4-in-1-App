@@ -14,7 +14,7 @@ public class OptometristFragment extends Fragment {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            String[] data = ((com.example.jian0080.finalproject.RegistrationFormActivity) getActivity()).getDataToFragment();
+            String[] data = ((com.example.shican.quizcreator.RegistrationFormActivity) getActivity()).getDataToFragment();
             View view = inflater.inflate(R.layout.activity_optometrist_fragment_detail,
                     container, false);
             glassPurchaseDateText = (EditText) view.findViewById(R.id.glasses_purchase_date);

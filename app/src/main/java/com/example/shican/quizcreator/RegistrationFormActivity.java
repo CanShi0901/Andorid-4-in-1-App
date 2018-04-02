@@ -21,24 +21,23 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.jian0080.finalproject.DatabaseHelper.KEY_ADDRESS;
-import static com.example.jian0080.finalproject.DatabaseHelper.KEY_AGE;
-import static com.example.jian0080.finalproject.DatabaseHelper.KEY_ALLERGY;
-import static com.example.jian0080.finalproject.DatabaseHelper.KEY_BIRTHDAY;
-import static com.example.jian0080.finalproject.DatabaseHelper.KEY_BRACE;
-import static com.example.jian0080.finalproject.DatabaseHelper.KEY_DESCRIPTIOIN;
-import static com.example.jian0080.finalproject.DatabaseHelper.KEY_GENDER;
-import static com.example.jian0080.finalproject.DatabaseHelper.KEY_GLASS_PURCHASE_DATE;
-import static com.example.jian0080.finalproject.DatabaseHelper.KEY_GLASS_PURCHASE_STORE;
-import static com.example.jian0080.finalproject.DatabaseHelper.KEY_HEALTH_CARD_NUMBER;
-import static com.example.jian0080.finalproject.DatabaseHelper.KEY_ID;
-import static com.example.jian0080.finalproject.DatabaseHelper.KEY_MEDICAL_BENEFIT;
-import static com.example.jian0080.finalproject.DatabaseHelper.KEY_NAME;
-import static com.example.jian0080.finalproject.DatabaseHelper.KEY_PATIENT_TYPE;
-import static com.example.jian0080.finalproject.DatabaseHelper.KEY_PHONE_NUMBER;
-import static com.example.jian0080.finalproject.DatabaseHelper.KEY_SURGERY;
-import static com.example.jian0080.finalproject.DatabaseHelper.TABLE_NAME;
-import static com.example.jian0080.finalproject.PatientListActivity.dbBuffer;
+import static com.example.shican.quizcreator.DatabaseHelper.KEY_ADDRESS;
+import static com.example.shican.quizcreator.DatabaseHelper.KEY_AGE;
+import static com.example.shican.quizcreator.DatabaseHelper.KEY_ALLERGY;
+import static com.example.shican.quizcreator.DatabaseHelper.KEY_BIRTHDAY;
+import static com.example.shican.quizcreator.DatabaseHelper.KEY_BRACE;
+import static com.example.shican.quizcreator.DatabaseHelper.KEY_DESCRIPTIOIN;
+import static com.example.shican.quizcreator.DatabaseHelper.KEY_GENDER;
+import static com.example.shican.quizcreator.DatabaseHelper.KEY_GLASS_PURCHASE_DATE;
+import static com.example.shican.quizcreator.DatabaseHelper.KEY_GLASS_PURCHASE_STORE;
+import static com.example.shican.quizcreator.DatabaseHelper.KEY_HEALTH_CARD_NUMBER;
+import static com.example.shican.quizcreator.DatabaseHelper.KEY_ID;
+import static com.example.shican.quizcreator.DatabaseHelper.KEY_MEDICAL_BENEFIT;
+import static com.example.shican.quizcreator.DatabaseHelper.KEY_NAME;
+import static com.example.shican.quizcreator.DatabaseHelper.KEY_PATIENT_TYPE;
+import static com.example.shican.quizcreator.DatabaseHelper.KEY_PHONE_NUMBER;
+import static com.example.shican.quizcreator.DatabaseHelper.KEY_SURGERY;
+import static com.example.shican.quizcreator.DatabaseHelper.TABLE_NAME;
 
 public class RegistrationFormActivity extends Activity implements AdapterView.OnItemSelectedListener {
 
@@ -165,10 +164,10 @@ public class RegistrationFormActivity extends Activity implements AdapterView.On
                     descriptionText.setError("Please enter your description");
                     descriptionText.requestFocus();
                 } else if (patientType.equalsIgnoreCase("Select Patient Type")) {
-                    Toast.makeText(com.example.jian0080.finalproject.RegistrationFormActivity.this, "Please select patient type", Toast.LENGTH_LONG).show();
+                    Toast.makeText(com.example.shican.quizcreator.RegistrationFormActivity.this, "Please select patient type", Toast.LENGTH_LONG).show();
                     birthdayText.requestFocus();
                 } else {
-                    Intent intent = new Intent(com.example.jian0080.finalproject.RegistrationFormActivity.this, RecordDetailActivity.class);
+                    Intent intent = new Intent(com.example.shican.quizcreator.RegistrationFormActivity.this, RecordDetailActivity.class);
                     intent.putExtra("name", name);
                     intent.putExtra("address", address);
                     intent.putExtra("age", age);
@@ -181,15 +180,14 @@ public class RegistrationFormActivity extends Activity implements AdapterView.On
                     intent.putExtra("question 1", question1);
                     intent.putExtra("question 2", question2);
 
-                    DatabaseHelper myDbHelper = new DatabaseHelper(com.example.jian0080.finalproject.RegistrationFormActivity.this);
+                    DatabaseHelper myDbHelper = new DatabaseHelper(com.example.shican.quizcreator.RegistrationFormActivity.this);
 
                     SQLiteDatabase writableDb = myDbHelper.getWritableDatabase();
                     SQLiteDatabase readableDb = myDbHelper.getReadableDatabase();
 
                     if (isUpdate) {
                         readableDb.delete(TABLE_NAME, KEY_ID + "=" + id, null);
-                        dbBuffer.remove(position);
-
+                        PatientListActivity.dbBuffer.remove(position);
                     }
 
                     ContentValues cValues = new ContentValues();
@@ -238,7 +236,7 @@ public class RegistrationFormActivity extends Activity implements AdapterView.On
                     record.add(question1);
                     record.add(question2);
 
-                    dbBuffer.add(record);
+                    PatientListActivity.dbBuffer.add(record);
 
                     startActivity(intent);
                 }

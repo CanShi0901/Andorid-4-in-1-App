@@ -15,7 +15,7 @@ public class DentistFragment extends Fragment {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            String[] data = ((com.example.jian0080.finalproject.RegistrationFormActivity) getActivity()).getDataToFragment();
+            String[] data = ((com.example.shican.quizcreator.RegistrationFormActivity) getActivity()).getDataToFragment();
             View view = inflater.inflate(R.layout.activity_dentist_fragment_detail,
                     container, false);
             radioBrace = (RadioGroup) view.findViewById(R.id.radioBraces);

@@ -9,10 +9,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".QuizMain" />
-        <activity android:name=".ChooseQuiz" />
-        <activity android:name=".DisplayQuiz" />
-        <activity android:name=".CreateQuiz" />
         <activity android:name=".ProjectMain">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,10 +16,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".QuizMain" />
+        <activity android:name=".ChooseQuiz" />
+        <activity android:name=".DisplayQuiz" />
+        <activity android:name=".CreateQuiz" />
         <activity android:name=".OCMain" />
         <activity android:name=".OCAdd" />
         <activity android:name=".OCDelete" />
-        <activity android:name=".OCInfor"></activity>
+        <activity android:name=".OCInfor"/>
+        <activity android:name=".PatientListActivity"/>
+        <activity android:name=".RecordDetailActivity"/>
+        <activity android:name=".RegistrationFormActivity"/>
+        <activity android:name=".DoctorFragmentDetailActivity"/>
+        <activity android:name=".DentistFragmentDetailActivity"/>
     </application>
 
 </manifest>
