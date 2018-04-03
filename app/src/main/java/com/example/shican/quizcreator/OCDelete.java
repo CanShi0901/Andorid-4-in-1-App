@@ -13,7 +13,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Toast;
 
-public class OCDelete extends AppCompatActivity {
+public class OCDelete extends Toolbar {
     protected static final String ACTIVITY_NAME = "OCDelete";
     private static int result = 0;
 
@@ -21,6 +21,7 @@ public class OCDelete extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_oc_delete);
+        initToolbar();
 
         final Button submit = (Button) findViewById(R.id.submit);
         submit.setOnClickListener(new View.OnClickListener() {
