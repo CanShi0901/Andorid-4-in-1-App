@@ -38,8 +38,9 @@ import static com.example.shican.quizcreator.DatabaseHelper.KEY_PATIENT_TYPE;
 import static com.example.shican.quizcreator.DatabaseHelper.KEY_PHONE_NUMBER;
 import static com.example.shican.quizcreator.DatabaseHelper.KEY_SURGERY;
 import static com.example.shican.quizcreator.DatabaseHelper.TABLE_NAME;
+import static com.example.shican.quizcreator.PatientListActivity.dbBuffer;
 
-public class RegistrationFormActivity extends Activity implements AdapterView.OnItemSelectedListener {
+public class RegistrationFormActivity extends Toolbar implements AdapterView.OnItemSelectedListener {
 
     String  name, address, age, birthday, phoneNumber, healthCardNumber, gender, description, patientType,
             surgeries, allergies, braces, medicalBenefits, glassPurchaseDate, glassPurchaseStore, question1, question2;
@@ -57,21 +58,19 @@ public class RegistrationFormActivity extends Activity implements AdapterView.On
         setContentView(R.layout.activity_registration_form);
 
         setTitle("Patient Registration Form");
+        initToolbar();
 
         Button saveBtn = (Button) findViewById(R.id.save);
         Button cancelBtn = (Button) findViewById(R.id.cancel);
+
         nameText = (EditText) findViewById(R.id.name);
         addressText = (EditText) findViewById(R.id.address);
         ageText = (EditText) findViewById(R.id.age);
         birthdayText = (EditText) findViewById(R.id.birthday);
-        radioGender = (RadioGroup) findViewById(R.id.radioSex);
-        maleRadioBtn = (RadioButton) findViewById(R.id.male);
-        femaleRadioBtn = (RadioButton) findViewById(R.id.female);
         phoneNumberText = (EditText) findViewById(R.id.phone_number);
         healthCardNumberText = (EditText) findViewById(R.id.health_card_number);
         descriptionText = (EditText) findViewById(R.id.description);
         patientTypeText = (Spinner) findViewById(R.id.patient_type);
-
         // Spinner click listener
         patientTypeText.setOnItemSelectedListener(this);
         // Spinner Drop down elements
@@ -104,14 +103,8 @@ public class RegistrationFormActivity extends Activity implements AdapterView.On
                 address = addressText.getText().toString();
                 age = ageText.getText().toString();
                 birthday = birthdayText.getText().toString();
-
-                int selectedId =radioGender.getCheckedRadioButtonId();
-                RadioButton radioSexButton = (RadioButton)findViewById(selectedId);
-                gender = radioSexButton.getText().toString();
-
                 phoneNumber = phoneNumberText.getText().toString();
                 healthCardNumber = healthCardNumberText.getText().toString();
-
                 description = descriptionText.getText().toString();
                 patientType = patientTypeText.getSelectedItem().toString();
 
@@ -133,7 +126,6 @@ public class RegistrationFormActivity extends Activity implements AdapterView.On
                         glassPurchaseStore = ((OptometristFragment) getFragmentManager().findFragmentById(R.id.FrameLayout)).getData()[1];
                         question1 = glassPurchaseDate;
                         question2 = glassPurchaseStore;
-                        Log.i(null, "Glasses "+question1+" "+question2);
                         break;
                     default: break;
                 }
@@ -164,30 +156,30 @@ public class RegistrationFormActivity extends Activity implements AdapterView.On
                     descriptionText.setError("Please enter your description");
                     descriptionText.requestFocus();
                 } else if (patientType.equalsIgnoreCase("Select Patient Type")) {
-                    Toast.makeText(com.example.shican.quizcreator.RegistrationFormActivity.this, "Please select patient type", Toast.LENGTH_LONG).show();
+                    Toast.makeText(RegistrationFormActivity.this, "Please select patient type", Toast.LENGTH_LONG).show();
                     birthdayText.requestFocus();
                 } else {
-                    Intent intent = new Intent(com.example.shican.quizcreator.RegistrationFormActivity.this, RecordDetailActivity.class);
+                    Intent intent = new Intent(RegistrationFormActivity.this, RecordDetailActivity.class);
                     intent.putExtra("name", name);
                     intent.putExtra("address", address);
                     intent.putExtra("age", age);
                     intent.putExtra("birthday", birthday);
                     intent.putExtra("phoneNumber", phoneNumber);
                     intent.putExtra("healthCardNumber", healthCardNumber);
-                    intent.putExtra("gender", gender);
                     intent.putExtra("description", description);
                     intent.putExtra("patientType", patientType);
                     intent.putExtra("question 1", question1);
                     intent.putExtra("question 2", question2);
 
-                    DatabaseHelper myDbHelper = new DatabaseHelper(com.example.shican.quizcreator.RegistrationFormActivity.this);
+                    DatabaseHelper myDbHelper = new DatabaseHelper(RegistrationFormActivity.this);
 
                     SQLiteDatabase writableDb = myDbHelper.getWritableDatabase();
                     SQLiteDatabase readableDb = myDbHelper.getReadableDatabase();
 
                     if (isUpdate) {
                         readableDb.delete(TABLE_NAME, KEY_ID + "=" + id, null);
-                        PatientListActivity.dbBuffer.remove(position);
+                        dbBuffer.remove(position);
+
                     }
 
                     ContentValues cValues = new ContentValues();
@@ -196,7 +188,6 @@ public class RegistrationFormActivity extends Activity implements AdapterView.On
                     cValues.put(KEY_ADDRESS, address);
                     cValues.put(KEY_AGE, age);
                     cValues.put(KEY_BIRTHDAY, birthday);
-                    cValues.put(KEY_GENDER, gender);
                     cValues.put(KEY_PHONE_NUMBER, phoneNumber);
                     cValues.put(KEY_HEALTH_CARD_NUMBER, healthCardNumber);
                     cValues.put(KEY_DESCRIPTIOIN, description);
@@ -228,7 +219,6 @@ public class RegistrationFormActivity extends Activity implements AdapterView.On
                     record.add(address);
                     record.add(age);
                     record.add(birthday);
-                    record.add(gender);
                     record.add(phoneNumber);
                     record.add(healthCardNumber);
                     record.add(description);
@@ -236,7 +226,7 @@ public class RegistrationFormActivity extends Activity implements AdapterView.On
                     record.add(question1);
                     record.add(question2);
 
-                    PatientListActivity.dbBuffer.add(record);
+                    dbBuffer.add(record);
 
                     startActivity(intent);
                 }
@@ -254,8 +244,8 @@ public class RegistrationFormActivity extends Activity implements AdapterView.On
         FragmentTransaction ft = fm.beginTransaction();
         switch (item.toLowerCase()) {
             case "doctor":
-                DoctorFragment doctorFrag = new DoctorFragment();
-                ft.replace(R.id.FrameLayout, doctorFrag);
+                DoctorFragment doctorFragment = new DoctorFragment();
+                ft.replace(R.id.FrameLayout, doctorFragment);
                 ft.commit();
                 Toast.makeText(parent.getContext(), "Patient Type Selected: " + item, Toast.LENGTH_LONG).show();
                 break;
@@ -284,31 +274,24 @@ public class RegistrationFormActivity extends Activity implements AdapterView.On
             addressText.setText(intent.getStringExtra("address"));
             ageText.setText(intent.getStringExtra("age"));
             birthdayText.setText(intent.getStringExtra("birthday"));
-            if (intent.getStringExtra("gender").equalsIgnoreCase("male"))     {
-                maleRadioBtn.setChecked(true);
-            } else {
-                femaleRadioBtn.setChecked(true);
-            }
             phoneNumberText.setText(intent.getStringExtra("phoneNumber"));
             healthCardNumberText.setText(intent.getStringExtra("healthCardNumber"));
             descriptionText.setText(intent.getStringExtra("description"));
 
             switch (intent.getStringExtra("patientType").toLowerCase()){
                 case "doctor":  patientTypeText.setSelection(1);
-
-                    passData(intent.getStringExtra("question 1"), intent.getStringExtra("question 2"));
+                    passData(intent.getStringExtra("question 1"), intent.getStringExtra("question 2"), "doctor");
                     DoctorFragment doctorFrag = new DoctorFragment();
                     getFragmentManager().beginTransaction().replace(R.id.FrameLayout, doctorFrag).commit();
-  //                  doctorFrag.setData(intent.getStringExtra("question 1"), intent.getStringExtra("question 2"));
                     break;
                 case "dentist": patientTypeText.setSelection(2);
-                    passData(intent.getStringExtra("question 1"), intent.getStringExtra("question 2"));
-                    DoctorFragment dentistFrag = new DoctorFragment();
+                    passData(intent.getStringExtra("question 1"), intent.getStringExtra("question 2"),"dentist");
+                    DentistFragment dentistFrag = new DentistFragment();
                     getFragmentManager().beginTransaction().replace(R.id.FrameLayout, dentistFrag).commit();
                     break;
                 case "optometrist": patientTypeText.setSelection(3);
-                    passData(intent.getStringExtra("question 1"), intent.getStringExtra("question 2"));
-                    DoctorFragment optometristFrag = new DoctorFragment();
+                    passData(intent.getStringExtra("question 1"), intent.getStringExtra("question 2"), "optometrist");
+                    OptometristFragment optometristFrag = new OptometristFragment();
                     getFragmentManager().beginTransaction().replace(R.id.FrameLayout, optometristFrag).commit();
                     break;
                 default:
@@ -317,9 +300,10 @@ public class RegistrationFormActivity extends Activity implements AdapterView.On
         }
     }
 
-    public void passData (String s, String a){
-        dataToFragment = new String[]{s, a};
+    public void passData (String s, String a, String t){
+        dataToFragment = new String[]{s, a, t};
     }
+
     public String[] getDataToFragment(){
         return dataToFragment;
     }

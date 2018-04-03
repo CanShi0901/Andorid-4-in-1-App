@@ -6,7 +6,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
+import android.util.Xml;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,9 +17,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 
 import static com.example.shican.quizcreator.DatabaseHelper.KEY_ADDRESS;
@@ -61,6 +72,8 @@ public class PatientListActivity extends Toolbar {
         initToolbar();
 
         setTitle("Patient List");
+        initToolbar();
+        dbBuffer.clear();
         //identify views: ListView
         patientListView = (ListView) findViewById(R.id.patient_list);
         //set up list view
@@ -68,6 +81,23 @@ public class PatientListActivity extends Toolbar {
         patientListAdapter = new PatientListAdapter(PatientListActivity.this);
         patientListView.setAdapter(patientListAdapter);
 
+        Button addBtn = (Button) findViewById(R.id.add_button);
+        addBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PatientListActivity.this, RegistrationFormActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        Button importBtn = (Button) findViewById(R.id.import_button);
+        importBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ImportPatientList importList = new ImportPatientList();
+                importList.execute();
+            }
+        });
         setListView();
 
         }
@@ -75,7 +105,7 @@ public class PatientListActivity extends Toolbar {
         private void setListView(){
             //get patient info from database
             DatabaseHelper myDbHelper = new DatabaseHelper(PatientListActivity.this);
- //           writableDb = myDbHelper.getWritableDatabase();
+
             readableDb = myDbHelper.getReadableDatabase();
 
             cursor = readableDb.query(false, TABLE_NAME,
@@ -175,12 +205,6 @@ public class PatientListActivity extends Toolbar {
     }
 
     @Override
-    public void onRestart(){
-          super.onRestart();
-          patientListAdapter.notifyDataSetChanged();
-    }
-
-    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (data != null && requestCode == 1) {
@@ -192,30 +216,26 @@ public class PatientListActivity extends Toolbar {
 
         }
     }
+/*
     @Override
-    public void onResume(){
+    protected void onResume() {
+    
         super.onResume();
         patientListAdapter.notifyDataSetChanged();
     }
+*/
 
-    /*@Override
+/*    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.project_main_actions, menu);
         return true;
     }*/
-
-   /* @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch(item.getItemId()){
-            case R.id.add:
-                Intent intent = new Intent(PatientListActivity.this, com.example.shican.quizcreator.RegistrationFormActivity.class);
-                startActivity(intent);
-                break;
-            default:
-                break;
-        }
-        return true;
+/*    @Override
+    public void onStop(){
+        super.onStop();
+        readableDb.close();
+//        writableDb.close();
     }*/
 
     private class PatientListAdapter extends ArrayAdapter<String> {
@@ -270,6 +290,115 @@ public class PatientListActivity extends Toolbar {
 //            cursor.moveToPosition(position);
 //            return cursor.getLong(cursor.getColumnIndex(KEY_ID));
             return Long.parseLong(dbBuffer.get(position).get(0));
+        }
+    }
+
+    private class ImportPatientList extends AsyncTask<String, Integer, ArrayList<ArrayList<String>>> {
+
+        @Override
+        protected ArrayList<ArrayList<String>> doInBackground(String... args) {
+
+            Log.i(null, "called");
+            URL url;
+            String imageURL;
+            ArrayList<ArrayList<String>> patientList = new ArrayList<>();
+            ArrayList<String> record = new ArrayList<>();
+
+            try {
+                //connect to url
+                url = new URL("http://torunski.ca/CST2335/PatientList.xml");
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+                //download contents
+                InputStream connInputStream = conn.getInputStream();
+
+                //parse contents
+                XmlPullParser parser = Xml.newPullParser();
+                parser.setInput(connInputStream, null);
+
+                int eventType = parser.getEventType();
+                while (eventType != XmlPullParser.END_DOCUMENT) {
+
+                    String tagName = parser.getName();
+
+                    switch (eventType) {
+                        case XmlPullParser.START_TAG:
+                            if (tagName.equalsIgnoreCase("patient")) {
+                                record.add(parser.getAttributeValue(null, "type"));
+                            }
+                            break;
+                        case XmlPullParser.TEXT:
+                            if (parser.getText()!= null){
+                                record.add(parser.getText());
+                            }
+                            break;
+                        case XmlPullParser.END_TAG:
+                            if (tagName.equalsIgnoreCase("patient")) {
+                                patientList.add(record);
+                                record.clear();
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                    eventType = parser.next();
+                }
+
+            } catch (XmlPullParserException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            Log.i(null, "Size   "+patientList.size());
+            return patientList;//return parsed contents as array of string
+        }
+
+        /*            @Override
+                    protected void onProgressUpdate(Integer ...value){
+                        super.onProgressUpdate(value[0]);
+        *//*            progressBar.setProgress(value[0]);
+            if (value[0]==100) {
+                progressBar.setVisibility(View.INVISIBLE);
+            }
+            Log.i(null, "onProgressUpdate() gets called");*//*
+            }*/
+        @Override
+        protected void onPostExecute(ArrayList<ArrayList<String>> result){
+
+
+            for (ArrayList<String> record: result){
+
+//                String patientType = record.get(0);
+
+/*                cValues.put(KEY_NAME, record.get(1));
+                cValues.put(KEY_ADDRESS, record.get(2));
+                String age = String.valueOf(Calendar.getInstance().get(Calendar.YEAR)-Integer.valueOf(record.get(3).substring(6)));
+                cValues.put(KEY_AGE, age);
+                cValues.put(KEY_BIRTHDAY, record.get(3));
+                cValues.put(KEY_PHONE_NUMBER, record.get(4));
+                cValues.put(KEY_HEALTH_CARD_NUMBER, record.get(5));
+                cValues.put(KEY_DESCRIPTIOIN, record.get(6));
+                cValues.put(KEY_PATIENT_TYPE, record.get(0));
+
+                switch (patientType.toLowerCase()) {
+                    case "doctor":
+                        cValues.put(KEY_SURGERY, record.get(7));
+                        cValues.put(KEY_ALLERGY, record.get(8));
+                        break;
+                    case "dentist":
+                        cValues.put(KEY_BRACE, record.get(7));
+                        cValues.put(KEY_MEDICAL_BENEFIT, record.get(8));
+                        break;
+                    case "optometrist":
+                        cValues.put(KEY_GLASS_PURCHASE_DATE, record.get(7));
+                        cValues.put(KEY_GLASS_PURCHASE_STORE, record.get(8));
+                        break;
+                    default:
+                        break;
+                }
+                writableDb.insert(TABLE_NAME, "NullColumn", cValues);*/
+            }
         }
     }
 }

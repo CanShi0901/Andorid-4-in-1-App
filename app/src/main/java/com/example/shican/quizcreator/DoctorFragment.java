@@ -12,30 +12,33 @@ public class DoctorFragment extends Fragment {
     String surgery, allergy;
     EditText surgeryText, allergyText;
 
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
 
-            String[] data = ((RegistrationFormActivity) getActivity()).getDataToFragment();
-            View view = inflater.inflate(R.layout.activity_doctor_fragment_detail,
-                    container, false);
-            surgeryText = (EditText) view.findViewById(R.id.surgeries);
-            allergyText = (EditText) view.findViewById(R.id.allergies);
-            if (data != null) {
-                surgeryText.setText(data[0]);
-                allergyText.setText(data[1]);
-            }
-            return view;
+        String[] data = ((RegistrationFormActivity) getActivity()).getDataToFragment();
+        View view = inflater.inflate(R.layout.activity_doctor_fragment_detail,
+                container, false);
+        surgeryText = (EditText) view.findViewById(R.id.surgeries);
+        allergyText = (EditText) view.findViewById(R.id.allergies);
+        if (data != null && data[2].equalsIgnoreCase("doctor")) {
+            surgeryText.setText(data[0]);
+            allergyText.setText(data[1]);
+        } else {
+            surgeryText.setText("");
+            allergyText.setText("");
         }
+        return view;
+    }
 
-        public String[] getData (){
-            surgery = surgeryText.getText().toString();
-            allergy = allergyText.getText().toString();
-            return (new String[]{surgery, allergy});
-        }
+    public String[] getData (){
+        surgery = surgeryText.getText().toString();
+        allergy = allergyText.getText().toString();
+        return (new String[]{surgery, allergy});
+    }
 
-        public void setData(String s, String a){
+/*        public void setData(String s, String a){
   //          surgeryText.setText(s);
     //        allergyText.setText(a);
-        }
+        }*/
 }

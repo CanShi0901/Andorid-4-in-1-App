@@ -4,11 +4,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.jian0080.finalproject.RecordDetailActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolBar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@android:color/holo_green_light"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
     <LinearLayout
         android:id="@+id/line1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp">
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/toolBar">
         <TextView
             android:layout_width="100dp"
             android:layout_height="wrap_content"
@@ -77,28 +86,28 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"/>
     </LinearLayout>
-    <LinearLayout
-        android:id="@+id/line5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/line4"
-        android:layout_marginTop="5dp">
-        <TextView
-            android:layout_width="100dp"
+    <!--    <LinearLayout
+            android:id="@+id/line5"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Gender"
-            android:textAppearance="?android:attr/textAppearanceLarge"/>
-        <TextView
-            android:id="@+id/gender_input"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"/>
-    </LinearLayout>
+            android:layout_below="@id/line4"
+            android:layout_marginTop="5dp">
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="Gender"
+                android:textAppearance="?android:attr/textAppearanceLarge"/>
+            <TextView
+                android:id="@+id/gender_input"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"/>
+        </LinearLayout>-->
     <LinearLayout
         android:id="@+id/line6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/line5"
+        android:layout_below="@id/line4"
         android:layout_marginTop="5dp">
         <TextView
             android:layout_width="160dp"
