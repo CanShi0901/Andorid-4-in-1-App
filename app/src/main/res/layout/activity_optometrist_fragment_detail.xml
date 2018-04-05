@@ -3,14 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.jian0080.finalproject.DoctorFragmentDetailActivity">
+    tools:context="com.example.shican.quizcreator.OptometristFragmentDetailActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/GlassDateLayout"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true">
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="5dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -34,7 +35,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/GlassStoreLayout"
-        android:layout_below="@id/GlassDateLayout">
+        android:layout_below="@id/GlassDateLayout"
+        android:layout_marginStart="5dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

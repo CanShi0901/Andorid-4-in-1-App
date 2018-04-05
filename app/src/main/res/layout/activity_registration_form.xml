@@ -17,7 +17,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/NameLayout"
-        android:layout_below="@+id/toolBar">
+        android:layout_below="@+id/toolBar"
+        android:layout_marginStart="5dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -25,7 +26,8 @@
             android:text="Name"
             android:id="@+id/textView_name"
             android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true"/>
+            android:layout_alignParentStart="true"
+            />
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -41,14 +43,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/AddressLayout"
-        android:layout_below="@+id/NameLayout">
+        android:layout_below="@+id/NameLayout"
+        android:layout_marginStart="5dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Address"
             android:id="@+id/textView_address"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            />
 
         <EditText
             android:id="@+id/address"
@@ -56,7 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/textView_address"
             android:layout_toRightOf="@+id/textView_address"
-            android:hint="Enter your address"
+            android:hint="Enter your address..."
             android:inputType="text|textPostalAddress"
             android:layout_marginStart="10dp"/>
     </RelativeLayout>
@@ -64,7 +68,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/AgeLayout"
-        android:layout_below="@+id/AddressLayout">
+        android:layout_below="@+id/AddressLayout"
+        android:layout_marginStart="5dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -86,7 +91,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/BirthdayLayout"
-        android:layout_below="@+id/AgeLayout">
+        android:layout_below="@+id/AgeLayout"
+        android:layout_marginStart="5dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -101,11 +107,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/textView_birthday"
-            android:hint="Enter your birthday.."
+            android:hint="DD/MM/YYYY"
             android:inputType="date"
             android:layout_marginStart="10dp"/>
     </RelativeLayout>
-    <RelativeLayout
+  <!--  <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/GenderLayout"
@@ -134,12 +140,13 @@
                 android:text="Female"
                 android:id="@+id/female"/>
         </RadioGroup>
-    </RelativeLayout>
+    </RelativeLayout>-->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/HealthCardNumberLayout"
-        android:layout_below="@+id/PhoneNumberLayout">
+        android:layout_below="@+id/PhoneNumberLayout"
+        android:layout_marginStart="5dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -153,7 +160,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/textView_health_card_number"
-            android:hint="Enter your health card number.."
+            android:hint="Health card number.."
             android:inputType="text|textCapCharacters|date"
             android:layout_marginStart="10dp"/>
 
@@ -162,7 +169,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/PhoneNumberLayout"
-        android:layout_below="@+id/GenderLayout">
+        android:layout_below="@+id/BirthdayLayout"
+        android:layout_marginStart="5dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -215,7 +223,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/DescriptionLayout"
-        android:layout_below="@+id/HealthCardNumberLayout">
+        android:layout_below="@+id/HealthCardNumberLayout"
+        android:layout_marginStart="5dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -239,6 +248,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/PatientTypeLayout"
         android:layout_below="@+id/DescriptionLayout"
+        android:layout_marginStart="5dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp">
 
@@ -269,21 +279,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/ButtonLayout"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/holo_green_light">
+
         <Button
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Cancel"
             android:id="@+id/cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:elevation="2dp"
+            android:text="Cancel"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
         <Button
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Save"
             android:id="@+id/save"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/cancel"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:elevation="2dp"
+            android:text="Save"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
     </LinearLayout>
 </RelativeLayout>

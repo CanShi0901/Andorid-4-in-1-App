@@ -1,23 +1,18 @@
 package com.example.shican.quizcreator;
 
-import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,14 +37,12 @@ import static com.example.shican.quizcreator.PatientListActivity.dbBuffer;
 
 public class RegistrationFormActivity extends Toolbar implements AdapterView.OnItemSelectedListener {
 
-    String  name, address, age, birthday, phoneNumber, healthCardNumber, gender, description, patientType,
+    String  name, address, age, birthday, phoneNumber, healthCardNumber, description, patientType,
             surgeries, allergies, braces, medicalBenefits, glassPurchaseDate, glassPurchaseStore, question1, question2;
     long id;
     int position;
     boolean isUpdate = false;
     EditText nameText, addressText, ageText, birthdayText, phoneNumberText, healthCardNumberText, descriptionText;
-    RadioGroup radioGender;
-    RadioButton maleRadioBtn, femaleRadioBtn;
     Spinner patientTypeText;
     String[] dataToFragment;
     @Override
@@ -57,7 +50,7 @@ public class RegistrationFormActivity extends Toolbar implements AdapterView.OnI
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration_form);
 
-        setTitle("Patient Registration Form");
+        setTitle("Registration Form");
         initToolbar();
 
         Button saveBtn = (Button) findViewById(R.id.save);

@@ -65,7 +65,6 @@ public class RecordDetailActivity extends Toolbar {
                 intent.putExtra("birthday", birthday);
                 intent.putExtra("phoneNumber", phoneNumber);
                 intent.putExtra("healthCardNumber", healthCardNumber);
-                //               intent.putExtra("gender", gender);
                 intent.putExtra("description", description);
                 intent.putExtra("patientType", patientType);
                 intent.putExtra("question 1", question1);
@@ -147,12 +146,12 @@ public class RecordDetailActivity extends Toolbar {
 
                 break;
             case "dentist":
-                q1Text.setText("Braces:");
+                q1Text.setText("Had braces:");
                 q2Text.setText("Medical benefits:");
                 break;
             case "optometrist":
-                q1Text.setText("Glasses date");
-                q2Text.setText("Glasses store");
+                q1Text.setText("Glasses date:");
+                q2Text.setText("Glasses store:");
                 break;
             default: break;
         }
