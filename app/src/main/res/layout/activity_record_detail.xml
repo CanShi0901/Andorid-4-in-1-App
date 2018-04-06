@@ -20,17 +20,17 @@
         android:layout_below="@+id/toolBar"
         android:layout_marginStart="5dp">
         <TextView
-            android:layout_width="100dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Name"
+            android:text="Name:"
             />
         <TextView
             android:id="@+id/name_input"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            />
+            android:layout_marginLeft="15dp"/>
     </LinearLayout>
     <LinearLayout
         android:id="@+id/line2"
@@ -40,9 +40,9 @@
         android:layout_marginTop="5dp"
         android:layout_marginStart="5dp">
         <TextView
-            android:layout_width="100dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Address"
+            android:text="Address:"
             android:textAppearance="?android:attr/textAppearanceLarge"
             />
         <TextView
@@ -50,7 +50,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            />
+            android:layout_marginLeft="15dp"/>
     </LinearLayout>
     <LinearLayout
         android:id="@+id/line3"
@@ -60,9 +60,9 @@
         android:layout_marginTop="5dp"
         android:layout_marginStart="5dp">
         <TextView
-            android:layout_width="100dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Age"
+            android:text="Age:"
             android:textAppearance="?android:attr/textAppearanceLarge"
             />
         <TextView
@@ -70,7 +70,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            />
+            android:layout_marginLeft="15dp"/>
     </LinearLayout>
     <LinearLayout
         android:id="@+id/line4"
@@ -80,15 +80,16 @@
         android:layout_marginTop="5dp"
         android:layout_marginStart="5dp">
         <TextView
-            android:layout_width="100dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Birthday"
+            android:text="Birthday:"
             android:textAppearance="?android:attr/textAppearanceLarge"/>
         <TextView
             android:id="@+id/birthday_input"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"/>
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_marginLeft="15dp"/>
     </LinearLayout>
     <LinearLayout
         android:id="@+id/line6"
@@ -98,15 +99,16 @@
         android:layout_marginTop="5dp"
         android:layout_marginStart="5dp">
         <TextView
-            android:layout_width="160dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Phone number"
+            android:text="Phone number:"
             android:textAppearance="?android:attr/textAppearanceLarge"/>
         <TextView
             android:id="@+id/phone_number_input"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"/>
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_marginLeft="15dp"/>
     </LinearLayout>
     <LinearLayout
         android:id="@+id/line7"
@@ -116,15 +118,16 @@
         android:layout_marginTop="5dp"
         android:layout_marginStart="5dp">
         <TextView
-            android:layout_width="210dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Health card number"
+            android:text="Health card:"
             android:textAppearance="?android:attr/textAppearanceLarge"/>
         <TextView
             android:id="@+id/health_card_number_input"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"/>
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_marginLeft="15dp"/>
     </LinearLayout>
     <LinearLayout
         android:id="@+id/line8"
@@ -134,15 +137,16 @@
         android:layout_marginTop="5dp"
         android:layout_marginStart="5dp">
         <TextView
-            android:layout_width="120dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Description"
+            android:text="Description:"
             android:textAppearance="?android:attr/textAppearanceLarge"/>
         <TextView
             android:id="@+id/description_input"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"/>
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_marginLeft="15dp"/>
     </LinearLayout>
     <LinearLayout
         android:id="@+id/line9"
@@ -152,16 +156,16 @@
         android:layout_marginTop="5dp"
         android:layout_marginStart="5dp">
         <TextView
-            android:layout_width="160dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Patien type"
+            android:text="Patien type:"
             android:textAppearance="?android:attr/textAppearanceLarge"/>
         <TextView
             android:id="@+id/patient_type_input"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            />
+            android:layout_marginLeft="15dp"/>
     </LinearLayout>
     <LinearLayout
         android:id="@+id/line10"
@@ -172,14 +176,17 @@
         android:layout_marginStart="5dp">
         <TextView
             android:id="@+id/question_1"
-            android:layout_width="180dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"/>
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            />
         <TextView
             android:id="@+id/question_1_input"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"/>
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_marginLeft="15dp"
+            />
     </LinearLayout>
     <LinearLayout
         android:id="@+id/line11"
@@ -190,14 +197,16 @@
         android:layout_marginStart="5dp">
         <TextView
             android:id="@+id/question_2"
-            android:layout_width="180dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"/>
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            />
         <TextView
             android:id="@+id/question_2_input"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"/>
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_marginLeft="15dp"/>
     </LinearLayout>
     <RelativeLayout
         android:layout_width="wrap_content"

@@ -1,11 +1,15 @@
 package com.example.shican.quizcreator;
 
+import android.app.AlertDialog;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -45,6 +49,32 @@ public class RegistrationFormActivity extends Toolbar implements AdapterView.OnI
     EditText nameText, addressText, ageText, birthdayText, phoneNumberText, healthCardNumberText, descriptionText;
     Spinner patientTypeText;
     String[] dataToFragment;
+
+    @Override
+    public boolean onPrepareOptionsMenu (Menu menu){
+
+        menu.findItem(R.id.help).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                new AlertDialog.Builder(RegistrationFormActivity.this)
+                        .setTitle("Help")
+                        .setMessage("Activity developped by Nan Jiang "+ "\n" +
+                                "Version number: v1.0"+ "\n" +
+                                "This activity is designed to register 3 types of patient: doctor, dentist and optometrist. " +
+                                "You can view, add, update and delete patient's record." +
+                                "You can import multiple patients' records from the Internet. ")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        }).show();
+                return true;
+            }
+        });
+        return true;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

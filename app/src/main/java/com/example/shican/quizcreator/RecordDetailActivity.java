@@ -1,9 +1,12 @@
 package com.example.shican.quizcreator;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -18,6 +21,31 @@ public class RecordDetailActivity extends Toolbar {
             patientTypeText, q1Text, q2Text, question1Text, question2Text;
     long id;
     int position;
+
+    @Override
+    public boolean onPrepareOptionsMenu (Menu menu){
+
+        menu.findItem(R.id.help).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                new AlertDialog.Builder(RecordDetailActivity.this)
+                        .setTitle("Help")
+                        .setMessage("Activity developped by Nan Jiang "+ "\n" +
+                                "Version number: v1.0"+ "\n" +
+                                "This activity is designed to register 3 types of patient: doctor, dentist and optometrist. " +
+                                "You can view, add, update and delete patient's record." +
+                                "You can import multiple patients' records from the Internet. ")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        }).show();
+                return true;
+            }
+        });
+        return true;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

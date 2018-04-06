@@ -10,7 +10,7 @@
         android:id="@+id/quizCreator" android:title="@string/app_name1"
         android:orderInCategory="100"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" app:showAsAction="ifRoom"
+        android:layout_height="wrap_content" app:showAsAction="always"
         android:icon="@drawable/quiz" />
 
     <item
@@ -28,5 +28,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" app:showAsAction="always"
         android:icon="@drawable/octranspo"/>
-
+    <item android:id="@+id/help"
+        android:icon="@drawable/help"
+        android:title="Help"
+        app:showAsAction="never"/>
 </menu>

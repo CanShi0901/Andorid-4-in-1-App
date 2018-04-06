@@ -14,6 +14,7 @@ import android.util.Log;
 import android.util.Xml;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -75,10 +76,36 @@ public class PatientListActivity extends Toolbar {
     private ProgressBar progressBar;
 
     @Override
+    public boolean onPrepareOptionsMenu (Menu menu){
+
+        menu.findItem(R.id.help).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+         @Override
+         public boolean onMenuItemClick(MenuItem item) {
+             new AlertDialog.Builder(PatientListActivity.this)
+                     .setTitle("Help")
+                     .setMessage("Activity developped by Nan Jiang "+ "\n" +
+                                 "Version number: v1.0"+ "\n" +
+                                 "This activity is designed to register 3 types of patient: doctor, dentist and optometrist. " +
+                                 "You can view, add, update and delete patient's record." +
+                                 "You can import multiple patients' records from the Internet. ")
+                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                         @Override
+                         public void onClick(DialogInterface dialog, int which) {
+
+                         }
+                     }).show();
+             return true;
+         }
+     });
+     return true;
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_list);
         initToolbar();
+
 
         setTitle("Patient List");
         initToolbar();

@@ -12,6 +12,7 @@ import android.view.MenuItem;
  */
 
 public class Toolbar extends AppCompatActivity {
+    private MenuItem helpMenu;
 
     protected void onCreate(Bundle savedInstanceState ) {
         super.onCreate(savedInstanceState);

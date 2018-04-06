@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Date of glasses purchase"
+            android:text="Glasses date"
             android:id="@+id/textView_glasses_date"
             android:layout_alignParentStart="true" />
 
@@ -41,7 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Store of glasses purchase"
+            android:text="Glasses Store"
             android:id="@+id/textView_glasses_store"
             android:layout_alignParentStart="true"
             />
