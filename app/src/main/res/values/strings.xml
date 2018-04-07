@@ -36,6 +36,16 @@
     <string name="oc_add">Add Stop</string>
     <string name="oc_recentSearch">Recent Search Stop</string>
 
+    <string name="importXML">Import</string>
+    <string name="Stats">Stats</string>
+    <string name="mc">Multiple Choice</string>
+    <string name="tf">True/False</string>
+    <string name="nu">Numeric</string>
+    <string name="enterQuestion">Enter question here</string>
+    <string name="enterAnswer">Enter answer here</string>
+    <string name="trueAnswer">True</string>
+    <string name="falseAnswer">False</string>
+
     <string name="snackbar_message">"Patient records have been imported successfully"</string>
     <string name="menu_help">Help</string>
     <string name="btn_import">Import</string>

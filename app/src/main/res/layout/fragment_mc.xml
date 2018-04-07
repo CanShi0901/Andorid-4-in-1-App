@@ -1,0 +1,53 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mcFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.shican.quizcreator.mcFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <EditText
+        android:id="@+id/enterQuestion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:ems="10"
+        android:hint="@string/enterQuestion"
+        android:inputType="textAutoCorrect" />
+
+    <EditText
+        android:id="@+id/enterAnswer1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:ems="10"
+        android:hint="@string/enterAnswer"
+        android:inputType="textAutoCorrect" />
+
+    <EditText
+        android:id="@+id/enterAnswer2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/enterAnswer"
+        android:inputType="textAutoCorrect" />
+
+    <EditText
+        android:id="@+id/enterAnswer3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/enterAnswer"
+        android:inputType="textAutoCorrect" />
+
+    <EditText
+        android:id="@+id/enterAnswer4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/enterAnswer"
+        android:inputType="textAutoCorrect" />
+
+</LinearLayout>
