@@ -27,6 +27,16 @@
     <string name="done">Done</string>
     <string name="back">Back</string>
 
+    <string name="importXML">Import</string>
+    <string name="Stats">Stats</string>
+    <string name="mc">Multiple Choice</string>
+    <string name="tf">True/False</string>
+    <string name="nu">Numeric</string>
+    <string name="enterQuestion">Enter question here</string>
+    <string name="enterAnswer">Enter answer here</string>
+    <string name="trueAnswer">True</string>
+    <string name="falseAnswer">False</string>
+
     <string name="snackbar_message">"Patient records have been imported successfully"</string>
     <string name="menu_help">Help</string>
     <string name="btn_import">Import</string>
@@ -74,6 +84,5 @@
     <string name="toast_doctor">Doctor Type Selected</string>
     <string name="toast_dentist">Dentist Type Selected</string>
     <string name="toast_optometrist">Optometrist Type Selected</string>
-
 
 </resources>

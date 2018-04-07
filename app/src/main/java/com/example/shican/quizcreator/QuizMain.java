@@ -1,8 +1,10 @@
 package com.example.shican.quizcreator;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -10,6 +12,7 @@ import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,12 +29,12 @@ public class QuizMain extends Toolbar {
     ListView listViewMain;
     Button newQuiz;
     ArrayList<String> quizMessage;
-
     ContentValues cv;
     static QuizAdapter quizAdapter;
     QuizDatabaseHelper helper;
     SQLiteDatabase db;
     Cursor c;
+    String ans1, ans2, ans3, ans4, question, questionType, ans;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +55,9 @@ public class QuizMain extends Toolbar {
             helper.onCreate(db);
         } catch (SQLiteException e) {}
 
-        c = db.query(false, helper.TABLE_NAME, new String[]{helper.KEY_ID, helper.KEY_QUIZ},
+        c = db.query(false, helper.TABLE_NAME, new String[]{helper.KEY_ID,
+                        helper.KEY_QUIZ,helper.KEY_ANSWER1,helper.KEY_ANSWER2,
+                        helper.KEY_ANSWER3, helper.KEY_ANSWER4},
                 null,null,null,null,null,null);
         c.moveToFirst();
         if(c!=null&&c.moveToFirst()) {
@@ -84,28 +89,74 @@ public class QuizMain extends Toolbar {
 
             @Override
             public void onClick(View view) {
-                Intent chooseQuiz = new Intent(QuizMain.this, ChooseQuiz.class);
-                startActivityForResult(chooseQuiz, 1);
+                Intent newQuiz = new Intent(QuizMain.this, CreateQuiz.class);
+                startActivityForResult(newQuiz, 1);
             }
         });
 
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        quizMessage.clear();
-        c = db.query(false, helper.TABLE_NAME, new String[]{helper.KEY_ID, helper.KEY_QUIZ},
-                null,null,null,null,null,null);
-        c.moveToFirst();
-        if(c!=null&&c.moveToFirst()) {
-            while (!c.isLast()) {
-                quizMessage.add(c.getString(c.getColumnIndex(helper.KEY_QUIZ)));
-                Log.i(ACTIVITY_NAME, "SQL MESSAGE:" + c.getString(c.getColumnIndex(helper.KEY_QUIZ)));
-                c.moveToNext();
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode ==1){
+            if(resultCode == RESULT_OK){
+                questionType = data.getStringExtra("type");
+                question = data.getStringExtra("question");
+                quizMessage.add(question);
+                ContentValues cv = new ContentValues();
+                if(questionType.equalsIgnoreCase("mc")){
+                    ans1 = data.getStringExtra("ans1");
+                    ans2 = data.getStringExtra("ans2");
+                    ans3 = data.getStringExtra("ans3");
+                    ans4 = data.getStringExtra("ans4");
+                    cv.put(helper.KEY_QUIZ,question);
+                    cv.put(helper.KEY_ANSWER1, ans1);
+                    cv.put(helper.KEY_ANSWER2, ans2);
+                    cv.put(helper.KEY_ANSWER3, ans3);
+                    cv.put(helper.KEY_ANSWER4, ans4);
+                }
+                else if (questionType.equalsIgnoreCase("tf")
+                        ||questionType.equalsIgnoreCase("nu")){
+                    ans=data.getStringExtra("ans");
+                    cv.put(helper.KEY_QUIZ,question);
+                    cv.put(helper.KEY_ANSWER1, ans);
+                    cv.put(helper.KEY_ANSWER2, 0);
+                    cv.put(helper.KEY_ANSWER3, 0);
+                    cv.put(helper.KEY_ANSWER4, 0);
+                }
+                db.insert(helper.TABLE_NAME, "null Replacement Value", cv);
+                quizAdapter.notifyDataSetChanged();
+
             }
         }
-        quizAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu (Menu menu){
+        MenuItem importItem = (MenuItem) menu.findItem(R.id.import_resource);
+        importItem.setVisible(false);
+        menu.findItem(R.id.help).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                new AlertDialog.Builder(QuizMain.this)
+                        .setTitle("Help")
+                        .setMessage("Activity developed by Can Shi "+ "\n" +
+                                "Version number: v1.0"+ "\n" +
+                                "This activity is designed to create 3 types of quizzes, " +
+                                        "multiple choice, true or false, and numeric "+
+                                "You can view, add, update and delete quiz records. " +
+                                "You can import multiple quiz records from the Internet. ")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        }).show();
+                return true;
+            }
+        });
+        return true;
     }
 
     @Override
