@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Name"
+            android:text="@string/text_name"
             android:id="@+id/textView_name"
             android:layout_alignParentTop="true"
             android:layout_alignParentStart="true"
@@ -36,7 +36,7 @@
             android:id="@+id/name"
             android:layout_alignTop="@+id/textView_name"
             android:layout_centerHorizontal="true"
-            android:hint="Enter your name..."
+            android:hint="@string/hint_name"
             android:layout_marginStart="10dp"/>
     </RelativeLayout>
     <RelativeLayout
@@ -49,7 +49,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Address"
+            android:text="@string/text_address"
             android:id="@+id/textView_address"
             android:layout_alignParentStart="true"
             />
@@ -60,7 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/textView_address"
             android:layout_toRightOf="@+id/textView_address"
-            android:hint="Enter your address..."
+            android:hint="@string/hint_address"
             android:inputType="text|textPostalAddress"
             android:layout_marginStart="10dp"/>
     </RelativeLayout>
@@ -74,7 +74,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Age"
+            android:text="@string/text_age"
             android:id="@+id/textView_age"
             android:layout_alignParentStart="true" />
         <EditText
@@ -84,7 +84,7 @@
             android:ems="10"
             android:id="@+id/age"
             android:layout_toRightOf="@+id/textView_age"
-            android:hint="Enter your age..."
+            android:hint="@string/hint_age"
             android:layout_marginStart="10dp"/>
     </RelativeLayout>
     <RelativeLayout
@@ -97,7 +97,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Date of birth"
+            android:text="@string/text_birthday"
             android:id="@+id/textView_birthday"
             android:layout_alignParentStart="true"
             />
@@ -107,7 +107,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/textView_birthday"
-            android:hint="DD/MM/YYYY"
+            android:hint="@string/hint_birthday"
             android:inputType="date"
             android:layout_marginStart="10dp"/>
     </RelativeLayout>
@@ -151,7 +151,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Healthe Card"
+            android:text="@string/text_health_card"
             android:id="@+id/textView_health_card_number"
             android:layout_alignParentStart="true" />
 
@@ -160,7 +160,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/textView_health_card_number"
-            android:hint="Health card number..."
+            android:hint="@string/hint_health_card"
             android:inputType="text|textCapCharacters|date"
             android:layout_marginStart="10dp"/>
 
@@ -175,7 +175,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Phone Number"
+            android:text="@string/text_phone_number"
             android:id="@+id/textView_phone_number"
             android:layout_alignParentStart="true" />
 
@@ -184,7 +184,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/textView_phone_number"
-            android:hint="Enter phone number.."
+            android:hint="@string/hint_phone_number"
             android:inputType="text"
             android:layout_marginStart="10dp"/>
 
@@ -229,7 +229,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Description"
+            android:text="@string/text_description"
             android:id="@+id/textView_description"
             android:layout_alignParentStart="true" />
 
@@ -239,7 +239,7 @@
             android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/textView_description"
             android:layout_toRightOf="@+id/textView_description"
-            android:hint="Enter your description..."
+            android:hint="@string/hint_description"
             android:inputType="text"
             android:layout_marginStart="10dp"/>
     </RelativeLayout>
@@ -256,7 +256,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Patient Type"
+            android:text="@string/text_patient_type"
             android:id="@+id/textView_patient_type"
             android:layout_alignParentStart="true" />
         <Spinner
@@ -288,7 +288,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:elevation="2dp"
-            android:text="Cancel"
+            android:text="@string/btn_cancel"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <Button
@@ -298,7 +298,7 @@
             android:layout_toRightOf="@+id/cancel"
             android:layout_weight="1"
             android:elevation="2dp"
-            android:text="Save"
+            android:text="@string/btn_save"
             android:textAppearance="?android:attr/textAppearanceLarge" />
     </LinearLayout>
 </RelativeLayout>

@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Surgeries"
+            android:text="@string/text_surgery"
             android:id="@+id/textView_surgeries"
             android:layout_alignParentStart="true" />
 
@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/textView_surgeries"
             android:layout_toRightOf="@+id/textView_surgeries"
-            android:hint="Enter your surgery history..."
+            android:hint="@string/hint_surgery"
             android:inputType="text"
             android:layout_marginStart="10dp"/>
     </RelativeLayout>
@@ -41,7 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Allergies"
+            android:text="@string/text_allergy"
             android:id="@+id/textView_allergies"
             android:layout_alignParentStart="true" />
 
@@ -51,7 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/textView_allergies"
             android:layout_toRightOf="@+id/textView_allergies"
-            android:hint="Enter your allergy history..."
+            android:hint="@string/hint_allergy"
             android:inputType="text"
             android:layout_marginStart="10dp"/>
     </RelativeLayout>

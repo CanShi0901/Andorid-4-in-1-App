@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.shican.quizcreator.PatientListActivity">
+    tools:context="com.example.shican.quizcreator.PatientListActivity"
+    android:id="@+id/patient_list_layout">
 
     <ProgressBar
         android:id="@+id/indeterminateBar"
@@ -15,9 +16,6 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         />
-
-
-
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolBar"
         android:layout_width="match_parent"
@@ -49,7 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:elevation="2dp"
-            android:text="Import" />
+            android:text="@string/btn_import" />
 
         <Button
             android:id="@+id/statistic_button"
@@ -57,7 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:elevation="2dp"
-            android:text="Statistics" />
+            android:text="@string/btn_statistics" />
 
         <Button
             android:id="@+id/add_button"
@@ -65,6 +63,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:elevation="2dp"
-            android:text="Add" />
+            android:text="@string/btn_add" />
     </RelativeLayout>
 </RelativeLayout>

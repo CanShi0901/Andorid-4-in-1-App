@@ -26,4 +26,54 @@
     <string name="routeInfo">Route Information</string>
     <string name="done">Done</string>
     <string name="back">Back</string>
+
+    <string name="snackbar_message">"Patient records have been imported successfully"</string>
+    <string name="menu_help">Help</string>
+    <string name="btn_import">Import</string>
+    <string name="btn_statistics">Statistics</string>
+    <string name="btn_add">Add</string>
+    <string name="btn_delete">Delete</string>
+    <string name="btn_ok">OK</string>
+    <string name="btn_edit">Edit</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="btn_save">Save</string>
+    <string name="text_name">Name:</string>
+    <string name="text_address">Address:</string>
+    <string name="text_age">Age:</string>
+    <string name="text_birthday">Date of Birth:</string>
+    <string name="text_phone_number">Phone Number:</string>
+    <string name="text_health_card">Health Card:</string>
+    <string name="text_description">Description:</string>
+    <string name="text_patient_type">Patient Type:</string>
+    <string name="text_select_type">Select Patient Type</string>
+    <string name="text_surgery">Surgeries:</string>
+    <string name="text_allergy">Allergies:</string>
+    <string name="text_braces">Had Braces:</string>
+    <string name="text_medical_benefit">Medical Benefits:</string>
+    <string name="text_glasses_date">Glasses Date:</string>
+    <string name="text_glasses_store">Glasses Store:</string>
+    <string name="radio_yes">Yes</string>
+    <string name="radio_no">No</string>
+    <string name="text_doctor">Doctor</string>
+    <string name="text_dentist">Dentist</string>
+    <string name="text_optometrist">Optometrist</string>
+    <string name="hint_name">Enter name...</string>
+    <string name="hint_address">Enter address...</string>
+    <string name="hint_age">Enter age...</string>
+    <string name="hint_birthday">Enter birthday...</string>
+    <string name="hint_phone_number">Enter phone number...</string>
+    <string name="hint_health_card">Health card number...</string>
+    <string name="hint_description">Enter description...</string>
+    <string name="hint_surgery">Surgery history...</string>
+    <string name="hint_allergy">Allergy history...</string>
+    <string name="hint_glasses_date">Glasses purchse date...</string>
+    <string name="hint_glasses_store">Glasses purchase store...</string>
+    <string name="title_patient_list">Patient List</string>
+    <string name="title_patient_record">Record Detail</string>
+    <string name="title_registration_form">Registration Form</string>
+    <string name="toast_doctor">Doctor Type Selected</string>
+    <string name="toast_dentist">Dentist Type Selected</string>
+    <string name="toast_optometrist">Optometrist Type Selected</string>
+
+
 </resources>

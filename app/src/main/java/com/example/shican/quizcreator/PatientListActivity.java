@@ -10,6 +10,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.util.Xml;
 import android.view.LayoutInflater;
@@ -82,7 +83,7 @@ public class PatientListActivity extends Toolbar {
          @Override
          public boolean onMenuItemClick(MenuItem item) {
              new AlertDialog.Builder(PatientListActivity.this)
-                     .setTitle("Help")
+                     .setTitle(R.string.menu_help)
                      .setMessage("Activity developped by Nan Jiang "+ "\n" +
                                  "Version number: v1.0"+ "\n" +
                                  "This activity is designed to register 3 types of patient: doctor, dentist and optometrist. " +
@@ -107,7 +108,7 @@ public class PatientListActivity extends Toolbar {
         initToolbar();
 
 
-        setTitle("Patient List");
+        setTitle(R.string.title_patient_list);
         initToolbar();
         dbBuffer.clear();
         progressBar = (ProgressBar) findViewById(R.id.indeterminateBar);
@@ -136,6 +137,7 @@ public class PatientListActivity extends Toolbar {
                 ImportPatientList importList = new ImportPatientList();
                 importList.execute();
                 progressBar.setVisibility(View.VISIBLE);
+
             }
         });
 
@@ -310,7 +312,7 @@ public class PatientListActivity extends Toolbar {
     private class PatientListAdapter extends ArrayAdapter<String> {
 
         //constructor
-        public PatientListAdapter(Context ctx) {
+        protected PatientListAdapter(Context ctx) {
             super(ctx, 0);
         }
 
@@ -487,8 +489,11 @@ public class PatientListActivity extends Toolbar {
             progressBar.setProgress(value[0]);
             if (value[0]>100) {
                 progressBar.setVisibility(View.INVISIBLE);
+                Snackbar.make(findViewById(R.id.patient_list_layout), R.string.snackbar_message,
+                        Snackbar.LENGTH_SHORT)
+                        .show();
             }
-            Log.i(null, "onProgressUpdate() gets called");
+
         }
         @Override
         protected void onPostExecute(ArrayList<ArrayList<String>> result) {

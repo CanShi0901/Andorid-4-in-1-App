@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="snackbar_message">患者记录成功导入</string>
+    <string name="menu_help">帮助</string>
+    <string name="btn_import">导入</string>
+    <string name="btn_statistics">统计</string>
+    <string name="btn_add">添加</string>
+    <string name="btn_delete">删除</string>
+    <string name="btn_ok">确认</string>
+    <string name="btn_edit">修改</string>
+    <string name="btn_cancel">取消</string>
+    <string name="btn_save">保存</string>
+    <string name="text_name">姓名:</string>
+    <string name="text_address">地址:</string>
+    <string name="text_age">年龄:</string>
+    <string name="text_birthday">生日:</string>
+    <string name="text_phone_number">电话号码:</string>
+    <string name="text_health_card">医保卡号:</string>
+    <string name="text_description">病情描述:</string>
+    <string name="text_patient_type">患者类型:</string>
+    <string name="text_select_type">选择患者类型</string>
+    <string name="text_surgery">手术史:</string>
+    <string name="text_allergy">过敏史:</string>
+    <string name="text_braces">是否戴牙箍:</string>
+    <string name="text_medical_benefit">是否有医保:</string>
+    <string name="text_glasses_date">眼镜购买日期:</string>
+    <string name="text_glasses_store">眼镜购买商店:</string>
+    <string name="radio_yes">是</string>
+    <string name="radio_no">否</string>
+    <string name="text_doctor">医生</string>
+    <string name="text_dentist">牙医</string>
+    <string name="text_optometrist">眼医</string>
+    <string name="hint_name">输入姓名...</string>
+    <string name="hint_address">输入地址...</string>
+    <string name="hint_age">输入年龄...</string>
+    <string name="hint_birthday">输入生日...</string>
+    <string name="hint_phone_number">电话号码...</string>
+    <string name="hint_health_card">医保卡号...</string>
+    <string name="hint_description">病情描述...</string>
+    <string name="hint_surgery">输入手术史...</string>
+    <string name="hint_allergy">输入过敏史...</string>
+    <string name="hint_glasses_date">日日/月月/年年年年</string>
+    <string name="hint_glasses_store">眼镜店名称</string>
+    <string name="title_patient_list">患者列表</string>
+    <string name="title_patient_record">患者记录</string>
+    <string name="title_registration_form">患者登记表</string>
+    <string name="toast_doctor">已选医生类型</string>
+    <string name="toast_dentist">已选牙医类型</string>
+    <string name="toast_optometrist">已选眼医类型</string>
+
+
+
+</resources>

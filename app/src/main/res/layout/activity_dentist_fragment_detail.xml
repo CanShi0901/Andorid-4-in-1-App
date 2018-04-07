@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Had braces"
+            android:text="@string/text_braces"
             android:id="@+id/textView_braces"
             android:layout_alignParentStart="true" />
         <RadioGroup
@@ -27,13 +27,13 @@
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="True"
+                android:text="@string/radio_yes"
                 android:checked="true"
                 android:id="@+id/braces_true" />
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="False"
+                android:text="@string/radio_no"
                 android:id="@+id/braces_false"/>
         </RadioGroup>
     </RelativeLayout>
@@ -48,7 +48,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Medical Benefits"
+            android:text="@string/text_medical_benefit"
             android:id="@+id/textView_medical_benefits"
             android:layout_alignParentStart="true" />
         <RadioGroup
@@ -59,13 +59,13 @@
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="True"
+                android:text="Yes"
                 android:checked="true"
                 android:id="@+id/medical_benefits_true" />
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="False"
+                android:text="No"
                 android:id="@+id/medical_benefits_false"/>
         </RadioGroup>
     </RelativeLayout>

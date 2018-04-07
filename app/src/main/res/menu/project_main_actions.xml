@@ -30,6 +30,7 @@
         android:icon="@drawable/octranspo"/>
     <item android:id="@+id/help"
         android:icon="@drawable/help"
-        android:title="Help"
+        android:title="@string/menu_help"
+        android:layout_width="wrap_content"
         app:showAsAction="never"/>
 </menu>
