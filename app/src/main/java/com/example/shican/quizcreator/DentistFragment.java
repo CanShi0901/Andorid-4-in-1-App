@@ -22,12 +22,12 @@ public class DentistFragment extends Fragment {
      radioMedicalBenefit = (RadioGroup) view.findViewById(R.id.radioMedicalBenefits);
 
      if (data != null && data[2].equalsIgnoreCase("dentist")) {
-         if (data[0].equalsIgnoreCase("true")) {
+         if (data[0].equalsIgnoreCase("yes")) {
              radioBrace.check(R.id.braces_true);
          } else {
              radioBrace.check(R.id.braces_false);
          }
-         if (data[1].equalsIgnoreCase("true")) {
+         if (data[1].equalsIgnoreCase("yes")) {
              radioMedicalBenefit.check(R.id.medical_benefits_true);
          } else {
              radioMedicalBenefit.check(R.id.medical_benefits_false);
@@ -40,8 +40,8 @@ public class DentistFragment extends Fragment {
      return view;
  }
     public String[] getData (){
-        braces = radioBrace.getCheckedRadioButtonId() == R.id.braces_true? "True": "False";
-        medicalBenefits = radioMedicalBenefit.getCheckedRadioButtonId() == R.id.medical_benefits_true? "True":"False";
+        braces = radioBrace.getCheckedRadioButtonId() == R.id.braces_true? "Yes": "No";
+        medicalBenefits = radioMedicalBenefit.getCheckedRadioButtonId() == R.id.medical_benefits_true? "Yes":"No";
 
         return (new String[]{braces, medicalBenefits});
     }

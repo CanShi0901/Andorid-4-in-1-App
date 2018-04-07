@@ -55,7 +55,7 @@ public class RecordDetailActivity extends Toolbar {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_record_detail);
 
-        setTitle("Patient Record");
+        setTitle(R.string.title_patient_record);
         initToolbar();
 
         nameText =(TextView)findViewById(R.id.name_input);
@@ -155,9 +155,6 @@ public class RecordDetailActivity extends Toolbar {
         birthday = intent.getStringExtra("birthday");
         birthdayText.setText(birthday);
 
-/*        gender = intent.getStringExtra("gender");
-        genderText.setText(gender);*/
-
         phoneNumber = intent.getStringExtra("phoneNumber");
         phoneNumberText.setText(phoneNumber);
 
@@ -172,17 +169,17 @@ public class RecordDetailActivity extends Toolbar {
 
         switch (intent.getStringExtra("patientType").toLowerCase()) {
             case "doctor":
-                q1Text.setText("Surgeries:");
-                q2Text.setText("Allergies:");
+                q1Text.setText(R.string.text_surgery);
+                q2Text.setText(R.string.text_allergy);
 
                 break;
             case "dentist":
-                q1Text.setText("Had braces:");
-                q2Text.setText("Medical benefits:");
+                q1Text.setText(R.string.text_braces);
+                q2Text.setText(R.string.text_medical_benefit);
                 break;
             case "optometrist":
-                q1Text.setText("Glasses date:");
-                q2Text.setText("Glasses store:");
+                q1Text.setText(R.string.text_glasses_date);
+                q2Text.setText(R.string.text_glasses_store);
                 break;
             default: break;
         }

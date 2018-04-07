@@ -60,10 +60,10 @@ public class RegistrationFormActivity extends Toolbar implements AdapterView.OnI
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 new AlertDialog.Builder(RegistrationFormActivity.this)
-                        .setTitle("Help")
+                        .setTitle(R.string.menu_help)
                         .setMessage("Activity developped by Nan Jiang "+ "\n" +
                                 "Version number: v1.0"+ "\n" +
-                                "This activity is designed to register 3 types of patient: doctor, dentist and optometrist. " +
+                                "This activity is designed to register 3 types of patients: doctor, dentist and optometrist. " +
                                 "You can view, add, update and delete patient's record." +
                                 "You can import multiple patients' records from the Internet. ")
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -83,7 +83,7 @@ public class RegistrationFormActivity extends Toolbar implements AdapterView.OnI
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration_form);
 
-        setTitle("Registration Form");
+        setTitle(R.string.title_registration_form);
         initToolbar();
 
         Button saveBtn = (Button) findViewById(R.id.save);
@@ -273,17 +273,17 @@ public class RegistrationFormActivity extends Toolbar implements AdapterView.OnI
                 DoctorFragment doctorFragment = new DoctorFragment();
                 ft.replace(R.id.FrameLayout, doctorFragment);
                 ft.commit();
-                Toast.makeText(parent.getContext(), "Patient Type Selected: " + item, Toast.LENGTH_LONG).show();
+                Toast.makeText(parent.getContext(), parent.getContext().getResources().getString(R.string.toast_doctor) , Toast.LENGTH_LONG).show();
                 break;
             case "dentist":
                 ft.replace(R.id.FrameLayout, new DentistFragment());
                 ft.commit();
-                Toast.makeText(parent.getContext(), "Patient Type Selected: " + item, Toast.LENGTH_LONG).show();
+                Toast.makeText(parent.getContext(), parent.getContext().getResources().getString(R.string.toast_dentist), Toast.LENGTH_LONG).show();
                 break;
             case "optometrist":
                 ft.replace(R.id.FrameLayout, new OptometristFragment());
                 ft.commit();
-                Toast.makeText(parent.getContext(), "Patient Type Selected: " + item, Toast.LENGTH_LONG).show();
+                Toast.makeText(parent.getContext(), parent.getContext().getResources().getString(R.string.toast_optometrist), Toast.LENGTH_LONG).show();
                 break;
             default: break;
         }
