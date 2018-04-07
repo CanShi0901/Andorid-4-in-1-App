@@ -19,7 +19,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".QuizMain" />
-        <activity android:name=".ChooseQuiz" />
         <activity android:name=".DisplayQuiz" />
         <activity android:name=".CreateQuiz" />
         <activity android:name=".OCMain" />

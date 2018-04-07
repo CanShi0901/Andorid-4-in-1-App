@@ -28,8 +28,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" app:showAsAction="always"
         android:icon="@drawable/octranspo"/>
+
     <item android:id="@+id/help"
         android:icon="@drawable/help"
         android:title="Help"
         app:showAsAction="never"/>
+
+    <item android:id="@+id/import_resource"
+        android:icon="@drawable/import_resource"
+        android:title="Import"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/stats"
+        android:icon="@drawable/import_resource"
+        android:title="@string/Stats"
+        app:showAsAction="never"/>
+
 </menu>
