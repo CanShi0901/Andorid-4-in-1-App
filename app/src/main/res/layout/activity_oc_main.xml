@@ -32,22 +32,28 @@
         android:visibility="visible" />
 
     <Button
-        android:id="@+id/addRoute"
+        android:id="@+id/viewStop"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:text="@string/addRoute" />
+        android:text="@string/viewStops" />
 
     <Button
-        android:id="@+id/delRoute"
+        android:id="@+id/addStop"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:text="@string/delRoute" />
+        android:text="@string/oc_addStop" />
 
     <Button
-        android:id="@+id/routeInfor"
+        android:id="@+id/delStop"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:text="@string/oc_delStop" />
+
+    <Button
+        android:id="@+id/reroute"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/routeInfo" />
+        android:text="@string/oc_reroute" />
 
     <ListView
         android:id="@+id/listviewMain"

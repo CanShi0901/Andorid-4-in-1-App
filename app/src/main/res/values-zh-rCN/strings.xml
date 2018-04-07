@@ -48,6 +48,21 @@
     <string name="toast_dentist">已选牙医类型</string>
     <string name="toast_optometrist">已选眼医类型</string>
 
-
+    <string name="oc_main">OCTranspo</string>
+    <string name="oc_addStop">添加车站</string>
+    <string name="oc_delStop">删除车站</string>
+    <string name="oc_enterStop">请输入车站号</string>
+    <string name="oc_submit">确认</string>
+    <string name="oc_routeInfo">路线信息</string>
+    <string name="oc_done">完成</string>
+    <string name="oc_back">查找</string>
+    <string name="oc_search">寻找</string>
+    <string name="viewStops">查看车站</string>
+    <string name="oc_reroute">历史路线</string>
+    <string name="oc_stopNum">车站号: </string>
+    <string name="oc_stopDes">车站名: </string>
+    <string name="oc_searchResult">查找结果</string>
+    <string name="oc_add">添加车站</string>
+    <string name="oc_recentSearch">历史寻找车站</string>
 
 </resources>

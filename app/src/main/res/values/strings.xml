@@ -18,14 +18,23 @@
     <string name="dislike">Dislike</string>
     <string name="save">Save Question</string>
     <string name="typeHere">Type your question here</string>
+
     <string name="oc_main">OCTranspo</string>
-    <string name="addRoute">Add Route</string>
-    <string name="delRoute">Delete Route</string>
-    <string name="typeoc">Please enter router number</string>
-    <string name="submit">Submit</string>
-    <string name="routeInfo">Route Information</string>
-    <string name="done">Done</string>
-    <string name="back">Back</string>
+    <string name="oc_addStop">Add Stop</string>
+    <string name="oc_delStop">Delete Stop</string>
+    <string name="oc_enterStop">Please enter stop number</string>
+    <string name="oc_submit">Submit</string>
+    <string name="oc_routeInfo">Route Information</string>
+    <string name="oc_done">Done</string>
+    <string name="oc_back">Back</string>
+    <string name="oc_search">Search</string>
+    <string name="viewStops">view Stops</string>
+    <string name="oc_reroute">Recent Route</string>
+    <string name="oc_stopNum">Stop Number: </string>
+    <string name="oc_stopDes">Stop Description: </string>
+    <string name="oc_searchResult">Search Result</string>
+    <string name="oc_add">Add Stop</string>
+    <string name="oc_recentSearch">Recent Search Stop</string>
 
     <string name="snackbar_message">"Patient records have been imported successfully"</string>
     <string name="menu_help">Help</string>
@@ -74,6 +83,5 @@
     <string name="toast_doctor">Doctor Type Selected</string>
     <string name="toast_dentist">Dentist Type Selected</string>
     <string name="toast_optometrist">Optometrist Type Selected</string>
-
 
 </resources>
