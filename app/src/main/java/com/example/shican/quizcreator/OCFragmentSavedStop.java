@@ -1,6 +1,7 @@
 package com.example.shican.quizcreator;
 
 
+import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,24 +16,13 @@ import java.util.ArrayList;
 
 public class OCFragmentSavedStop extends Fragment {
     ListView listView;
-    ArrayList<String> list= new ArrayList<String>();;
     public OCFragmentSavedStop(){}
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_oc_saved_stop, container, false);
         listView = (ListView) view.findViewById(R.id.list);
-        return view;
-    }
 
-    public void saveStop(String stop) {
-        if(list.contains(stop)){}
-        else {
-            list.add(stop);
-        }
-    }
-
-    public void showSavedStop(ArrayList<String> list){
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, list) {
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, OCMain.saveArrayList) {
             public View getView(int position, View convertView, ViewGroup parent) {
                 View view = super.getView(position, convertView, parent);
                 TextView textView = (TextView) view.findViewById(android.R.id.text1);
@@ -41,5 +31,6 @@ public class OCFragmentSavedStop extends Fragment {
             }
         };
         listView.setAdapter(adapter);
+        return view;
     }
 }

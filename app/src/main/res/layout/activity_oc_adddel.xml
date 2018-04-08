@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/toolBar"
-        android:text="@string/oc_delStop"
+        android:text="@string/oc_adddelStop"
         android:textAlignment="center"
         android:textSize="20sp" />
 
@@ -37,7 +37,7 @@
         android:visibility="visible" />
 
     <EditText
-        android:id="@+id/delete"
+        android:id="@+id/input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -46,10 +46,18 @@
         android:hint="@string/oc_enterStop" />
 
     <Button
+        android:id="@+id/add_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/input"
+        android:layout_centerHorizontal="true"
+        android:text="@string/oc_addStop" />
+
+    <Button
         android:id="@+id/del_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/delete"
+        android:layout_below="@+id/add_button"
         android:layout_centerHorizontal="true"
         android:text="@string/oc_delStop" />
 
@@ -62,12 +70,5 @@
         android:layout_marginStart="0dp"
         android:text="@string/oc_back" />
 
-    <fragment
-        android:id="@+id/fragment2"
-        android:name="com.example.shican.quizcreator.OCFragmentSavedStop"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/back" />
 
 </RelativeLayout>

@@ -6,13 +6,37 @@
     android:layout_height="match_parent"
     tools:context="com.example.shican.quizcreator.CreateQuiz">
 
+    <TextView
+        android:id="@+id/searchStop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:stackFromBottom="true"
+        android:text="@string/oc_searchStop"
+        android:transcriptMode="alwaysScroll" />
+
+    <EditText
+        android:id="@+id/input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/searchStop"
+        android:ems="10"
+        android:hint="@string/oc_enterStop" />
+
+    <Button
+        android:id="@+id/search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/input"
+        android:layout_centerHorizontal="true"
+        android:text="@string/oc_search" />
 
     <TextView
         android:id="@+id/recentStop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:stackFromBottom="true"
         android:text="@string/oc_recentSearch"
+        android:layout_below="@+id/search"
         android:transcriptMode="alwaysScroll" />
 
     <ListView

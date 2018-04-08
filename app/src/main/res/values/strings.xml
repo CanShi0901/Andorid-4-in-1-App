@@ -27,6 +27,8 @@
     <string name="oc_routeInfo">Route Information</string>
     <string name="oc_done">Done</string>
     <string name="oc_back">Back</string>
+    <string name="oc_searchStop">Search Stop</string>
+    <string name="oc_adddelStop">Add/Delete Stop</string>
     <string name="oc_search">Search</string>
     <string name="oc_reroute">Recent Route</string>
     <string name="oc_stopNum">Stop Number: </string>
