@@ -75,6 +75,7 @@
     <string name="toast_doctor">已选医生类型</string>
     <string name="toast_dentist">已选牙医类型</string>
     <string name="toast_optometrist">已选眼医类型</string>
+
     <string name="oc_main">OCTranspo</string>
     <string name="oc_addStop">添加车站</string>
     <string name="oc_delStop">删除车站</string>
@@ -91,4 +92,5 @@
     <string name="oc_searchResult">查找结果</string>
     <string name="oc_add">添加车站</string>
     <string name="oc_recentSearch">历史寻找车站</string>
+
 </resources>
