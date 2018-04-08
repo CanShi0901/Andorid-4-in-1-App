@@ -16,16 +16,6 @@
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
 
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/toolBar"
-        android:text="@string/oc_routeInfo"
-        android:textAlignment="center"
-        android:textSize="20sp" />
-
     <ProgressBar
         android:id="@+id/inProgress"
         style="?android:attr/progressBarStyleHorizontal"
@@ -36,23 +26,50 @@
         android:progress="@android:integer/config_mediumAnimTime"
         android:visibility="visible" />
 
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/toolBar"
+        android:text="@string/oc_searchResult"
+        android:textAlignment="center"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/stopNum"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/inProgress"
+        android:text="@string/oc_stopNum"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/stopDes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/stopNum"
+        android:text="@string/oc_stopDes"
+        android:textSize="18sp" />
+
     <Button
-        android:id="@+id/done"
+        android:id="@+id/back"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="20dp"
-        android:text="@string/oc_done" />
+        android:text="@string/oc_back" />
 
     <ListView
         android:id="@+id/list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/back"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="91dp"
-        android:layout_marginBottom="91dp"
-        />
+        android:layout_below="@+id/stopDes"
+        android:layout_marginTop="26dp" />
 
 </RelativeLayout>

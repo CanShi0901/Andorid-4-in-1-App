@@ -1,11 +1,15 @@
 package com.example.shican.quizcreator;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -15,7 +19,6 @@ import android.widget.TextView;
 
 public class OCInfor extends Toolbar {
     protected static final String ACTIVITY_NAME = "OCInfor";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,5 +47,26 @@ public class OCInfor extends Toolbar {
         list.setAdapter(adapter);
 
         Snackbar.make(findViewById(android.R.id.content), "Detail Route Information shows", Snackbar.LENGTH_LONG).show();
+    }
+
+    //help toolbar
+    public boolean onPrepareOptionsMenu (Menu menu){
+        menu.findItem(R.id.help).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                new AlertDialog.Builder(OCInfor.this)
+                        .setTitle("Help")
+                        .setMessage("Activity developped by Yuxin Zhang "+ "\n" +
+                                "Version number v1.0")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        }).show();
+                return true;
+            }
+        });
+        return true;
     }
 }
