@@ -52,7 +52,10 @@ public class RegistrationFormActivity extends Toolbar implements AdapterView.OnI
 
     @Override
     public boolean onPrepareOptionsMenu (Menu menu){
-
+        MenuItem importItem = (MenuItem) menu.findItem(R.id.import_resource);
+        importItem.setVisible(false);
+        MenuItem statItem = (MenuItem) menu.findItem(R.id.stats);
+        statItem.setVisible(false);
         menu.findItem(R.id.help).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
