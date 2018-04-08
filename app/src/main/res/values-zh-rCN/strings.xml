@@ -1,5 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="project_name">安卓作业</string>
+    <string name="app_name1">题目生成器</string>
+    <string name="app_name2">病例</string>
+    <string name="app_name3">公车</string>
+    <string name="welcome">我们的APP好极了!</string>
+    <string name="quiz_creator">你的题目</string>
+    <string name="create">新题目</string>
+    <string name="choose">选择题型</string>
+    <string name="yourQuiz">你选的题目</string>
+    <string name="checkAnswer">答案</string>
+    <string name="hint">提示</string>
+    <string name="multipleChoice">多选题</string>
+    <string name="Numeric">算数</string>
+    <string name="TrueFlase">选对错</string>
+    <string name="noHint">我没有提示给你!</string>
+    <string name="like">喜欢</string>
+    <string name="dislike">不喜欢</string>
+    <string name="save">保存</string>
+    <string name="typeHere">输入问题</string>
+    <string name="importXML">导入</string>
+    <string name="Stats">数据</string>
+    <string name="mc">多选题</string>
+    <string name="tf">选对错</string>
+    <string name="nu">算数</string>
+    <string name="enterQuestion">输入你的问题</string>
+    <string name="enterAnswer">输入你的答案</string>
+    <string name="trueAnswer">正确</string>
+    <string name="falseAnswer">错误</string>
     <string name="snackbar_message">患者记录成功导入</string>
     <string name="menu_help">帮助</string>
     <string name="btn_import">导入</string>
@@ -47,7 +75,6 @@
     <string name="toast_doctor">已选医生类型</string>
     <string name="toast_dentist">已选牙医类型</string>
     <string name="toast_optometrist">已选眼医类型</string>
-
     <string name="oc_main">OCTranspo</string>
     <string name="oc_addStop">添加车站</string>
     <string name="oc_delStop">删除车站</string>
@@ -64,5 +91,4 @@
     <string name="oc_searchResult">查找结果</string>
     <string name="oc_add">添加车站</string>
     <string name="oc_recentSearch">历史寻找车站</string>
-
 </resources>
