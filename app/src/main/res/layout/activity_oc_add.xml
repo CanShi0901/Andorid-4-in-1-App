@@ -59,7 +59,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/search"
         android:layout_centerHorizontal="true"
-        android:text="@string/oc_add" />
+        android:text="@string/oc_addStop" />
 
     <Button
         android:id="@+id/back"
@@ -72,9 +72,9 @@
 
     <fragment
         android:id="@+id/fragment"
-        android:name="com.example.shican.quizcreator.OCFragementRecentStops"
+        android:name="com.example.shican.quizcreator.OCFragmentRecentStops"
         android:layout_width="match_parent"
-        android:layout_height="278dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/back" />
 

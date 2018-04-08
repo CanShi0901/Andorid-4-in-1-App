@@ -13,13 +13,13 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class OCFragementRecentStops extends Fragment {
+public class OCFragmentRecentStops extends Fragment {
     ListView listView;
     ArrayList<String> list= new ArrayList<String>();;
-    public OCFragementRecentStops(){}
+    public OCFragmentRecentStops(){}
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragement_oc_recent_stop, container, false);
+        View view = inflater.inflate(R.layout.fragment_oc_recent_stop, container, false);
         listView = (ListView) view.findViewById(R.id.list);
         return view;
     }

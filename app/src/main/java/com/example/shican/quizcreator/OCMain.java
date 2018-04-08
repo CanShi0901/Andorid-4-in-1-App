@@ -1,8 +1,11 @@
 package com.example.shican.quizcreator;
 
 import android.app.AlertDialog;
+import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,16 +16,41 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class OCMain extends Toolbar {
     protected static final String ACTIVITY_NAME = "OCMain";
     private static final int ADD_REQUEST_CODE = 50;
     private static final int DEL_REQUEST_CODE = 60;
+
+
+    //database
+    public static OCSavedStopDatabaseHelper saveHelper;
+    public static SQLiteDatabase saveDB;
+    public static ContentValues saveValues;
+    public static Cursor saveCu;
+    public static ContentValues saveContent;
+    public static ArrayList<String> saveArrayList = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_oc_main);
         initToolbar();
+
+        //saved stop database
+        saveHelper = new OCSavedStopDatabaseHelper(this);
+        saveDB = saveHelper.getWritableDatabase();
+        saveValues = new ContentValues();
+
+        final Button viewStop = (Button) findViewById(R.id.viewStop);
+        viewStop.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Log.i(ACTIVITY_NAME, "User clicked View Stop");
+                Intent i = new Intent(OCMain.this, OCShowSavedStop.class);
+                startActivity(i);
+            }
+        });
 
         final Button addStop = (Button) findViewById(R.id.addStop);
         addStop.setOnClickListener(new View.OnClickListener() {

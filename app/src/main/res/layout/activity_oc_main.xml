@@ -35,7 +35,7 @@
         android:id="@+id/viewStop"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:text="@string/viewStops" />
+        android:text="@string/oc_savedStop" />
 
     <Button
         android:id="@+id/addStop"
@@ -61,7 +61,5 @@
         android:layout_height="wrap_content"
         android:stackFromBottom="true"
         android:transcriptMode="alwaysScroll" />
-
-
 
 </LinearLayout>

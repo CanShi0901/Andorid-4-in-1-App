@@ -28,13 +28,12 @@
     <string name="oc_done">Done</string>
     <string name="oc_back">Back</string>
     <string name="oc_search">Search</string>
-    <string name="viewStops">view Stops</string>
     <string name="oc_reroute">Recent Route</string>
     <string name="oc_stopNum">Stop Number: </string>
     <string name="oc_stopDes">Stop Description: </string>
     <string name="oc_searchResult">Search Result</string>
-    <string name="oc_add">Add Stop</string>
     <string name="oc_recentSearch">Recent Search Stop</string>
+    <string name="oc_savedStop">Saved Stop</string>
 
     <string name="importXML">Import</string>
     <string name="Stats">Stats</string>
@@ -93,5 +92,9 @@
     <string name="toast_doctor">Doctor Type Selected</string>
     <string name="toast_dentist">Dentist Type Selected</string>
     <string name="toast_optometrist">Optometrist Type Selected</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_oc_show_saved_stop">activity_oc_show_saved_stop</string>
 
 </resources>

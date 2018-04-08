@@ -15,6 +15,8 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class OCDelete extends Toolbar {
     protected static final String ACTIVITY_NAME = "OCDelete";
     private static int result = 0;
@@ -25,8 +27,8 @@ public class OCDelete extends Toolbar {
         setContentView(R.layout.activity_oc_delete);
         initToolbar();
 
-        final Button submit = (Button) findViewById(R.id.submit);
-        submit.setOnClickListener(new View.OnClickListener() {
+        final Button del_button = (Button) findViewById(R.id.del_button);
+        del_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(OCDelete.this);
                 builder.setMessage("Do you want to delete stop?");
@@ -55,6 +57,19 @@ public class OCDelete extends Toolbar {
                 finish();
             }
         });
+
+        OCMain.saveCu = OCMain.saveDB.query(false,  OCSavedStopDatabaseHelper.TABLE_NAME, new String[]{OCSavedStopDatabaseHelper.KEY_ID, OCSavedStopDatabaseHelper.KEY_MESSAGE},null, null, null, null, null, null);
+        OCMain.saveCu.moveToFirst();
+
+        while(!OCMain.saveCu.isAfterLast() ) {
+            String newMessage = OCMain.saveCu.getString(OCMain.saveCu.getColumnIndex(OCSavedStopDatabaseHelper.KEY_MESSAGE));
+            OCMain.saveArrayList .add(newMessage);
+            OCMain.saveCu.moveToNext();
+        }
+
+
+        OCFragmentSavedStop save = ( OCFragmentSavedStop)getSupportFragmentManager().findFragmentById(R.id.fragment2);
+        save.showSavedStop(OCMain.saveArrayList);
     }
 
     //help toolbar

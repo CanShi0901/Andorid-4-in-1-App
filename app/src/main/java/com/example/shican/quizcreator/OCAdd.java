@@ -1,12 +1,12 @@
 package com.example.shican.quizcreator;
 
 import android.app.AlertDialog;
+import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v4.app.Fragment;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
-import android.util.Xml;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,14 +24,16 @@ public class OCAdd extends Toolbar {
         setContentView(R.layout.activity_oc_add);
         initToolbar();
 
+
+        final EditText add = (EditText)findViewById(R.id.add);
         final Button addButton = (Button) findViewById(R.id.add_button);
         addButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
+                enterStop = add.getText().toString();
                 if((!enterStop.matches("[-+]?\\d*\\.?\\d+")) && (enterStop != " ")) {
-                    result = 1;
-                } else{
-                    result = 0;
+                }else {
+                    OCMain.saveValues.put(OCSavedStopDatabaseHelper.KEY_MESSAGE, enterStop);
+                    OCMain.saveDB.insert(OCSavedStopDatabaseHelper.TABLE_NAME, null,OCMain.saveValues);
                 }
             }
         });
@@ -40,14 +42,13 @@ public class OCAdd extends Toolbar {
         back.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent resultIntent = new Intent();
-                if(result == 1) resultIntent.putExtra("Response","Stop Added");
+                if(result >= 1) resultIntent.putExtra("Response","Stop Added");
                 if(result == 0) resultIntent.putExtra("Response","No stop Added");
                 setResult(RESULT_OK, resultIntent);
                 finish();
             }
         });
 
-        final EditText add = (EditText)findViewById(R.id.add);
         final Button search = (Button)findViewById(R.id.search);
         search.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -75,7 +76,7 @@ public class OCAdd extends Toolbar {
     }
 
     public void createRecentStop(String stop){
-        OCFragementRecentStops recent = (OCFragementRecentStops)getSupportFragmentManager().findFragmentById(R.id.fragment);
+        OCFragmentRecentStops recent = (OCFragmentRecentStops)getSupportFragmentManager().findFragmentById(R.id.fragment);
         recent.createRecentStop(stop);
     }
 
