@@ -26,27 +26,19 @@ public class OCInfor extends Toolbar {
         setContentView(R.layout.activity_oc_infor);
         initToolbar();
 
-        final Button done = (Button) findViewById(R.id.done);
-        done.setOnClickListener(new View.OnClickListener() {
+        Intent i = getIntent();
+        String stop = i.getExtras().getString("stop");
+        String route = i.getExtras().getString("route");
+
+        final Button back = (Button) findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent i = new Intent(OCInfor.this, OCMain.class);
-                startActivity(i);
+                finish();
             }
         });
 
-        ListView list = (ListView) findViewById(R.id.list);
-        String[] inforList= {"Destination", "Latitude", "Longitude", "GPS Speed", "Start Time", "Adjusted Schedule Time"};
-        ArrayAdapter<String> adapter=new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, inforList){
-            public View getView(int position, View convertView, ViewGroup parent) {
-                View view =super.getView(position, convertView, parent);
-                TextView textView=(TextView) view.findViewById(android.R.id.text1);
-                textView.setTextColor(Color.BLACK);
-                return view;
-            }
-        };
-        list.setAdapter(adapter);
-
-        Snackbar.make(findViewById(android.R.id.content), "Detail Route Information shows", Snackbar.LENGTH_LONG).show();
+        OCFragmentRouteInformation infor = (OCFragmentRouteInformation)getSupportFragmentManager().findFragmentById(R.id.fragment3);
+        infor.routeInfor(stop,route);
     }
 
     //help toolbar

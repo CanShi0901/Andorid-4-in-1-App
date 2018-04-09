@@ -19,6 +19,7 @@ public class OCAddDel extends Toolbar {
 
     private ArrayList<String> addString;
     private ArrayList<String> delString;
+    private ArrayList<String> saveList;
 
     private int addResult;
     private int delResult;
@@ -33,10 +34,14 @@ public class OCAddDel extends Toolbar {
         addString = new ArrayList<>();
         delString = new ArrayList<>();
 
+        Intent i = getIntent();
+        saveList= i.getStringArrayListExtra("saveList");
+
         final EditText input= (EditText) findViewById(R.id.input);
         final Button addButton = (Button) findViewById(R.id.add_button);
         final Button delButton = (Button) findViewById(R.id.del_button);
         final Button back = (Button) findViewById(R.id.back);
+
 
         //add button click, add input stop
         addButton.setOnClickListener(new View.OnClickListener() {
@@ -44,10 +49,14 @@ public class OCAddDel extends Toolbar {
                 enterStop = input.getText().toString();
                 if ((!enterStop.matches("[-+]?\\d*\\.?\\d+")) && (enterStop != " ")) {
                 } else {
-                    addResult++;
-                    addString.add(enterStop);
-                    input.setText("");
-                    Snackbar.make(findViewById(android.R.id.content), "Stop Added", Snackbar.LENGTH_LONG).show();
+                    if(saveList.contains(enterStop)){
+                        Snackbar.make(findViewById(android.R.id.content), "Stop Already Added", Snackbar.LENGTH_LONG).show();
+                    }else {
+                        addResult++;
+                        addString.add(enterStop);
+                        input.setText("");
+                        Snackbar.make(findViewById(android.R.id.content), "Stop Added", Snackbar.LENGTH_LONG).show();
+                    }
                 }
             }
         });
@@ -58,10 +67,14 @@ public class OCAddDel extends Toolbar {
                 enterStop = input.getText().toString();
                 if ((!enterStop.matches("[-+]?\\d*\\.?\\d+")) && (enterStop != " ")) {
                 } else {
-                    delResult++;
-                    delString.add(enterStop);
-                    input.setText("");
-                    Snackbar.make(findViewById(android.R.id.content), "Stop Deleted", Snackbar.LENGTH_LONG).show();
+                    if(saveList.contains(enterStop)){
+                        delResult++;
+                        delString.add(enterStop);
+                        input.setText("");
+                        Snackbar.make(findViewById(android.R.id.content), "Stop Deleted", Snackbar.LENGTH_LONG).show();
+                    }else {
+                        Snackbar.make(findViewById(android.R.id.content), "Stop Not In Saved Stop", Snackbar.LENGTH_LONG).show();
+                    }
                 }
             }
         });
@@ -72,14 +85,8 @@ public class OCAddDel extends Toolbar {
                 Intent resultIntent = new Intent();
                 String response = "";
 
-                if(addResult != 0){
-                    if(delResult == 0) response = "Stop Added";
-                    else response = "Stop Added and Deleted";
-                }else{
-                    if(delResult == 0) response = "No Stop Added and Deleted";
-                    else response = "Stop deleted";
-
-                }
+                if(addResult == 0 && delResult == 0){response = "No change";}
+                else{response = "Please Press Saved Stop to Refresh List";}
 
                 resultIntent.putExtra("addStop", addString);
                 resultIntent.putExtra("addStop", addString);

@@ -74,10 +74,12 @@ public class OCMain extends Toolbar implements OCFragmentSearch.OCFragmentSearch
         adddelStop.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent i = new Intent(OCMain.this, OCAddDel.class);
+                i.putExtra("saveList", saveArrayList);
                 startActivityForResult(i, ADDDEL_REQUEST_CODE);
             }
         });
 
+        /*
         //temp
         final Button infor = (Button) findViewById(R.id.reroute);
         infor.setOnClickListener(new View.OnClickListener() {
@@ -85,7 +87,7 @@ public class OCMain extends Toolbar implements OCFragmentSearch.OCFragmentSearch
                 Intent i = new Intent(OCMain.this, OCInfor.class);
                 startActivity(i);
             }
-        });
+        });*/
     }
 
     @Override

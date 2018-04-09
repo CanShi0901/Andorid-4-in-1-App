@@ -2,12 +2,14 @@ package com.example.shican.quizcreator;
 
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -69,6 +71,15 @@ public class OCFragmentSearch extends Fragment {
                 }
             };
             listView.setAdapter(adapter);
+
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                public void onItemClick(AdapterView<?> adapter, View v, int pos, long a) {
+                    String enterStop = (String) adapter.getItemAtPosition(pos);
+                    Intent intent = new Intent(getActivity(), OCResultRoute.class);
+                    intent.putExtra("enterStop", enterStop);
+                    startActivity(intent);
+                }
+            });
         }
     }
 }
