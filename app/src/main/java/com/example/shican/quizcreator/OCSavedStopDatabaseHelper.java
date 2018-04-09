@@ -14,6 +14,7 @@ public class OCSavedStopDatabaseHelper extends SQLiteOpenHelper {
 
     public OCSavedStopDatabaseHelper(Context ctx){
         super(ctx, DATABASE_NAME, null, VERSION_NUM);
+        //ctx.deleteDatabase(DATABASE_NAME);
     }
 
     @Override

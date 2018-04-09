@@ -19,8 +19,7 @@ import java.util.ArrayList;
 
 public class OCMain extends Toolbar implements OCFragmentSearch.OCFragmentSearchListener {
     protected static final String ACTIVITY_NAME = "OCMain";
-    private static final int ADD_REQUEST_CODE = 50;
-    private static final int DEL_REQUEST_CODE = 60;
+    private static final int ADDDEL_REQUEST_CODE = 50;
 
     //database
     public static OCSavedStopDatabaseHelper saveHelper;
@@ -74,8 +73,8 @@ public class OCMain extends Toolbar implements OCFragmentSearch.OCFragmentSearch
         final Button adddelStop = (Button) findViewById(R.id.adddelStop);
         adddelStop.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent i = new Intent(OCMain.this, OCAdd.class);
-                startActivityForResult(i, ADD_REQUEST_CODE);
+                Intent i = new Intent(OCMain.this, OCAddDel.class);
+                startActivityForResult(i, ADDDEL_REQUEST_CODE);
             }
         });
 
@@ -93,18 +92,24 @@ public class OCMain extends Toolbar implements OCFragmentSearch.OCFragmentSearch
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == ADD_REQUEST_CODE) {
+        if (requestCode == ADDDEL_REQUEST_CODE) {
             String text = data.getStringExtra("Response");
             int duration = Toast.LENGTH_SHORT;
             Toast toast = Toast.makeText(OCMain.this, text, duration);
             toast.show();
-        }
 
-        if (requestCode == DEL_REQUEST_CODE) {
-            String text = data.getStringExtra("Response");
-            int duration = Toast.LENGTH_SHORT;
-            Toast toast = Toast.makeText(OCMain.this, text, duration);
-            toast.show();
+            ArrayList<String> addTemp = data.getStringArrayListExtra("addStop");
+            for(String temp: addTemp){
+                saveValues.put(OCSavedStopDatabaseHelper.KEY_MESSAGE, temp);
+                saveDB.insert(OCSavedStopDatabaseHelper.TABLE_NAME, null, OCMain.saveValues);
+                saveArrayList.add(temp);
+            }
+
+            ArrayList<String> delTemp = data.getStringArrayListExtra("delStop");
+            for(String temp: delTemp){
+                saveDB.delete(OCSavedStopDatabaseHelper.TABLE_NAME,OCSavedStopDatabaseHelper.KEY_MESSAGE +"=" + temp,null);
+                saveArrayList.remove(temp);
+            }
         }
     }
 
@@ -115,6 +120,7 @@ public class OCMain extends Toolbar implements OCFragmentSearch.OCFragmentSearch
         transaction.commit();
     }
 
+    //search fragment override
     public void inputSearch(String enterStop){
         if((!enterStop.matches("[-+]?\\d*\\.?\\d+")) && (enterStop != " ")) {
             AlertDialog.Builder builder = new AlertDialog.Builder(OCMain.this);
