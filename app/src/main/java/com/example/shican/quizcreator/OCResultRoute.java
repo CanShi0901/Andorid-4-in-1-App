@@ -38,6 +38,7 @@ public class OCResultRoute extends Toolbar{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_oc_result_route);
+        initToolbar();
 
         Intent i = getIntent();
         String enterStop = i.getExtras().getString("enterStop");

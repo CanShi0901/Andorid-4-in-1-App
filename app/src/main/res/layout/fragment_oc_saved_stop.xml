@@ -8,11 +8,11 @@
 
 
     <TextView
-        android:id="@+id/recentStop"
+        android:id="@+id/savedStop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:stackFromBottom="true"
-        android:text="@string/oc_recentSearch"
+        android:text="@string/oc_savedStop"
         android:transcriptMode="alwaysScroll" />
 
     <ListView
@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="376dp"
         android:stackFromBottom="true"
-        android:layout_below="@+id/recentStop"
+        android:layout_below="@+id/savedStop"
         android:transcriptMode="alwaysScroll" />
 
 

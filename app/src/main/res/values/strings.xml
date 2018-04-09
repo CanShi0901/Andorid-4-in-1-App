@@ -27,14 +27,15 @@
     <string name="oc_routeInfo">Route Information</string>
     <string name="oc_done">Done</string>
     <string name="oc_back">Back</string>
+    <string name="oc_searchStop">Search Stop</string>
+    <string name="oc_adddelStop">Add/Delete Stop</string>
     <string name="oc_search">Search</string>
-    <string name="viewStops">view Stops</string>
     <string name="oc_reroute">Recent Route</string>
     <string name="oc_stopNum">Stop Number: </string>
     <string name="oc_stopDes">Stop Description: </string>
     <string name="oc_searchResult">Search Result</string>
-    <string name="oc_add">Add Stop</string>
     <string name="oc_recentSearch">Recent Search Stop</string>
+    <string name="oc_savedStop">Saved Stop</string>
 
     <string name="importXML">Import</string>
     <string name="Stats">Stats</string>
@@ -97,5 +98,4 @@
     <string name="toast_doctor">Doctor Type Selected</string>
     <string name="toast_dentist">Dentist Type Selected</string>
     <string name="toast_optometrist">Optometrist Type Selected</string>
-
 </resources>

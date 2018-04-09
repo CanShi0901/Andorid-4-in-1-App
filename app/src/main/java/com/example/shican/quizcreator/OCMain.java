@@ -1,22 +1,36 @@
 package com.example.shican.quizcreator;
 
 import android.app.AlertDialog;
+import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
+import android.support.v4.app.Fragment;
+import java.util.ArrayList;
 
-public class OCMain extends Toolbar {
+public class OCMain extends Toolbar implements OCFragmentSearch.OCFragmentSearchListener {
     protected static final String ACTIVITY_NAME = "OCMain";
     private static final int ADD_REQUEST_CODE = 50;
     private static final int DEL_REQUEST_CODE = 60;
+
+    //database
+    public static OCSavedStopDatabaseHelper saveHelper;
+    public static SQLiteDatabase saveDB;
+    public static ContentValues saveValues;
+    public static Cursor saveCu;
+    public static ContentValues saveContent;
+    public static ArrayList<String> saveArrayList = new ArrayList<String>();
+
+    public static Fragment f = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,28 +38,51 @@ public class OCMain extends Toolbar {
         setContentView(R.layout.activity_oc_main);
         initToolbar();
 
-        final Button addStop = (Button) findViewById(R.id.addStop);
-        addStop.setOnClickListener(new View.OnClickListener() {
+        //saved stop database
+        saveHelper = new OCSavedStopDatabaseHelper(this);
+        saveDB = saveHelper.getWritableDatabase();
+        saveValues = new ContentValues();
+
+        saveCu = saveDB.query(false,  OCSavedStopDatabaseHelper.TABLE_NAME, new String[]{OCSavedStopDatabaseHelper.KEY_ID, OCSavedStopDatabaseHelper.KEY_MESSAGE},null, null, null, null, null, null);
+        saveCu.moveToFirst();
+
+        while(!saveCu.isAfterLast() ) {
+            String newMessage = saveCu.getString(saveCu.getColumnIndex(OCSavedStopDatabaseHelper.KEY_MESSAGE));
+            saveArrayList.add(newMessage);
+            saveCu.moveToNext();
+        }
+
+        //save fragment
+        final Button viewStop = (Button) findViewById(R.id.viewStop);
+        viewStop.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Log.i(ACTIVITY_NAME, "User clicked Add Stop");
+                f = new OCFragmentSavedStop();
+                fragmentSwitch(f);
+            }
+        });
+
+        //search fragment
+        final Button searchStop = (Button) findViewById(R.id.searchStop);
+        searchStop.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+               f = new OCFragmentSearch();
+               fragmentSwitch(f);
+            }
+        });
+
+        //add delete activity
+        final Button adddelStop = (Button) findViewById(R.id.adddelStop);
+        adddelStop.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
                 Intent i = new Intent(OCMain.this, OCAdd.class);
                 startActivityForResult(i, ADD_REQUEST_CODE);
             }
         });
 
-        final Button delStop = (Button) findViewById(R.id.delStop);
-        delStop.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Log.i(ACTIVITY_NAME, "User clicked Delete Stop");
-                Intent i = new Intent(OCMain.this, OCDelete.class);
-                startActivityForResult(i, DEL_REQUEST_CODE);
-            }
-        });
-
+        //temp
         final Button infor = (Button) findViewById(R.id.reroute);
         infor.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Log.i(ACTIVITY_NAME, "User clicked Route Information");
                 Intent i = new Intent(OCMain.this, OCInfor.class);
                 startActivity(i);
             }
@@ -57,8 +94,6 @@ public class OCMain extends Toolbar {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == ADD_REQUEST_CODE) {
-            Log.i(ACTIVITY_NAME, "Returned to "+ACTIVITY_NAME);
-
             String text = data.getStringExtra("Response");
             int duration = Toast.LENGTH_SHORT;
             Toast toast = Toast.makeText(OCMain.this, text, duration);
@@ -66,12 +101,36 @@ public class OCMain extends Toolbar {
         }
 
         if (requestCode == DEL_REQUEST_CODE) {
-            Log.i(ACTIVITY_NAME, "Returned to "+ACTIVITY_NAME);
-
             String text = data.getStringExtra("Response");
             int duration = Toast.LENGTH_SHORT;
             Toast toast = Toast.makeText(OCMain.this, text, duration);
             toast.show();
+        }
+    }
+
+    public void fragmentSwitch(Fragment f){
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.fragment, f,"currentFragment");
+        transaction.commit();
+    }
+
+    public void inputSearch(String enterStop){
+        if((!enterStop.matches("[-+]?\\d*\\.?\\d+")) && (enterStop != " ")) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(OCMain.this);
+            builder.setMessage("Please enter valid stop number");
+
+            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                }
+            });
+
+            builder.show();
+        }else {
+            Intent intent = new Intent(OCMain.this, OCResultRoute.class);
+            intent.putExtra("enterStop", enterStop);
+            startActivity(intent);
+
         }
     }
 

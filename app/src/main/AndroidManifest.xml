@@ -23,9 +23,8 @@
         <activity android:name=".CreateQuiz" />
         <activity android:name=".OCMain" />
         <activity android:name=".OCAdd" />
-        <activity android:name=".OCDelete" />
         <activity android:name=".OCInfor" />
-        <activity android:name=".OCResultRoute"/>
+        <activity android:name=".OCResultRoute" />
         <activity android:name=".PatientListActivity" />
         <activity android:name=".RecordDetailActivity" />
         <activity android:name=".RegistrationFormActivity" />

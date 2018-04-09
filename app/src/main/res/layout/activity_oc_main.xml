@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -15,11 +15,19 @@
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
 
+    <View
+        android:id="@+id/center"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible" />
+
     <TextView
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/oc_main"
+        android:layout_below="@+id/toolBar"
         android:textAlignment="center"
         android:textSize="20sp" />
 
@@ -28,40 +36,52 @@
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/title"
         android:progress="@android:integer/config_mediumAnimTime"
         android:visibility="visible" />
 
     <Button
+        android:id="@+id/adddelStop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fragment"
+        android:layout_above="@+id/reroute"
+        android:layout_toRightOf="@+id/center"
+        android:text="@string/oc_adddelStop" />
+
+    <Button
+        android:id="@+id/searchStop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/viewStop"
+        android:layout_toLeftOf="@+id/center"
+        android:text="@string/oc_searchStop" />
+
+    <Button
         android:id="@+id/viewStop"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:text="@string/viewStops" />
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_toLeftOf="@+id/center"
+        android:text="@string/oc_savedStop" />
 
-    <Button
-        android:id="@+id/addStop"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:text="@string/oc_addStop" />
+        <Button
+            android:id="@+id/reroute"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_toRightOf="@+id/center"
+            android:text="@string/oc_reroute" />
 
-    <Button
-        android:id="@+id/delStop"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:text="@string/oc_delStop" />
-
-    <Button
-        android:id="@+id/reroute"
+    <FrameLayout
+        android:id="@+id/fragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/oc_reroute" />
-
-    <ListView
-        android:id="@+id/listviewMain"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:stackFromBottom="true"
-        android:transcriptMode="alwaysScroll" />
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/inProgress"
+        android:layout_above="@+id/searchStop"/>
 
 
-
-</LinearLayout>
+</RelativeLayout>
