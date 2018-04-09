@@ -71,6 +71,10 @@
     <string name="text_medical_benefit">Medical Benefits:</string>
     <string name="text_glasses_date">Glasses Date:</string>
     <string name="text_glasses_store">Glasses Store:</string>
+    <string name="text_statistics">AGE STATISTICS</string>
+    <string name="text_minimum_age">Minimum Age:&#160;&#160;</string>
+    <string name="text_maximum_age">Maximum Age:&#160;</string>
+    <string name="text_average_age">Average Age:&#160;&#160;&#160;&#160;</string>
     <string name="radio_yes">Yes</string>
     <string name="radio_no">No</string>
     <string name="text_doctor">Doctor</string>
