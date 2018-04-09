@@ -22,7 +22,7 @@
         <activity android:name=".DisplayQuiz" />
         <activity android:name=".CreateQuiz" />
         <activity android:name=".OCMain" />
-        <activity android:name=".OCAdd" />
+        <activity android:name=".OCAddDel" />
         <activity android:name=".OCInfor" />
         <activity android:name=".OCResultRoute" />
         <activity android:name=".PatientListActivity" />
