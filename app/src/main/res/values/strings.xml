@@ -36,6 +36,8 @@
     <string name="oc_searchResult">Search Result</string>
     <string name="oc_recentSearch">Recent Search Stop</string>
     <string name="oc_savedStop">Saved Stop</string>
+    <string name="oc_routeNum">Route Number: </string>
+    <string name="oc_routeDes">Route Description: </string>
 
     <string name="importXML">Import</string>
     <string name="Stats">Stats</string>
