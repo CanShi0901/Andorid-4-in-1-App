@@ -93,9 +93,15 @@
     <string name="toast_dentist">Dentist Type Selected</string>
     <string name="toast_optometrist">Optometrist Type Selected</string>
     <string name="icon">icon</string>
+    <string name="correctAnswerIs">Correct answer is: </string>
+    <string name="title_activity_oc_show_saved_stop">activity_oc_show_saved_stop</string>
+    <string name="lettera">A</string>
+    <string name="letterb">B</string>
+    <string name="letterc">C</string>
+    <string name="letterd">D</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_oc_show_saved_stop">activity_oc_show_saved_stop</string>
+
 
 </resources>

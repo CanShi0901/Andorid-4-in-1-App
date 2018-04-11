@@ -5,20 +5,18 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-/**
- * Created by shican on 2018-03-28.
- */
-
 public class QuizDatabaseHelper extends SQLiteOpenHelper{
-    static final String DATABASE_NAME = "quiz.db";
+    static final String DATABASE_NAME = "myDatabase.db";
     static final int VERSION_NUM = 1;
-    static final String TABLE_NAME ="QuizTable";
+    static final String TABLE_NAME ="quizTable4";
     static String KEY_ID = "_ID";
     static String KEY_QUIZ = "QUIZ";
+    static String KEY_QUIZTP = "QUIZTP";
     static String KEY_ANSWER1 = "ANS1";
     static String KEY_ANSWER2 = "ANS2";
     static String KEY_ANSWER3 = "ANS3";
     static String KEY_ANSWER4 = "ANS4";
+    static String KEY_CORRECT_ANS = "CORRECT_ANS";
 
 
     public QuizDatabaseHelper(Context ctx){
@@ -27,8 +25,10 @@ public class QuizDatabaseHelper extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE " + TABLE_NAME +
-                "( _ID INTEGER PRIMARY KEY AUTOINCREMENT, QUIZ text, ANS1 text, ANS2 text, ANS3 text, ANS4 text);");
+        db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_NAME +
+                "(" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + KEY_QUIZ + " TEXT not null," +
+                        KEY_QUIZTP + " TEXT," + KEY_ANSWER1 + " TEXT," + KEY_ANSWER2 + " TEXT," +
+                        KEY_ANSWER3 + " TEXT," + KEY_ANSWER4 + " TEXT," + KEY_CORRECT_ANS + " TEXT" + ");");
         Log.i("QuizDatabaseHelper", "Calling onCreate");
     }
 
@@ -36,7 +36,7 @@ public class QuizDatabaseHelper extends SQLiteOpenHelper{
     public void onUpgrade(SQLiteDatabase db, int oldVer, int newVer) {
         Log.i("QuizDatabaseHelper", "Calling onUprade, oldVersion="
                 + oldVer + "newVersion=" + newVer);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME + ";");
         onCreate(db);
     }
 }

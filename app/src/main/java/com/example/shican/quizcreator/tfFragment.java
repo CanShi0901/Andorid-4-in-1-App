@@ -40,11 +40,11 @@ public class tfFragment extends Fragment {
         return view;
     }
 
-    public ArrayList<String> getData(){
-        ArrayList<String> data = new ArrayList<>();
+    public String[] getData(){
+        String[] data = new String[2];
         question = questionFiled.getText().toString();
-        data.add(question);
-        data.add(answer);
+        data[0] = question;
+        data[1] = answer;
         return data;
     }
 

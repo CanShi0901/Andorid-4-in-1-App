@@ -17,40 +17,20 @@
         android:layout_alignParentTop="true"/>
 
     <TextView
-        android:id="@+id/yourQuiz"
+        android:id="@+id/quizDetail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/hint"
-        android:layout_toStartOf="@+id/hint"
-        android:text="@string/yourQuiz"
-        android:textSize="20sp" />
-
-    <Button
-        android:id="@+id/hint"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
+        android:layout_above="@+id/quizContainer"
+        android:layout_alignParentStart="true"
         android:layout_below="@+id/toolBar"
-        android:layout_marginTop="14dp"
-        android:text="@string/hint" />
-
+        android:textSize="30sp" />
 
     <FrameLayout
         android:id="@+id/quizContainer"
         android:layout_width="match_parent"
-        android:layout_height="380dp"
-        android:layout_below="@+id/hint"
-        android:layout_marginStart="12dp">
-
-    </FrameLayout>
-
-    <Button
-        android:id="@+id/checkAnswer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:text="@string/checkAnswer" />
+        android:layout_height="400dp"
+        android:layout_above="@+id/enterAnswer"
+        android:layout_alignParentStart="true"></FrameLayout>
 
     <EditText
         android:id="@+id/enterAnswer"
@@ -62,13 +42,13 @@
         android:hint="Enter your answer here"
         android:inputType="textPersonName" />
 
-    <TextView
-        android:id="@+id/quizDetail"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/checkAnswer"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/yourQuiz"
-        android:layout_toStartOf="@+id/hint"
-        android:textSize="20sp"/>
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:text="@string/checkAnswer" />
 
 
 </RelativeLayout>

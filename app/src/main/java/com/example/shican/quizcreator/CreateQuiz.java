@@ -27,7 +27,7 @@ public class CreateQuiz extends Toolbar {
     QuizDatabaseHelper helper;
     FragmentTransaction ft;
     String selectedType;
-    ArrayList<String> info;
+    String[] info;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,23 +92,24 @@ public class CreateQuiz extends Toolbar {
                 if(selectedType.equalsIgnoreCase("mc")){
                     info = mcF.getData();
                     intent.putExtra("type","mc");
-                    intent.putExtra("question",info.get(0));
-                    intent.putExtra("ans1", info.get(1));
-                    intent.putExtra("ans2", info.get(2));
-                    intent.putExtra("ans3", info.get(3));
-                    intent.putExtra("ans4", info.get(4));
+                    intent.putExtra("question",info[0]);
+                    intent.putExtra("ans1", info[1]);
+                    intent.putExtra("ans2", info[2]);
+                    intent.putExtra("ans3", info[3]);
+                    intent.putExtra("ans4", info[4]);
+                    intent.putExtra("correctAns", info[5]);
                 }
                 else if (selectedType.equalsIgnoreCase("tf")){
                     info = tfF.getData();
                     intent.putExtra("type","tf");
-                    intent.putExtra("question",info.get(0));
-                    intent.putExtra("ans", info.get(1));
+                    intent.putExtra("question",info[0]);
+                    intent.putExtra("ans", info[1]);
                 }
                 else if(selectedType.equalsIgnoreCase("nu")){
                     info = nuF.getData();
                     intent.putExtra("type", "nu");
-                    intent.putExtra("question", info.get(0));
-                    intent.putExtra("ans", info.get(1));
+                    intent.putExtra("question", info[0]);
+                    intent.putExtra("ans", info[1]);
                 }
                 setResult(RESULT_OK,intent);
                 finish();

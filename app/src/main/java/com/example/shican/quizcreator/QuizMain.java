@@ -56,12 +56,12 @@ public class QuizMain extends Toolbar {
         } catch (SQLiteException e) {}
 
         c = db.query(false, helper.TABLE_NAME, new String[]{helper.KEY_ID,
-                        helper.KEY_QUIZ,helper.KEY_ANSWER1,helper.KEY_ANSWER2,
-                        helper.KEY_ANSWER3, helper.KEY_ANSWER4},
+                        helper.KEY_QUIZ, helper.KEY_QUIZTP, helper.KEY_ANSWER1,helper.KEY_ANSWER2,
+                        helper.KEY_ANSWER3, helper.KEY_ANSWER4,helper.KEY_CORRECT_ANS},
                 null,null,null,null,null,null);
         c.moveToFirst();
         if(c!=null&&c.moveToFirst()) {
-            while (!c.isLast()) {
+            while (!c.isAfterLast()) {
                 quizMessage.add(c.getString(c.getColumnIndex(helper.KEY_QUIZ)));
                 Log.i(ACTIVITY_NAME, "SQL MESSAGE:" + c.getString(c.getColumnIndex(helper.KEY_QUIZ)));
                 c.moveToNext();
@@ -74,11 +74,24 @@ public class QuizMain extends Toolbar {
         listViewMain.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                c = db.query(false, helper.TABLE_NAME, new String[]{helper.KEY_ID,
+                                helper.KEY_QUIZ, helper.KEY_QUIZTP, helper.KEY_ANSWER1,helper.KEY_ANSWER2,
+                                helper.KEY_ANSWER3, helper.KEY_ANSWER4,helper.KEY_CORRECT_ANS},
+                        null,null,null,null,null,null);
+                String type = quizAdapter.getQuizType(i);
                 Bundle bundle = new Bundle();
                 bundle.putLong("ID", quizAdapter.getItemId(i));
-                bundle.putString("quiz", quizAdapter.getItem(i));
                 bundle.putInt("position", i);
+                bundle.putString("quiz", quizAdapter.getQuiz(i));
+                bundle.putString("correctAns", quizAdapter.getQuizAnswer(i));
+                bundle.putString("type", type);
 
+                if(type.equalsIgnoreCase("mc")){
+                    bundle.putString("ans1", quizAdapter.getAns1(i));
+                    bundle.putString("ans2", quizAdapter.getAns2(i));
+                    bundle.putString("ans3", quizAdapter.getAns3(i));
+                    bundle.putString("ans4", quizAdapter.getAns4(i));
+                }
                 Intent displayQuiz = new Intent(QuizMain.this, DisplayQuiz.class);
                 displayQuiz.putExtras(bundle);
                 startActivity(displayQuiz);
@@ -97,6 +110,11 @@ public class QuizMain extends Toolbar {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode ==1){
@@ -110,24 +128,33 @@ public class QuizMain extends Toolbar {
                     ans2 = data.getStringExtra("ans2");
                     ans3 = data.getStringExtra("ans3");
                     ans4 = data.getStringExtra("ans4");
+                    ans = data.getStringExtra("correctAns");
                     cv.put(helper.KEY_QUIZ,question);
+                    cv.put(helper.KEY_QUIZTP,questionType);
                     cv.put(helper.KEY_ANSWER1, ans1);
                     cv.put(helper.KEY_ANSWER2, ans2);
                     cv.put(helper.KEY_ANSWER3, ans3);
                     cv.put(helper.KEY_ANSWER4, ans4);
+                    cv.put(helper.KEY_CORRECT_ANS, ans);
                 }
                 else if (questionType.equalsIgnoreCase("tf")
                         ||questionType.equalsIgnoreCase("nu")){
                     ans=data.getStringExtra("ans");
                     cv.put(helper.KEY_QUIZ,question);
-                    cv.put(helper.KEY_ANSWER1, ans);
+                    cv.put(helper.KEY_QUIZTP,questionType);
+                    cv.put(helper.KEY_ANSWER1, 0);
                     cv.put(helper.KEY_ANSWER2, 0);
                     cv.put(helper.KEY_ANSWER3, 0);
                     cv.put(helper.KEY_ANSWER4, 0);
+                    cv.put(helper.KEY_CORRECT_ANS, ans);
                 }
                 db.insert(helper.TABLE_NAME, "null Replacement Value", cv);
                 quizAdapter.notifyDataSetChanged();
-
+                c = db.query(false, helper.TABLE_NAME, new String[]{helper.KEY_ID,
+                                helper.KEY_QUIZ, helper.KEY_QUIZTP, helper.KEY_ANSWER1,helper.KEY_ANSWER2,
+                                helper.KEY_ANSWER3, helper.KEY_ANSWER4,helper.KEY_CORRECT_ANS},
+                        null,null,null,null,null,null);
+                c.moveToFirst();
             }
         }
     }
@@ -150,7 +177,6 @@ public class QuizMain extends Toolbar {
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-
                             }
                         }).show();
                 return true;
@@ -169,15 +195,13 @@ public class QuizMain extends Toolbar {
         QuizAdapter(Context ctx) {super(ctx, 0);}
         public int getCount(){return quizMessage.size();}
 
-        public String getItem(int position){return quizMessage.get(position);}
-
         public View getView(int position, View convertView, ViewGroup parent) {
             LayoutInflater inflater = QuizMain.this.getLayoutInflater();
             View result = null;
             result = inflater.inflate(R.layout.quiz_row, null);
 
             TextView quiz_row = (TextView)result.findViewById(R.id.quizRow);
-            quiz_row.setText(getItem(position));
+            quiz_row.setText(quizMessage.get(position));
             return result;
         }
 
@@ -189,6 +213,41 @@ public class QuizMain extends Toolbar {
             c.moveToPosition(position);
             return c.getLong(c.getColumnIndex(helper.KEY_ID));
         }
+
+        public String getQuiz(int position){
+            c.moveToPosition(position);
+            return c.getString(c.getColumnIndex(helper.KEY_QUIZ));
+        }
+
+        public String getQuizType(int position){
+            c.moveToPosition(position);
+            return c.getString(c.getColumnIndex(helper.KEY_QUIZTP));
+        }
+
+        public String getQuizAnswer(int position){
+            c.moveToPosition(position);
+            return c.getString(c.getColumnIndex(helper.KEY_CORRECT_ANS));
+        }
+
+        public String getAns1(int position){
+            c.moveToPosition(position);
+            return c.getString(c.getColumnIndex(helper.KEY_ANSWER1));
+        }
+
+        public String getAns2(int position){
+            c.moveToPosition(position);
+            return c.getString(c.getColumnIndex(helper.KEY_ANSWER2));
+        }
+
+        public String getAns3(int position){
+            c.moveToPosition(position);
+            return c.getString(c.getColumnIndex(helper.KEY_ANSWER3));
+        }
+        public String getAns4(int position){
+            c.moveToPosition(position);
+            return c.getString(c.getColumnIndex(helper.KEY_ANSWER4));
+        }
+
     }
 
 }
