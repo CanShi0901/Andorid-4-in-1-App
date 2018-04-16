@@ -8,9 +8,6 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 
-import java.util.ArrayList;
-
-
 public class mcFragment extends Fragment {
 
     String question,answer1,answer2,answer3,answer4, correctAns;

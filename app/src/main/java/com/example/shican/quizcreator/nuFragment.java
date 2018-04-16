@@ -18,8 +18,8 @@ import java.util.ArrayList;
  */
 public class nuFragment extends Fragment {
 
-    EditText questionFiled, answerField;
-    String question, answer;
+    EditText questionFiled, answerField, decimals;
+    String question, answer, decimal;
 
     public nuFragment() {
     }
@@ -31,15 +31,18 @@ public class nuFragment extends Fragment {
         View view= inflater.inflate(R.layout.fragment_nu, container, false);
         questionFiled= (EditText)view.findViewById(R.id.enterQuestion);
         answerField = (EditText)view.findViewById(R.id.enterAnswer);
+        decimals = (EditText)view.findViewById(R.id.decimals);
         return view;
     }
 
     public String[] getData(){
-        String[] data = new String[2];
+        String[] data = new String[3];
         question = questionFiled.getText().toString();
         answer = answerField.getText().toString();
+        decimal = decimals.getText().toString();
         data[0] = question;
         data[1] = answer;
+        data[2] = decimal;
         return data;
     }
 }

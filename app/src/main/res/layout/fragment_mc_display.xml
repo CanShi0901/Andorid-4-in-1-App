@@ -7,26 +7,24 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="26dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@drawable/lettera"
-            android:contentDescription="@string/lettera" />
+            android:contentDescription="@string/lettera"
+            android:src="@drawable/lettera" />
 
         <TextView
             android:id="@+id/Answer1"
-            android:layout_width="362dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:layout_weight="1"
-            android:ems="10"
-            android:hint="@string/enterAnswer"
-            android:inputType="textAutoCorrect" />
+            android:textSize="20sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -42,13 +40,57 @@
             android:contentDescription="@string/letterb"/>
 
         <TextView
-            android:id="@+id/enterAnswer2"
+            android:id="@+id/Answer2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:ems="10"
-            android:hint="@string/enterAnswer"
-            android:inputType="textAutoCorrect" />
+            android:layout_gravity="bottom"
+            android:textSize="20sp"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/letterc"
+            android:contentDescription="@string/letterc"/>
+
+        <TextView
+            android:id="@+id/Answer3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="bottom"
+            android:textSize="20sp"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/letterd"
+            android:contentDescription="@string/letterd"/>
+
+        <TextView
+            android:id="@+id/Answer4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="bottom"
+            android:textSize="20sp"
+            />
     </LinearLayout>
 
 </LinearLayout>

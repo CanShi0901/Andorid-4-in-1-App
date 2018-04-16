@@ -21,4 +21,16 @@
     android:hint="@string/enterAnswer"
     android:inputType="numberDecimal" />
 
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Amount of decimals user must type (Scale 0-5)"
+        android:id="@+id/decimals"
+        android:inputType="number"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/rememberDecimal" />
+
 </LinearLayout>

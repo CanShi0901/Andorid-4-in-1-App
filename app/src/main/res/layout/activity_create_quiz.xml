@@ -58,5 +58,13 @@
 
     </FrameLayout>
 
+    <ProgressBar
+        android:id="@+id/importProgress"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/save" />
+
 
 </RelativeLayout>

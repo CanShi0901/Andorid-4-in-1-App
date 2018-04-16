@@ -1,6 +1,5 @@
 package com.example.shican.quizcreator;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.Context;
@@ -21,7 +20,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import java.util.ArrayList;
 
 public class QuizMain extends Toolbar {
@@ -34,7 +32,7 @@ public class QuizMain extends Toolbar {
     QuizDatabaseHelper helper;
     SQLiteDatabase db;
     Cursor c;
-    String ans1, ans2, ans3, ans4, question, questionType, ans;
+    String ans1, ans2, ans3, ans4, question, questionType, ans, decimal,formatedAns;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,7 +104,6 @@ public class QuizMain extends Toolbar {
                 startActivityForResult(newQuiz, 1);
             }
         });
-
     }
 
     @Override
@@ -137,8 +134,7 @@ public class QuizMain extends Toolbar {
                     cv.put(helper.KEY_ANSWER4, ans4);
                     cv.put(helper.KEY_CORRECT_ANS, ans);
                 }
-                else if (questionType.equalsIgnoreCase("tf")
-                        ||questionType.equalsIgnoreCase("nu")){
+                else if (questionType.equalsIgnoreCase("tf")){
                     ans=data.getStringExtra("ans");
                     cv.put(helper.KEY_QUIZ,question);
                     cv.put(helper.KEY_QUIZTP,questionType);
@@ -147,6 +143,18 @@ public class QuizMain extends Toolbar {
                     cv.put(helper.KEY_ANSWER3, 0);
                     cv.put(helper.KEY_ANSWER4, 0);
                     cv.put(helper.KEY_CORRECT_ANS, ans);
+                }
+                else if (questionType.equalsIgnoreCase("nu")){
+                    ans=data.getStringExtra("ans");
+                    decimal=data.getStringExtra("decimal");
+                    formatedAns = formatStringNumber(ans, decimal);
+                    cv.put(helper.KEY_QUIZ,question);
+                    cv.put(helper.KEY_QUIZTP,questionType);
+                    cv.put(helper.KEY_ANSWER1, 0);
+                    cv.put(helper.KEY_ANSWER2, 0);
+                    cv.put(helper.KEY_ANSWER3, 0);
+                    cv.put(helper.KEY_ANSWER4, 0);
+                    cv.put(helper.KEY_CORRECT_ANS, formatedAns);
                 }
                 db.insert(helper.TABLE_NAME, "null Replacement Value", cv);
                 quizAdapter.notifyDataSetChanged();
@@ -159,10 +167,48 @@ public class QuizMain extends Toolbar {
         }
     }
 
+    public static String formatStringNumber(String ans, String decimal){
+        float number = Float.parseFloat(ans);
+        int numberDecimal = Integer.parseInt(decimal);
+        String formatedAnswer;
+        switch(numberDecimal){
+            case 0:
+                formatedAnswer = String.format("%.0f", number);
+                break;
+            case 1:
+                formatedAnswer = String.format("%.1f", number);
+                break;
+            case 2:
+                formatedAnswer = String.format("%.2f", number);
+                break;
+            case 3:
+                formatedAnswer = String.format("%.3f", number);
+                break;
+            case 4:
+                formatedAnswer = String.format("%.4f", number);
+                break;
+            case 5:
+                formatedAnswer = String.format("%.5f", number);
+                break;
+            default:
+                formatedAnswer = String.format("%.0f", number);
+                break;
+        }
+        return  formatedAnswer;
+    }
     @Override
     public boolean onPrepareOptionsMenu (Menu menu){
         MenuItem importItem = (MenuItem) menu.findItem(R.id.import_resource);
         importItem.setVisible(false);
+        MenuItem statsItem = (MenuItem)menu.findItem(R.id.stats);
+
+        statsItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                return false;
+            }
+        });
+
         menu.findItem(R.id.help).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {

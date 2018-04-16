@@ -18,6 +18,12 @@
     <string name="dislike">Dislike</string>
     <string name="save">Save Question</string>
     <string name="typeHere">Type your question here</string>
+    <string name="typeAnswerHere">Type your answer here</string>
+    <string name="rememberDecimal">Remember to write the number of decimals in your question</string>
+    <string name="becarefulDecimal">Please don\'t forget to round your answer to the correct number of decimal points</string>
+    <string name="continueImport">Do you wish to import quiz from the Internet?</string>
+    <string name="yes">Yes</string>
+    <string name="cancel">Cancel</string>
 
     <string name="oc_main">OCTranspo</string>
     <string name="oc_addStop">Add Stop</string>
