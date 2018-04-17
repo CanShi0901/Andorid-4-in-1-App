@@ -86,7 +86,7 @@ public class OCRecentRoute extends Toolbar {
             public boolean onMenuItemClick(MenuItem item) {
 
                 new AlertDialog.Builder(OCRecentRoute.this)
-                        .setTitle("Help")
+                        .setTitle("Stat")
                         .setMessage( "average adjustedScheduleTime: " + total/count)
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             @Override
