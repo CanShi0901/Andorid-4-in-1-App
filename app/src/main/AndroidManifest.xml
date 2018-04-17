@@ -30,6 +30,7 @@
         <activity android:name=".RegistrationFormActivity" />
         <activity android:name=".DoctorFragmentDetailActivity" />
         <activity android:name=".DentistFragmentDetailActivity" />
+        <activity android:name=".OCRecentRoute"></activity>
     </application>
 
 </manifest>

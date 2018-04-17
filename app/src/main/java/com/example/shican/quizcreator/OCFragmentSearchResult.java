@@ -14,7 +14,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -30,6 +32,8 @@ public class OCFragmentSearchResult extends Fragment {
     public TextView stopNum;
     public TextView stopDes;
     public ListView list;
+    public Button back;
+    String route;
 
     public OCFragmentSearchResult(){}
 
@@ -125,8 +129,6 @@ public class OCFragmentSearchResult extends Fragment {
             }else{
                 additem.add("No bus schedule");
             }
-            for(String t: additem)
-                Log.i("aaa",t);
 
             ListView list = (ListView) getActivity().findViewById(R.id.list);
             ArrayAdapter<String> adapter=new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, additem){
@@ -145,7 +147,7 @@ public class OCFragmentSearchResult extends Fragment {
                     Intent intent = new Intent(getActivity(), OCInfor.class);
                     intent.putExtra("stop", stopPass);
                     if(count>0) intent.putExtra("route", number.get(pos));
-                    startActivity(intent);
+                    startActivityForResult(intent,100);
                 }
             });
         }

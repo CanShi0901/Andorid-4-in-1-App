@@ -18,7 +18,6 @@ import java.util.ArrayList;
 
 public class OCFragmentSavedStop extends Fragment {
     ListView listView;
-    //ArrayList<String> list= new ArrayList<String>();
 
     public OCFragmentSavedStop(){}
 
