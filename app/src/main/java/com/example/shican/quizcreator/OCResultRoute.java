@@ -5,11 +5,13 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.support.v4.app.Fragment;
 import android.widget.Toast;
@@ -25,11 +27,33 @@ public class OCResultRoute extends Toolbar {
     int savedAdj;
     String savedRoute;
 
+    ProgressBar progress;
+    int  p = 0;
+    Handler handler = new Handler();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_oc_result_route);
         initToolbar();
+
+        progress = (ProgressBar) findViewById(R.id.inProgress);
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while(p<100){
+                    p++;
+                    android.os.SystemClock.sleep(6);
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            progress.setProgress(p);
+                        }
+                    });
+                }
+            }
+        }).start();
 
         Intent i = getIntent();
         String enterStop = i.getExtras().getString("enterStop");
