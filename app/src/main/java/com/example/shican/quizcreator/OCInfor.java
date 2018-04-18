@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -39,6 +41,10 @@ public class OCInfor extends Toolbar {
     TextView stopDes;
     TextView routeNum;
     TextView routeDes;
+    ProgressBar progress;
+
+    int  p = 0;
+    Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +60,7 @@ public class OCInfor extends Toolbar {
         stopDes = (TextView) findViewById(R.id.stopDes);
         routeNum = (TextView) findViewById(R.id.routeNum);
         routeDes = (TextView) findViewById(R.id.routeDes);
+        progress = (ProgressBar) findViewById(R.id.inProgress);
 
         final Button back = (Button) findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
@@ -68,6 +75,22 @@ public class OCInfor extends Toolbar {
                 finish();
             }
         });
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while(p<100){
+                    p++;
+                    android.os.SystemClock.sleep(6);
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            progress.setProgress(p);
+                        }
+                    });
+                }
+            }
+        }).start();
 
         getInfor getInfor = new getInfor();
         getInfor.execute("https://api.octranspo1.com/v1.2/GetNextTripsForStop?appID=223eb5c3&&apiKey=ab27db5b435b8c8819ffb8095328e775&routeNo=" + route + "&stopNo="+stop);
@@ -149,6 +172,7 @@ public class OCInfor extends Toolbar {
                         longitude.add(parser.getText());
                     }
                 }
+
             }catch (XmlPullParserException e) {
             }catch(IOException exception){ }
             return null;
@@ -195,7 +219,9 @@ public class OCInfor extends Toolbar {
                 new AlertDialog.Builder(OCInfor.this)
                         .setTitle("Help")
                         .setMessage("Activity developped by Yuxin Zhang "+ "\n" +
-                                "Version number v1.0")
+                                "Version number v7.0 \n\nInstructions: \n1.show three detail select route information at the stop. " +
+                                "\n2.add first route information to recent route database.\n3.if invalid stop number or no route bus schedule, no information add to recent route database" +
+                                " \n4.stat shows current information's average adjustedScheduleTime.")
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
