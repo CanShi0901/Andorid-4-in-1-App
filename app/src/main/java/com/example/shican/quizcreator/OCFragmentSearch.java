@@ -24,6 +24,7 @@ save search history in arraylist, intent to stop information with input search s
  */
 
 public class OCFragmentSearch extends Fragment {
+    //layout variables
     TextView input;
     Button search;
     ListView listView;
@@ -61,14 +62,15 @@ public class OCFragmentSearch extends Fragment {
         return view;
     }
 
-    //recent search listview
     public void buttonClicked(View v){
         searchListener.inputSearch(input.getText().toString());
 
+        //check search is already in recent arraylist
         if(list.contains(input.getText().toString())){}
         else {
             list.add(input.getText().toString());
 
+            //recent search listview
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, list) {
                 public View getView(int position, View convertView, ViewGroup parent) {
                     View view = super.getView(position, convertView, parent);

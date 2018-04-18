@@ -35,11 +35,13 @@ public class OCAddDel extends Toolbar {
         setContentView(R.layout.activity_oc_adddel);
         initToolbar();
 
+        //intent back variables
         addResult = 0;
         delResult = 0;
         addString = new ArrayList<>();
         delString = new ArrayList<>();
 
+        //get intent variables
         Intent i = getIntent();
         saveList= i.getStringArrayListExtra("saveList");
 
@@ -48,11 +50,11 @@ public class OCAddDel extends Toolbar {
         final Button delButton = (Button) findViewById(R.id.del_button);
         final Button back = (Button) findViewById(R.id.back);
 
-
         //add button click, add input stop
         addButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 enterStop = input.getText().toString();
+                //handle status, show snackbar, add/del if valid input
                 if ((!enterStop.matches("[-+]?\\d*\\.?\\d+")) && (enterStop != " ")) {
                     Snackbar.make(findViewById(android.R.id.content), "Invalid Stop Number", Snackbar.LENGTH_LONG).show();
                 } else {
@@ -72,6 +74,7 @@ public class OCAddDel extends Toolbar {
         delButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 enterStop = input.getText().toString();
+                //handle status, show snackbar, add/del if valid input
                 if ((!enterStop.matches("[-+]?\\d*\\.?\\d+")) && (enterStop != " ")) {
                 } else {
                     if(saveList.contains(enterStop)){
@@ -86,7 +89,7 @@ public class OCAddDel extends Toolbar {
             }
         });
 
-        //back button click, send add&delete stop back to main
+        //back button click, send add&delete data back to main
         back.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent resultIntent = new Intent();

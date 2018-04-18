@@ -62,6 +62,7 @@ public class OCMain extends Toolbar implements OCFragmentSearch.OCFragmentSearch
         saveCu = saveStopDB.query(false, OCSavedStopDatabaseHelper.TABLE_NAME, new String[]{OCSavedStopDatabaseHelper.KEY_ID, OCSavedStopDatabaseHelper.KEY_MESSAGE}, null, null, null, null, null, null);
         saveCu.moveToFirst();
 
+        //store database to saved arraylist
         while (!saveCu.isAfterLast()) {
             String newMessage = saveCu.getString(saveCu.getColumnIndex(OCSavedStopDatabaseHelper.KEY_MESSAGE));
             saveArrayList.add(newMessage);
@@ -76,6 +77,7 @@ public class OCMain extends Toolbar implements OCFragmentSearch.OCFragmentSearch
         saveRouteCu = saveRouteDB.query(false, OCSavedRouteDatabaseHelper.TABLE_NAME, new String[]{OCSavedRouteDatabaseHelper.KEY_ID, OCSavedRouteDatabaseHelper.KEY_MESSAGE, OCSavedRouteDatabaseHelper.KEY_STAT}, null, null, null, null, null, null);
         saveRouteCu.moveToFirst();
 
+        //store database to recent database
         while (!saveRouteCu.isAfterLast()) {
             String newMessage = saveRouteCu.getString(saveRouteCu.getColumnIndex(OCSavedRouteDatabaseHelper.KEY_MESSAGE));
             adj.add(saveRouteCu.getInt(saveRouteCu.getColumnIndex(OCSavedRouteDatabaseHelper.KEY_STAT)));
@@ -125,6 +127,7 @@ public class OCMain extends Toolbar implements OCFragmentSearch.OCFragmentSearch
         });
     }
 
+    //update saved arraylist and saved database with add/delete variables
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -149,6 +152,7 @@ public class OCMain extends Toolbar implements OCFragmentSearch.OCFragmentSearch
         }
     }
 
+    //search/save fragment switch
     public void fragmentSwitch(Fragment f) {
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();

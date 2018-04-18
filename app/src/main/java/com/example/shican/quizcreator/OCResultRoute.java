@@ -26,12 +26,13 @@ result route has searchresult fragment
 public class OCResultRoute extends Toolbar {
     protected static final String ACTIVITY_NAME = "OCResultRoute";
 
-    String route = null;
+    //layout variables
     public TextView stopNum;
     public TextView stopDes;
     int savedAdj;
     String savedRoute;
 
+    //progressBar variables
     ProgressBar progress;
     int  p = 0;
     Handler handler = new Handler();
@@ -43,7 +44,6 @@ public class OCResultRoute extends Toolbar {
         initToolbar();
 
         progress = (ProgressBar) findViewById(R.id.inProgress);
-
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -60,6 +60,7 @@ public class OCResultRoute extends Toolbar {
             }
         }).start();
 
+        //get stop number from intent
         Intent i = getIntent();
         String enterStop = i.getExtras().getString("enterStop");
 
@@ -70,10 +71,10 @@ public class OCResultRoute extends Toolbar {
             }
         });
 
+        //fragment
         OCFragmentSearchResult result = (OCFragmentSearchResult) getSupportFragmentManager().findFragmentById(R.id.fragment2);
         result.searchResult(enterStop);
     }
-
 
     //help toolbar
     public boolean onPrepareOptionsMenu (Menu menu){
@@ -97,13 +98,13 @@ public class OCResultRoute extends Toolbar {
         return true;
     }
 
+    //update recent arraylist and recent database
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode == 100){
             savedAdj = data.getIntExtra("saveAdj",1);
             savedRoute = data.getStringExtra("savedRoute");
             if(OCMain.adj.contains(savedAdj)){
-
             }else {
                 OCMain.saveRouteValues.put(OCSavedRouteDatabaseHelper.KEY_MESSAGE, savedRoute);
                 OCMain.saveRouteValues.put(OCSavedRouteDatabaseHelper.KEY_STAT, savedAdj);

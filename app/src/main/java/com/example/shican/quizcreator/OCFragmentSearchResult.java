@@ -33,11 +33,11 @@ searchresult fragment, shows stop information that get from url
  */
 
 public class OCFragmentSearchResult extends Fragment {
+    //layout variables
     public TextView stopNum;
     public TextView stopDes;
     public ListView list;
     public Button back;
-    String route;
 
     public OCFragmentSearchResult(){}
 
@@ -57,6 +57,7 @@ public class OCFragmentSearchResult extends Fragment {
     }
 
     public class searchStop extends AsyncTask<String, Integer, String> {
+        //route information variables
         String stopPass = "";
         String desctiption="";
 
@@ -68,12 +69,13 @@ public class OCFragmentSearchResult extends Fragment {
 
         int count;
 
-        protected String doInBackground(String... args){
+        //connect url, search data
+        protected String doInBackground(String... args) {
             try {
                 URL url = new URL(args[0]);
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setReadTimeout(10000);
-                conn.setConnectTimeout(15000 );
+                conn.setConnectTimeout(15000);
                 conn.connect();
 
                 InputStream stream = conn.getInputStream();
@@ -85,43 +87,35 @@ public class OCFragmentSearchResult extends Fragment {
                         continue;
                     }
 
-                    if (parser.getName().equals("StopNo")){
+                    if (parser.getName().equals("StopNo")) {
                         parser.next();
                         stopPass = parser.getText();
-                    }
-
-                    else if (parser.getName().equals("StopDescription")){
+                    } else if (parser.getName().equals("StopDescription")) {
                         parser.next();
                         desctiption = parser.getText();
-                    }
-
-                    else if (parser.getName().equals("RouteNo")) {
+                    } else if (parser.getName().equals("RouteNo")) {
                         parser.next();
                         number.add(parser.getText());
                         count++;
-                    }
-
-                    else if (parser.getName().equals("DirectionID")) {
+                    } else if (parser.getName().equals("DirectionID")) {
                         parser.next();
                         directionId.add(parser.getText());
-                    }
-
-                    else if (parser.getName().equals("Direction")) {
+                    } else if (parser.getName().equals("Direction")) {
                         parser.next();
                         direction.add(parser.getText());
-                    }
-
-                    else if (parser.getName().equals("RouteHeading")) {
+                    } else if (parser.getName().equals("RouteHeading")) {
                         parser.next();
                         heading.add(parser.getText());
                     }
                 }
 
-            }catch (XmlPullParserException e) {
-            }catch(IOException exception){ }
+            } catch (XmlPullParserException e) {
+            } catch (IOException exception) {
+            }
             return null;
         }
 
+        //display data
         protected void onPostExecute(String result) {
             stopDes.setText(stopDes.getText()+desctiption);
             //handle status

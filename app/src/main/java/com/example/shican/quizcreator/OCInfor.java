@@ -38,17 +38,20 @@ stat shows average adjTime
 
 public class OCInfor extends Toolbar {
     protected static final String ACTIVITY_NAME = "OCInfor";
-    public ListView list;
+    //recent route pass back variables
     String savedRoute= "";
     int saveAdj = 0;
     int average = 0;
 
+    //layout variables
     TextView stopNum;
     TextView stopDes;
     TextView routeNum;
     TextView routeDes;
-    ProgressBar progress;
+    public ListView list;
 
+    //progressBar variables
+    ProgressBar progress;
     int  p = 0;
     Handler handler = new Handler();
 
@@ -107,7 +110,9 @@ public class OCInfor extends Toolbar {
         routeNum.setText(routeNum.getText()+route);
     }
 
+    //get route information from url
     public class getInfor extends AsyncTask<String, Integer, String> {
+        //route information variables
         String getStopDes="";
         String getRouteDes="";
         ArrayList<String> distination = new ArrayList<String>();
@@ -120,7 +125,7 @@ public class OCInfor extends Toolbar {
 
         int count;
 
-        //find data in http
+        //connect url, search data
         protected String doInBackground(String... args){
             try {
                 URL url = new URL(args[0]);
@@ -241,6 +246,7 @@ public class OCInfor extends Toolbar {
             }
         });
 
+        //stat toolebar shows current information's average adjTime
         menu.findItem(R.id.stats).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {

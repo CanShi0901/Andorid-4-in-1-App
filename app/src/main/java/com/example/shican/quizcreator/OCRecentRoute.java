@@ -25,11 +25,13 @@ recent route shows route information that user recent view searched/saved
  */
 
 public class OCRecentRoute extends Toolbar {
+    //recent route variables
     public ArrayList<String> saveList = new ArrayList<String>();
     public ArrayList<Integer> adj = new ArrayList<Integer>();
     public Integer total = 0;
     public long count;
 
+    //progressBar variables
     ProgressBar progress;
     int  p = 0;
     Handler handler = new Handler();
@@ -40,6 +42,7 @@ public class OCRecentRoute extends Toolbar {
         setContentView(R.layout.activity_oc_saved_route);
         initToolbar();
 
+        //layout variables
         final ListView list = (ListView) findViewById(R.id.list);
         final Button back = (Button) findViewById(R.id.back);
         progress = (ProgressBar) findViewById(R.id.inProgress);
@@ -60,6 +63,7 @@ public class OCRecentRoute extends Toolbar {
             }
         }).start();
 
+        //get recent data from main
         Intent i = getIntent();
         saveList= i.getStringArrayListExtra("saveRoute");
         adj = i.getIntegerArrayListExtra("adj");
