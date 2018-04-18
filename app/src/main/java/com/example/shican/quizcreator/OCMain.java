@@ -19,24 +19,28 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 import android.support.v4.app.Fragment;
 import java.util.ArrayList;
+/*
+@author yuxin zhang
+main for OCTranspo
+contians add/delete, search, saved stop, recent route
+ */
 
 public class OCMain extends Toolbar implements OCFragmentSearch.OCFragmentSearchListener {
     protected static final String ACTIVITY_NAME = "OCMain";
     private static final int ADDDEL_REQUEST_CODE = 50;
 
-    //database
+    //saved database
     public static OCSavedStopDatabaseHelper saveHelper;
     public static SQLiteDatabase saveStopDB;
     public static ContentValues saveStopValues;
     public static Cursor saveCu;
-    //public static ContentValues saveContent;
     public static ArrayList<String> saveArrayList = new ArrayList<String>();
 
+    //recent database
     public static OCSavedRouteDatabaseHelper saveRouteHelper;
     public static SQLiteDatabase saveRouteDB;
     public static ContentValues saveRouteValues;
     public static Cursor saveRouteCu;
-    //public static ContentValues saveRouteContent;
     public static ArrayList<String> saveRoute = new ArrayList<String>();
     public static ArrayList<Integer> adj = new ArrayList<>();
 
@@ -107,6 +111,7 @@ public class OCMain extends Toolbar implements OCFragmentSearch.OCFragmentSearch
             }
         });
 
+        //recent activity
         final Button infor = (Button) findViewById(R.id.reroute);
         infor.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -123,7 +128,6 @@ public class OCMain extends Toolbar implements OCFragmentSearch.OCFragmentSearch
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         if (requestCode == ADDDEL_REQUEST_CODE) {
             String text = data.getStringExtra("Response");
             int duration = Toast.LENGTH_SHORT;

@@ -5,6 +5,11 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+/*
+@author yuxin zhang
+recent route database helper
+ */
+
 public class OCSavedStopDatabaseHelper extends SQLiteOpenHelper {
     public final static String DATABASE_NAME = "db";
     public final static int VERSION_NUM = 8;

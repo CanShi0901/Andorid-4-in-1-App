@@ -18,6 +18,11 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+/*
+@author yuxin zhang
+result route has searchresult fragment
+ */
+
 public class OCResultRoute extends Toolbar {
     protected static final String ACTIVITY_NAME = "OCResultRoute";
 

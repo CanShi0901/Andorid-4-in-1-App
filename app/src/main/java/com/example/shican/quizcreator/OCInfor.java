@@ -30,6 +30,12 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
+/*
+@author yuxin zhang
+OCinfor show route information get from url with stop number
+stat shows average adjTime
+ */
+
 public class OCInfor extends Toolbar {
     protected static final String ACTIVITY_NAME = "OCInfor";
     public ListView list;
@@ -62,6 +68,7 @@ public class OCInfor extends Toolbar {
         routeDes = (TextView) findViewById(R.id.routeDes);
         progress = (ProgressBar) findViewById(R.id.inProgress);
 
+        //send recent route information back
         final Button back = (Button) findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -92,6 +99,7 @@ public class OCInfor extends Toolbar {
             }
         }).start();
 
+        //excute and get from url
         getInfor getInfor = new getInfor();
         getInfor.execute("https://api.octranspo1.com/v1.2/GetNextTripsForStop?appID=223eb5c3&&apiKey=ab27db5b435b8c8819ffb8095328e775&routeNo=" + route + "&stopNo="+stop);
 
@@ -183,6 +191,7 @@ public class OCInfor extends Toolbar {
             stopDes.setText(stopDes.getText()+getStopDes);
             routeDes.setText(routeDes.getText()+getRouteDes);
 
+            //handle status
             if(getStopDes==""){
                 additem.add("Invalid stop number");
             }else if(count>0) {
@@ -198,6 +207,7 @@ public class OCInfor extends Toolbar {
                 additem.add("No bus schedule");
             }
 
+            //show route information in listview
             ListView list = (ListView) findViewById(R.id.list);
             ArrayAdapter<String> adapter=new ArrayAdapter<String>(OCInfor.this, android.R.layout.simple_list_item_1, additem){
                 public View getView(int position, View convertView, ViewGroup parent) {

@@ -13,6 +13,12 @@ import android.widget.EditText;
 
 import java.util.ArrayList;
 
+/*
+@author yuxin zhang
+add/delete bus stop to saved stop database.
+if add/delete stop already exits, nothing change.
+ */
+
 public class OCAddDel extends Toolbar {
     protected static final String ACTIVITY_NAME = "OCAddDel";
     private String enterStop= "";
@@ -110,7 +116,7 @@ public class OCAddDel extends Toolbar {
                                 "Version number v7.0\n\nInstructions: \n1.add or delete stop number\n2.snackbar show if action successful\n" +
                                 "3.send data back to main and update saved stop database and listview\n" +
                                 "4.toast shows (no)changes after back to main" +
-                                "\n5.if add stop number already in saved stop database, nothing will add")
+                                "\n5.if add/delete stop number already in saved stop database, nothing change")
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {

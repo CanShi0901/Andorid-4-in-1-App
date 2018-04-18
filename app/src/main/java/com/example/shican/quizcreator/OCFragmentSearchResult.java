@@ -27,6 +27,10 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+/*
+@author yuxin zhang
+searchresult fragment, shows stop information that get from url
+ */
 
 public class OCFragmentSearchResult extends Fragment {
     public TextView stopNum;
@@ -45,6 +49,7 @@ public class OCFragmentSearchResult extends Fragment {
         return view;
     }
 
+    //excute and get from url with input stop number
     public void searchResult(String enterStop) {
         stopNum.setText(stopNum.getText()+enterStop);
         searchStop s = new searchStop();
@@ -119,7 +124,7 @@ public class OCFragmentSearchResult extends Fragment {
 
         protected void onPostExecute(String result) {
             stopDes.setText(stopDes.getText()+desctiption);
-
+            //handle status
             if(desctiption==null){
                 additem.add("Invalid stop number");
             }else if(count>0) {
@@ -130,6 +135,7 @@ public class OCFragmentSearchResult extends Fragment {
                 additem.add("No bus schedule");
             }
 
+            //show stop information in listview
             ListView list = (ListView) getActivity().findViewById(R.id.list);
             ArrayAdapter<String> adapter=new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, additem){
                 public View getView(int position, View convertView, ViewGroup parent) {
@@ -141,6 +147,7 @@ public class OCFragmentSearchResult extends Fragment {
             };
             list.setAdapter(adapter);
 
+            //click stop information intent route information
             list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 public void onItemClick(AdapterView<?> adapter, View v, int pos, long a) {
                     String enterStop = (String) adapter.getItemAtPosition(pos);
