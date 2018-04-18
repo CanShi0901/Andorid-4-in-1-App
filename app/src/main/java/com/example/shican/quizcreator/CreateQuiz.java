@@ -47,6 +47,11 @@ public class CreateQuiz extends Toolbar {
     ProgressBar importProgress;
     protected static SQLiteDatabase db;
     ImportQuiz importQuiz;
+    String type,question, correct, ans1,ans2,ans3,ans4;
+    int position, ROW_UPDATED;
+    long quizID;
+    boolean isEdit;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +59,8 @@ public class CreateQuiz extends Toolbar {
         setContentView(R.layout.activity_create_quiz);
         initToolbar();
         helper = new QuizDatabaseHelper(this);
+        isEdit=false;
+        ROW_UPDATED=99;
         db = helper.getWritableDatabase();
         save = findViewById(R.id.save);
         mc = findViewById(R.id.mc);
@@ -68,7 +75,7 @@ public class CreateQuiz extends Toolbar {
         fm = getFragmentManager();
         ft = fm.beginTransaction();
         builder = new AlertDialog.Builder(this);
-
+        onEdit();
         mc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -108,36 +115,71 @@ public class CreateQuiz extends Toolbar {
             }
         });
 
-        save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(CreateQuiz.this, QuizMain.class);
-                if (selectedType.equalsIgnoreCase("mc")) {
-                    info = mcF.getData();
-                    intent.putExtra("type", "mc");
-                    intent.putExtra("question", info[0]);
-                    intent.putExtra("ans1", info[1]);
-                    intent.putExtra("ans2", info[2]);
-                    intent.putExtra("ans3", info[3]);
-                    intent.putExtra("ans4", info[4]);
-                    intent.putExtra("correctAns", info[5]);
-                } else if (selectedType.equalsIgnoreCase("tf")) {
-                    info = tfF.getData();
-                    intent.putExtra("type", "tf");
-                    intent.putExtra("question", info[0]);
-                    intent.putExtra("ans", info[1]);
-                } else if (selectedType.equalsIgnoreCase("nu")) {
-                    info = nuF.getData();
-                    intent.putExtra("type", "nu");
-                    intent.putExtra("question", info[0]);
-                    intent.putExtra("ans", info[1]);
-                    intent.putExtra("decimal", info[2]);
+        if(isEdit){
+            save.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(CreateQuiz.this, QuizMain.class);
+                    intent.putExtra("ID", quizID);
+                    intent.putExtra("position", position);
+                    if (type.equalsIgnoreCase("mc")) {
+                        info = mcF.getData();
+                        intent.putExtra("type", "mc");
+                        intent.putExtra("question", info[0]);
+                        intent.putExtra("ans1", info[1]);
+                        intent.putExtra("ans2", info[2]);
+                        intent.putExtra("ans3", info[3]);
+                        intent.putExtra("ans4", info[4]);
+                        intent.putExtra("correctAns", info[5]);
+                    } else if (type.equalsIgnoreCase("tf")) {
+                        info = tfF.getData();
+                        intent.putExtra("type", "tf");
+                        intent.putExtra("question", info[0]);
+                        intent.putExtra("ans", info[1]);
+                    } else if (type.equalsIgnoreCase("nu")) {
+                        info = nuF.getData();
+                        intent.putExtra("type", "nu");
+                        intent.putExtra("question", info[0]);
+                        intent.putExtra("ans", info[1]);
+                        intent.putExtra("decimal", info[2]);
+                    }
+                    isEdit=false;
+                    setResult(ROW_UPDATED, intent);
+                    finish();
                 }
-                setResult(RESULT_OK, intent);
-                finish();
-            }
-        });
-
+            });
+        }
+        else{
+            save.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(CreateQuiz.this, QuizMain.class);
+                    if (selectedType.equalsIgnoreCase("mc")) {
+                        info = mcF.getData();
+                        intent.putExtra("type", "mc");
+                        intent.putExtra("question", info[0]);
+                        intent.putExtra("ans1", info[1]);
+                        intent.putExtra("ans2", info[2]);
+                        intent.putExtra("ans3", info[3]);
+                        intent.putExtra("ans4", info[4]);
+                        intent.putExtra("correctAns", info[5]);
+                    } else if (selectedType.equalsIgnoreCase("tf")) {
+                        info = tfF.getData();
+                        intent.putExtra("type", "tf");
+                        intent.putExtra("question", info[0]);
+                        intent.putExtra("ans", info[1]);
+                    } else if (selectedType.equalsIgnoreCase("nu")) {
+                        info = nuF.getData();
+                        intent.putExtra("type", "nu");
+                        intent.putExtra("question", info[0]);
+                        intent.putExtra("ans", info[1]);
+                        intent.putExtra("decimal", info[2]);
+                    }
+                    setResult(RESULT_OK, intent);
+                    finish();
+                }
+            });
+        }
     }
 
     @Override
@@ -175,6 +217,8 @@ public class CreateQuiz extends Toolbar {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         importQuiz.execute();
+                        Intent intent = new Intent(CreateQuiz.this, QuizMain.class);
+                        startActivity(intent);
                         Toast.makeText(CreateQuiz.this, "Quiz imported successfully", Toast.LENGTH_LONG).show();
                     }
                 });
@@ -192,10 +236,54 @@ public class CreateQuiz extends Toolbar {
         return true;
     }
 
-    @SuppressLint("StaticFieldLeak")
+    public void onEdit(){
+        Intent intent = getIntent();
+        if(intent.getExtras()!=null){
+            isEdit=true;
+            type = intent.getStringExtra("type");
+            question=intent.getStringExtra("quiz");
+            correct=intent.getStringExtra("correct");
+            quizID=intent.getLongExtra("ID",0);
+            ans1=intent.getStringExtra("ans1");
+            ans2=intent.getStringExtra("ans2");
+            ans3=intent.getStringExtra("ans3");
+            ans4=intent.getStringExtra("ans4");
+            mc.setVisibility(View.INVISIBLE);
+            tf.setVisibility(View.INVISIBLE);
+            nu.setVisibility(View.INVISIBLE);
+            Bundle bundle = new Bundle();
+            bundle.putString("question",question );
+            bundle.putString("correct",correct);
+            bundle.putLong("ID",quizID);
+            bundle.putString("type",type);
+            bundle.putInt("position", position);
+            if(type.equalsIgnoreCase("mc")){
+                bundle.putString("ans1", ans1);
+                bundle.putString("ans2", ans2);
+                bundle.putString("ans3", ans3);
+                bundle.putString("ans4", ans4);
+                mcF.setArguments(bundle);
+                ft.replace(R.id.container, mcF);
+                ft.addToBackStack("");
+                ft.commit();
+            }
+            else if(type.equalsIgnoreCase("tf")){
+                tfF.setArguments(bundle);
+                ft.replace(R.id.container, tfF);
+                ft.addToBackStack("");
+                ft.commit();
+            }
+            else if(type.equalsIgnoreCase("nu")){
+                nuF.setArguments(bundle);
+                ft.replace(R.id.container, nuF);
+                ft.addToBackStack("");
+                ft.commit();
+            }
+        }
+    }
+
     public class ImportQuiz extends AsyncTask<String[], Integer, String[]> {
         HttpURLConnection conn;
-
         protected String[] doInBackground(String[]... strings) {
             try {
                 URL url = new URL("http://torunski.ca/CST2335/QuizInstance.xml");
@@ -281,6 +369,10 @@ public class CreateQuiz extends Toolbar {
             nuFormatedAns = QuizMain.formatStringNumber(nuAns, nuDecimal);
             tfQuestion = result[9];
             tfAns = result[10];
+            QuizMain.quizMessage.add(mcQuestion);
+            QuizMain.quizMessage.add(tfQuestion);
+            QuizMain.quizMessage.add(nuQuestion);
+
             cv.put(QuizDatabaseHelper.KEY_QUIZ, mcQuestion);
             cv.put(QuizDatabaseHelper.KEY_QUIZTP, "mc");
             cv.put(QuizDatabaseHelper.KEY_ANSWER1, mcAns1);
@@ -307,6 +399,12 @@ public class CreateQuiz extends Toolbar {
             cv.put(QuizDatabaseHelper.KEY_ANSWER4, 0);
             cv.put(QuizDatabaseHelper.KEY_CORRECT_ANS, tfAns);
             db.insert(TABLE_NAME, "NullColumn", cv);
+            QuizMain.c = db.query(false, helper.TABLE_NAME, new String[]{helper.KEY_ID,
+                            helper.KEY_QUIZ, helper.KEY_QUIZTP, helper.KEY_ANSWER1, helper.KEY_ANSWER2,
+                            helper.KEY_ANSWER3, helper.KEY_ANSWER4, helper.KEY_CORRECT_ANS},
+                    null, null, null, null, null, null);
+            QuizMain.c.moveToFirst();
+            QuizMain.quizAdapter.notifyDataSetChanged();
             importProgress.setVisibility(View.INVISIBLE);
         }
     }

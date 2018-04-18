@@ -6,6 +6,8 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.wifi.WifiEnterpriseConfig;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -13,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.support.design.widget.Snackbar;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 import android.widget.TextView;
 import android.widget.EditText;
@@ -21,14 +24,20 @@ public class DisplayQuiz extends Toolbar {
     AlertDialog.Builder builder;
     String quizQuestion, quizAnswer, type, quizAns1, quizAns2, quizAns3, quizAns4, enteredAns, prompt;
     long quizID;
+    Button delete, modify,checkAnswer;
     TextView quizDetail, yourAnswerHere;
     EditText enterAnswer;
     Snackbar snackbar;
     FragmentManager fm;
     FragmentTransaction ft;
+    mcFragment mcF;
+    tfFragment tfF;
+    nuFragment nuF;
     mcDisplayFragment mcDis;
     tfDisplayFragment tfDis;
     nuDisplayFragment nuDis;
+    int position;
+    LinearLayout editButtons;
 
 
     @Override
@@ -40,20 +49,28 @@ public class DisplayQuiz extends Toolbar {
         final Context context = this;
         fm = getFragmentManager();
         ft = fm.beginTransaction();
+        mcF = new mcFragment();
+        tfF = new tfFragment();
+        nuF = new nuFragment();
         mcDis = new mcDisplayFragment();
         tfDis = new tfDisplayFragment();
         nuDis = new nuDisplayFragment();
-
+        editButtons = (LinearLayout)findViewById(R.id.edit);
+        delete = (Button)findViewById(R.id.delete);
+        modify = (Button)findViewById(R.id.modify);
+        checkAnswer = (Button) findViewById(R.id.checkAnswer);
         builder = new AlertDialog.Builder(this);
         enterAnswer = (EditText) findViewById(R.id.enterAnswer);
         quizDetail = (TextView) findViewById(R.id.quizDetail);
         yourAnswerHere = (TextView) findViewById(R.id.youAnswerHere);
-        Bundle infoPassed = getIntent().getExtras();
+        final Bundle infoPassed = getIntent().getExtras();
         quizID = infoPassed.getLong("ID");
+        position=infoPassed.getInt("position");
         quizQuestion = infoPassed.getString("quiz");
         type = infoPassed.getString("type");
         quizAnswer = infoPassed.getString("correctAns");
         quizDetail.setText("ID:" + quizID + "  " + quizQuestion);
+
         if (type.equalsIgnoreCase("mc")) {
             quizAns1 = infoPassed.getString("ans1");
             quizAns2 = infoPassed.getString("ans2");
@@ -64,25 +81,54 @@ public class DisplayQuiz extends Toolbar {
             info.putString("ans2", quizAns2);
             info.putString("ans3", quizAns3);
             info.putString("ans4", quizAns4);
+            info.putLong("ID",quizID);
+            info.putInt("position", position);
             mcDis.setArguments(info);
-            ft.replace(R.id.quizContainer, mcDis);
+            ft.add(R.id.quizContainer, mcDis);
             ft.addToBackStack("");
             ft.commit();
         } else if (type.equalsIgnoreCase("tf")) {
             enterAnswer.setVisibility(View.INVISIBLE);
             yourAnswerHere.setVisibility(View.INVISIBLE);
-            ft.replace(R.id.quizContainer, tfDis);
+            ft.add(R.id.quizContainer, tfDis);
             ft.addToBackStack("");
             ft.commit();
         } else if (type.equalsIgnoreCase("nu")) {
-
-            ft.replace(R.id.quizContainer, nuDis);
+            ft.add(R.id.quizContainer, nuDis);
             ft.addToBackStack("");
             ft.commit();
         }
 
+        delete.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Bundle bundle = new Bundle();
+                bundle.putLong("ID", quizID);
+                bundle.putInt("position", position);
+                Intent intent = new Intent(DisplayQuiz.this, QuizMain.class);
+                intent.putExtras(bundle);
+                setResult(RESULT_OK, intent);
+                finish();
+            }
+        });
 
-        Button checkAnswer = (Button) findViewById(R.id.checkAnswer);
+        modify.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+            Intent intent = new Intent(DisplayQuiz.this, CreateQuiz.class);
+                intent.putExtra("ID", quizID);
+                intent.putExtra("position", position);
+                intent.putExtra("quiz", quizQuestion);
+                intent.putExtra("type", type);
+                intent.putExtra("correct", quizAnswer );
+                intent.putExtra("ans1", quizAns1);
+                intent.putExtra("ans2", quizAns2);
+                intent.putExtra("ans3", quizAns3);
+                intent.putExtra("ans4", quizAns4);
+                startActivityForResult(intent, 3);
+            }
+        });
+
         checkAnswer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -102,6 +148,17 @@ public class DisplayQuiz extends Toolbar {
                 snackbar.show();
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==3){
+            if(resultCode==99){
+                setResult(99, data);
+                finish();
+            }
+        }
     }
 
     @Override

@@ -10,7 +10,6 @@ import android.widget.TextView;
 public class mcDisplayFragment extends Fragment {
     TextView ans1, ans2, ans3, ans4;
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -19,6 +18,7 @@ public class mcDisplayFragment extends Fragment {
         ans2 = view.findViewById(R.id.Answer2);
         ans3 = view.findViewById(R.id.Answer3);
         ans4 = view.findViewById(R.id.Answer4);
+
         String answer1 = getArguments().getString("ans1");
         String answer2 = getArguments().getString("ans2");
         String answer3 = getArguments().getString("ans3");

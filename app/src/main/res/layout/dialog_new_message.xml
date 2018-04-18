@@ -9,7 +9,8 @@
         android:layout_height="64dp"
         android:background="#FFFFBB33"
         android:scaleType="center"
-        android:src="@drawable/star" />
+        android:src="@drawable/star"
+        android:contentDescription="stars" />
 
     <TextView
         android:id="@+id/continueImport"

@@ -32,6 +32,16 @@ public class nuFragment extends Fragment {
         questionFiled= (EditText)view.findViewById(R.id.enterQuestion);
         answerField = (EditText)view.findViewById(R.id.enterAnswer);
         decimals = (EditText)view.findViewById(R.id.decimals);
+
+        Bundle bundle = getArguments();
+        if (bundle != null){
+            String correct = bundle.getString("correct");
+            questionFiled.setText(bundle.getString("question"));
+            answerField.setText(correct);
+            String[] splitter = correct.split("\\.");
+            int decimal = splitter[1].length();
+            decimals.setText(Integer.toString(decimal));
+        }
         return view;
     }
 

@@ -7,7 +7,8 @@
         android:id="@+id/patient_type_icon"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:src="@drawable/optometrist" />
+        android:src="@drawable/optometrist"
+        android:contentDescription="@string/text_optometrist" />
 
     <TextView
         android:id="@+id/patient_info_view"

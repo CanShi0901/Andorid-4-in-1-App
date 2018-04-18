@@ -45,6 +45,32 @@ public class mcFragment extends Fragment {
                 }
             }
         });
+
+        Bundle bundle = getArguments();
+        if (bundle != null){
+            String ans1 = bundle.getString("ans1");
+            String ans2 = bundle.getString("ans2");
+            String ans3 = bundle.getString("ans3");
+            String ans4 = bundle.getString("ans4");
+            String correct = bundle.getString("correct");
+            questionFiled.setText(bundle.getString("question"));
+            answerField1.setText(ans1);
+            answerField2.setText(ans2);
+            answerField3.setText(ans3);
+            answerField4.setText(ans4);
+            if(correct.equalsIgnoreCase(ans1)){
+                correctAnswer.check(R.id.chooseA);
+            }
+            else if (correct.equalsIgnoreCase(ans2)){
+                correctAnswer.check(R.id.chooseB);
+            }
+            else if (correct.equalsIgnoreCase(ans3)){
+                correctAnswer.check(R.id.chooseC);
+            }
+            else if (correct.equalsIgnoreCase(ans4)){
+                correctAnswer.check(R.id.chooseD);
+            }
+        }
         return view;
     }
 

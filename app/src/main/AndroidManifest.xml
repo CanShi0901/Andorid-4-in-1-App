@@ -31,7 +31,7 @@
         <activity android:name=".RegistrationFormActivity" />
         <activity android:name=".DoctorFragmentDetailActivity" />
         <activity android:name=".DentistFragmentDetailActivity" />
-        <activity android:name=".OCShowSavedStop"></activity>
+        <activity android:name=".OCShowSavedStop" />
     </application>
 
 </manifest>

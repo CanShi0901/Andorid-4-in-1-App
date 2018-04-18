@@ -37,6 +37,19 @@ public class tfFragment extends Fragment {
                 }
             }
         });
+
+        Bundle bundle = getArguments();
+        if (bundle != null){
+            String correct = bundle.getString("correct");
+            questionFiled.setText(bundle.getString("question"));
+
+            if(correct.equalsIgnoreCase("true")){
+                radioGroup.check(R.id.trueAns);
+            }
+            else if (correct.equalsIgnoreCase("false")){
+                radioGroup.check(R.id.falseAns);
+            }
+        }
         return view;
     }
 

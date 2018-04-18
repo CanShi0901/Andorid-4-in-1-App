@@ -20,6 +20,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -27,12 +28,12 @@ public class QuizMain extends Toolbar {
     protected static final String ACTIVITY_NAME = "QuizMain";
     ListView listViewMain;
     Button newQuiz;
-    ArrayList<String> quizMessage;
+    static ArrayList<String> quizMessage;
     ContentValues cv;
     static QuizAdapter quizAdapter;
     QuizDatabaseHelper helper;
-    SQLiteDatabase db;
-    Cursor c;
+    static SQLiteDatabase db;
+    static Cursor c;
     String ans1, ans2, ans3, ans4, question, questionType, ans, decimal, formatedAns;
 
     @Override
@@ -85,7 +86,6 @@ public class QuizMain extends Toolbar {
                 bundle.putString("quiz", quizAdapter.getQuiz(i));
                 bundle.putString("correctAns", quizAdapter.getQuizAnswer(i));
                 bundle.putString("type", type);
-
                 if (type.equalsIgnoreCase("mc")) {
                     bundle.putString("ans1", quizAdapter.getAns1(i));
                     bundle.putString("ans2", quizAdapter.getAns2(i));
@@ -94,7 +94,7 @@ public class QuizMain extends Toolbar {
                 }
                 Intent displayQuiz = new Intent(QuizMain.this, DisplayQuiz.class);
                 displayQuiz.putExtras(bundle);
-                startActivity(displayQuiz);
+                startActivityForResult(displayQuiz, 2);
             }
         });
 
@@ -104,10 +104,13 @@ public class QuizMain extends Toolbar {
             public void onClick(View view) {
                 Intent newQuiz = new Intent(QuizMain.this, CreateQuiz.class);
                 startActivityForResult(newQuiz, 1);
+
             }
         });
     }
-
+    public static SQLiteDatabase getDatabase(){
+        return db;
+    }
     @Override
     protected void onResume() {
         super.onResume();
@@ -165,6 +168,67 @@ public class QuizMain extends Toolbar {
                 c.moveToFirst();
             }
         }
+        else if(requestCode==2){
+            if (resultCode == RESULT_OK) {
+                Bundle infoPassed = data.getExtras();
+                Long quizID = infoPassed.getLong("ID");
+                int position = infoPassed.getInt("position");
+                deleteQuiz(position,quizID);
+                Toast.makeText(QuizMain.this, "Quiz number "+quizID+" was deleted", Toast.LENGTH_LONG).show();
+            }
+            else if(resultCode == 99){
+                Bundle infoPassed = data.getExtras();
+                Long quizID = infoPassed.getLong("ID");
+                int position = infoPassed.getInt("position");
+                questionType = data.getStringExtra("type");
+                question = data.getStringExtra("question");
+                quizMessage.set(position, question);
+                ContentValues cv = new ContentValues();
+                if (questionType.equalsIgnoreCase("mc")) {
+                    ans1 = data.getStringExtra("ans1");
+                    ans2 = data.getStringExtra("ans2");
+                    ans3 = data.getStringExtra("ans3");
+                    ans4 = data.getStringExtra("ans4");
+                    ans = data.getStringExtra("correctAns");
+                    cv.put(helper.KEY_QUIZ, question);
+                    cv.put(helper.KEY_QUIZTP, questionType);
+                    cv.put(helper.KEY_ANSWER1, ans1);
+                    cv.put(helper.KEY_ANSWER2, ans2);
+                    cv.put(helper.KEY_ANSWER3, ans3);
+                    cv.put(helper.KEY_ANSWER4, ans4);
+                    cv.put(helper.KEY_CORRECT_ANS, ans);
+                } else if (questionType.equalsIgnoreCase("tf")) {
+                    ans = data.getStringExtra("ans");
+                    cv.put(helper.KEY_QUIZ, question);
+                    cv.put(helper.KEY_QUIZTP, questionType);
+                    cv.put(helper.KEY_ANSWER1, 0);
+                    cv.put(helper.KEY_ANSWER2, 0);
+                    cv.put(helper.KEY_ANSWER3, 0);
+                    cv.put(helper.KEY_ANSWER4, 0);
+                    cv.put(helper.KEY_CORRECT_ANS, ans);
+                } else if (questionType.equalsIgnoreCase("nu")) {
+                    ans = data.getStringExtra("ans");
+                    decimal = data.getStringExtra("decimal");
+                    formatedAns = formatStringNumber(ans, decimal);
+                    cv.put(helper.KEY_QUIZ, question);
+                    cv.put(helper.KEY_QUIZTP, questionType);
+                    cv.put(helper.KEY_ANSWER1, 0);
+                    cv.put(helper.KEY_ANSWER2, 0);
+                    cv.put(helper.KEY_ANSWER3, 0);
+                    cv.put(helper.KEY_ANSWER4, 0);
+                    cv.put(helper.KEY_CORRECT_ANS, formatedAns);
+                }
+
+                db.update(helper.TABLE_NAME,cv, "_id="+quizID,null);
+                quizAdapter.notifyDataSetChanged();
+                c = db.query(false, helper.TABLE_NAME, new String[]{helper.KEY_ID,
+                                helper.KEY_QUIZ, helper.KEY_QUIZTP, helper.KEY_ANSWER1, helper.KEY_ANSWER2,
+                                helper.KEY_ANSWER3, helper.KEY_ANSWER4, helper.KEY_CORRECT_ANS},
+                        null, null, null, null, null, null);
+                c.moveToFirst();
+                Toast.makeText(QuizMain.this, "Quiz number "+quizID+" was updated", Toast.LENGTH_LONG).show();
+            }
+        }
     }
 
     public static String formatStringNumber(String ans, String decimal) {
@@ -213,6 +277,12 @@ public class QuizMain extends Toolbar {
         Cursor cursor3 = db.rawQuery("SELECT AVG(LENGTH(QUIZ))AS average FROM "+ helper.TABLE_NAME,null);
         cursor3.moveToFirst();
         return cursor3.getString(cursor3.getColumnIndex("average"));
+    }
+
+    public void deleteQuiz(int position, long quizID){
+        quizMessage.remove(position);
+        db.delete(helper.TABLE_NAME, helper.KEY_ID+"="+quizID,null);
+        this.quizAdapter.notifyDataSetChanged();
     }
 
     @Override
