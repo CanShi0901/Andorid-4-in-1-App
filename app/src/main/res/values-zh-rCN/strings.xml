@@ -14,9 +14,6 @@
     <string name="multipleChoice">多选题</string>
     <string name="Numeric">算数</string>
     <string name="TrueFlase">选对错</string>
-    <string name="noHint">我没有提示给你!</string>
-    <string name="like">喜欢</string>
-    <string name="dislike">不喜欢</string>
     <string name="save">保存</string>
     <string name="typeHere">输入问题</string>
     <string name="importXML">导入</string>
@@ -91,5 +88,16 @@
     <string name="oc_searchResult">查找结果</string>
     <string name="oc_add">添加车站</string>
     <string name="oc_recentSearch">历史寻找车站</string>
+    <string name="typeAnswerHere">输入你的问题</string>
+    <string name="rememberDecimal">记得写小数点</string>
+    <string name="becarefulDecimal">请输入正确的小数点</string>
+    <string name="yes">确认</string>
+    <string name="continueImport">确定要导入问题吗</string>
+    <string name="cancel">取消</string>
+    <string name="correctAnswerIs">" 正确答案是"</string>
+    <string name="saveChange">"保存更改"</string>
+    <string name="delete">删除</string>
+    <string name="modify">更改</string>
+    <string name="oc_savedStop">保存车站</string>
 
 </resources>
