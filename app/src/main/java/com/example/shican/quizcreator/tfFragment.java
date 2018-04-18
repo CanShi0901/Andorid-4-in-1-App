@@ -53,6 +53,10 @@ public class tfFragment extends Fragment {
         return view;
     }
 
+    /**
+     * returns the value user entered
+     * @return
+     */
     public String[] getData(){
         String[] data = new String[2];
         question = questionFiled.getText().toString();

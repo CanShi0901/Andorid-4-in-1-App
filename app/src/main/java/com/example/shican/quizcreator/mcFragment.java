@@ -18,6 +18,13 @@ public class mcFragment extends Fragment {
     EditText answerField4;
     RadioGroup correctAnswer;
 
+    /**
+     * gives edittext fields to enter question and answers.
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -58,22 +65,26 @@ public class mcFragment extends Fragment {
             answerField2.setText(ans2);
             answerField3.setText(ans3);
             answerField4.setText(ans4);
-            if(correct.equalsIgnoreCase(ans1)){
+            if(correct.equalsIgnoreCase("a")){
                 correctAnswer.check(R.id.chooseA);
             }
-            else if (correct.equalsIgnoreCase(ans2)){
+            else if (correct.equalsIgnoreCase("b")){
                 correctAnswer.check(R.id.chooseB);
             }
-            else if (correct.equalsIgnoreCase(ans3)){
+            else if (correct.equalsIgnoreCase("c")){
                 correctAnswer.check(R.id.chooseC);
             }
-            else if (correct.equalsIgnoreCase(ans4)){
+            else if (correct.equalsIgnoreCase("d")){
                 correctAnswer.check(R.id.chooseD);
             }
         }
         return view;
     }
 
+    /**
+     * returns the values user entered into the edittext fields
+     * @return
+     */
     public String[] getData(){
         String[] data = new String[6];
         question = questionFiled.getText().toString();

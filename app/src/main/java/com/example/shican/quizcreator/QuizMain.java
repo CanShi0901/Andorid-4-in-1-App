@@ -36,6 +36,10 @@ public class QuizMain extends Toolbar {
     static Cursor c;
     String ans1, ans2, ans3, ans4, question, questionType, ans, decimal, formatedAns;
 
+    /**
+     * creates listview of all saved quizzes, sets new quiz button
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -108,14 +112,18 @@ public class QuizMain extends Toolbar {
             }
         });
     }
-    public static SQLiteDatabase getDatabase(){
-        return db;
-    }
+
     @Override
     protected void onResume() {
         super.onResume();
     }
 
+    /**
+     * depending on the requestCode, it either deletes a row, adds a row, or updates a row.
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -231,6 +239,12 @@ public class QuizMain extends Toolbar {
         }
     }
 
+    /**
+     * depending on the number of decimals, formate the number in a String.
+     * @param ans
+     * @param decimal
+     * @return
+     */
     public static String formatStringNumber(String ans, String decimal) {
         float number = Float.parseFloat(ans);
         int numberDecimal = Integer.parseInt(decimal);
@@ -261,30 +275,48 @@ public class QuizMain extends Toolbar {
         return formatedAnswer;
     }
 
+    /**
+     * reterns longest String of question in the database
+     * @return
+     */
     public String getMaxQuestionLength(){
         Cursor cursor1 = db.rawQuery("SELECT MAX(LENGTH(QUIZ)) AS max FROM "+ helper.TABLE_NAME,null);
         cursor1.moveToFirst();
         return cursor1.getString(cursor1.getColumnIndex("max"));
     }
-
+    /**
+     * reterns shortest String of question in the database
+     * @return
+     */
     public String getMinQuestionLength(){
         Cursor cursor2 = db.rawQuery("SELECT MIN(LENGTH(QUIZ))AS min FROM "+ helper.TABLE_NAME,null);
         cursor2.moveToFirst();
         return cursor2.getString(cursor2.getColumnIndex("min"));
     }
-
+    /**
+     * reterns average String of question in the database
+     * @return
+     */
     public String getAvgQuestionLength(){
         Cursor cursor3 = db.rawQuery("SELECT AVG(LENGTH(QUIZ))AS average FROM "+ helper.TABLE_NAME,null);
         cursor3.moveToFirst();
         return cursor3.getString(cursor3.getColumnIndex("average"));
     }
-
+    /**
+     * deletes a row with a certain ID from the database
+     * @return
+     */
     public void deleteQuiz(int position, long quizID){
         quizMessage.remove(position);
         db.delete(helper.TABLE_NAME, helper.KEY_ID+"="+quizID,null);
         this.quizAdapter.notifyDataSetChanged();
     }
 
+    /**
+     * sets up the menus in settings
+     * @param menu
+     * @return
+     */
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         MenuItem importItem = (MenuItem) menu.findItem(R.id.import_resource);
@@ -340,6 +372,7 @@ public class QuizMain extends Toolbar {
         db.close();
     }
 
+
     public class QuizAdapter extends ArrayAdapter<String> {
         QuizAdapter(Context ctx) {
             super(ctx, 0);
@@ -359,45 +392,90 @@ public class QuizMain extends Toolbar {
             return result;
         }
 
+        /**
+         * retruns ID of the quiz at the position
+         * @param position
+         * @return
+         */
         public long getId(int position) {
             return position;
         }
 
+        /**
+         * returns the position of a quiz
+         * @param position
+         * @return
+         */
         public long getItemId(int position) {
             c.moveToPosition(position);
             return c.getLong(c.getColumnIndex(helper.KEY_ID));
         }
 
+        /**
+         * returns the question of the quiz
+         * @param position
+         * @return
+         */
         public String getQuiz(int position) {
             c.moveToPosition(position);
             return c.getString(c.getColumnIndex(helper.KEY_QUIZ));
         }
 
+        /**
+         * returns the type of the quiz
+         * @param position
+         * @return
+         */
         public String getQuizType(int position) {
             c.moveToPosition(position);
             return c.getString(c.getColumnIndex(helper.KEY_QUIZTP));
         }
 
+        /**
+         * returns the correct answer of the quiz
+         * @param position
+         * @return
+         */
         public String getQuizAnswer(int position) {
             c.moveToPosition(position);
             return c.getString(c.getColumnIndex(helper.KEY_CORRECT_ANS));
         }
 
+        /**
+         * returns answer1 of the mc quiz
+         * @param position
+         * @return
+         */
         public String getAns1(int position) {
             c.moveToPosition(position);
             return c.getString(c.getColumnIndex(helper.KEY_ANSWER1));
         }
 
+        /**
+         * returns answer2 of the mc quiz
+         * @param position
+         * @return
+         */
         public String getAns2(int position) {
             c.moveToPosition(position);
             return c.getString(c.getColumnIndex(helper.KEY_ANSWER2));
         }
 
+        /**
+         * returns answer 3 of the mc quiz
+         * @param position
+         * @return
+         */
         public String getAns3(int position) {
             c.moveToPosition(position);
             return c.getString(c.getColumnIndex(helper.KEY_ANSWER3));
         }
 
+        /**
+         * returns answer 4 of the mc quiz
+         * @param position
+         * @return
+         */
         public String getAns4(int position) {
             c.moveToPosition(position);
             return c.getString(c.getColumnIndex(helper.KEY_ANSWER4));

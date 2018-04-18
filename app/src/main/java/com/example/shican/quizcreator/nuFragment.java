@@ -24,7 +24,13 @@ public class nuFragment extends Fragment {
     public nuFragment() {
     }
 
-
+    /**
+     * gives edittext fields for user to enter questions and answers
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -39,12 +45,21 @@ public class nuFragment extends Fragment {
             questionFiled.setText(bundle.getString("question"));
             answerField.setText(correct);
             String[] splitter = correct.split("\\.");
-            int decimal = splitter[1].length();
-            decimals.setText(Integer.toString(decimal));
+            if(splitter.length>1) {
+                int decimal = splitter[1].length();
+                decimals.setText(Integer.toString(decimal));
+            }
+            else{
+                decimals.setText(Integer.toString(0));
+            }
         }
         return view;
     }
 
+    /**
+     * returns the values user entered
+     * @return
+     */
     public String[] getData(){
         String[] data = new String[3];
         question = questionFiled.getText().toString();

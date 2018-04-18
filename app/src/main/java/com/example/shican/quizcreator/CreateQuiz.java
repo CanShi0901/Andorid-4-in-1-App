@@ -52,7 +52,11 @@ public class CreateQuiz extends Toolbar {
     long quizID;
     boolean isEdit;
 
-
+    /**
+     * sets the general layout of the activity, depending on the type of question, loads different fragments,
+     * depending if the user is editing an existing quiz, it sets the onClickListener of save button differently
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -116,6 +120,9 @@ public class CreateQuiz extends Toolbar {
         });
 
         if(isEdit){
+            Bundle infoPassed = getIntent().getExtras();
+            quizID = infoPassed.getLong("ID");
+            position=infoPassed.getInt("position");
             save.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -182,6 +189,11 @@ public class CreateQuiz extends Toolbar {
         }
     }
 
+    /**
+     * sets menu items
+     * @param menu
+     * @return
+     */
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
 
@@ -236,6 +248,9 @@ public class CreateQuiz extends Toolbar {
         return true;
     }
 
+    /**
+     * when user is editing an existing quiz, it loads the text to the fragments
+     */
     public void onEdit(){
         Intent intent = getIntent();
         if(intent.getExtras()!=null){
@@ -282,6 +297,9 @@ public class CreateQuiz extends Toolbar {
         }
     }
 
+    /**
+     * class used to parse down values from xml.
+     */
     public class ImportQuiz extends AsyncTask<String[], Integer, String[]> {
         HttpURLConnection conn;
         protected String[] doInBackground(String[]... strings) {
@@ -315,20 +333,19 @@ public class CreateQuiz extends Toolbar {
                         if (tagName.equalsIgnoreCase("MultipleChoiceQuestion")) {
                             result.add(parser.getAttributeValue(null, "correct"));
                             result.add(parser.getAttributeValue(null, "question"));
-                            onProgressUpdate(25);
+                            onProgressUpdate(30);
                         } else if (tagName.equalsIgnoreCase("Answer")) {
                             answers.add(parser.nextText());
                         } else if (tagName.equalsIgnoreCase("NumericQuestion")) {
                             result.add(parser.getAttributeValue(null, "accuracy"));
                             result.add(parser.getAttributeValue(null, "question"));
                             result.add(parser.getAttributeValue(null, "answer"));
-                            onProgressUpdate(50);
+                            onProgressUpdate(60);
                         } else if (tagName.equalsIgnoreCase("TrueFalseQuestion")) {
                             result.add(parser.getAttributeValue(null, "question"));
                             result.add(parser.getAttributeValue(null, "answer"));
-                            onProgressUpdate(75);
+                            onProgressUpdate(80);
                         }
-                        onProgressUpdate(100);
                     } else if (eventType == END_TAG) {
                         if (tagName.equalsIgnoreCase("MultipleChoiceQuestion")) {
                             result.addAll(answers);
@@ -336,6 +353,7 @@ public class CreateQuiz extends Toolbar {
                         }
                     }
                 }
+                onProgressUpdate(100);
                 conn.disconnect();
                 String[] finalResult = new String[result.size()];
                 for (int i = 0; i < result.size(); i++) {
@@ -354,10 +372,27 @@ public class CreateQuiz extends Toolbar {
             importProgress.setProgress(values[0]);
         }
 
+        /**
+         * inserts the downloaded quizzes to the database.
+         * @param result
+         */
         protected void onPostExecute(String[] result) {
-            String mcQuestion, mcCorrect, mcAns1, mcAns2, mcAns3, mcAns4, nuDecimal, nuQuestion, nuAns, nuFormatedAns, tfQuestion, tfAns;
+            String mcQuestion, mcCorrect, mcCorrectFormat, mcAns1, mcAns2, mcAns3, mcAns4, nuDecimal, nuQuestion, nuAns, nuFormatedAns, tfQuestion, tfAns;
             ContentValues cv = new ContentValues();
             mcCorrect = result[0];
+            mcCorrectFormat=null;
+            if(mcCorrect.equalsIgnoreCase("1")){
+                mcCorrectFormat="a";
+            }
+            else if(mcCorrect.equalsIgnoreCase("2")){
+                mcCorrectFormat="b";
+            }
+            else if(mcCorrect.equalsIgnoreCase("3")){
+                mcCorrectFormat="c";
+            }
+            else if(mcCorrect.equalsIgnoreCase("4")){
+                mcCorrectFormat="d";
+            }
             mcQuestion = result[1];
             mcAns1 = result[2];
             mcAns2 = result[3];
@@ -372,14 +407,13 @@ public class CreateQuiz extends Toolbar {
             QuizMain.quizMessage.add(mcQuestion);
             QuizMain.quizMessage.add(tfQuestion);
             QuizMain.quizMessage.add(nuQuestion);
-
             cv.put(QuizDatabaseHelper.KEY_QUIZ, mcQuestion);
             cv.put(QuizDatabaseHelper.KEY_QUIZTP, "mc");
             cv.put(QuizDatabaseHelper.KEY_ANSWER1, mcAns1);
             cv.put(QuizDatabaseHelper.KEY_ANSWER2, mcAns2);
             cv.put(QuizDatabaseHelper.KEY_ANSWER3, mcAns3);
             cv.put(QuizDatabaseHelper.KEY_ANSWER4, mcAns4);
-            cv.put(QuizDatabaseHelper.KEY_CORRECT_ANS, mcCorrect);
+            cv.put(QuizDatabaseHelper.KEY_CORRECT_ANS, mcCorrectFormat);
             db.insert(TABLE_NAME, "NullColumn", cv);
             cv.clear();
             cv.put(QuizDatabaseHelper.KEY_QUIZ, nuQuestion);

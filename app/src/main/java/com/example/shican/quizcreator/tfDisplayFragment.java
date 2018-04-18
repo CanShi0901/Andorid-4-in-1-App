@@ -30,6 +30,11 @@ public class tfDisplayFragment extends Fragment {
         return view;
     }
 
+    /**
+     * returns true or false depending on which radio button was selected.
+
+     * @return
+     */
     public String getChoice(){
         return choice;
     }

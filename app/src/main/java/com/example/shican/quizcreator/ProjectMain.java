@@ -11,6 +11,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 public class ProjectMain extends AppCompatActivity {
+    /**
+     * sets menu items
+     * @param menu
+     * @return
+     */
     @Override
     public boolean onPrepareOptionsMenu (Menu menu) {
         MenuItem importItem = (MenuItem) menu.findItem(R.id.import_resource);

@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 
 /**
+ * displays the nu fragment
  * A simple {@link Fragment} subclass.
  */
 public class nuDisplayFragment extends Fragment {

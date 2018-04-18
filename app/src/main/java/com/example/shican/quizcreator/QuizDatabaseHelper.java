@@ -23,6 +23,10 @@ public class QuizDatabaseHelper extends SQLiteOpenHelper{
         super(ctx, DATABASE_NAME, null, VERSION_NUM );
     }
 
+    /**
+     * creates a table
+     * @param db
+     */
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE IF NOT EXISTS " + TABLE_NAME +
@@ -32,6 +36,12 @@ public class QuizDatabaseHelper extends SQLiteOpenHelper{
         Log.i("QuizDatabaseHelper", "Calling onCreate");
     }
 
+    /**
+     * checks if the table has been updated
+     * @param db
+     * @param oldVer
+     * @param newVer
+     */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVer, int newVer) {
         Log.i("QuizDatabaseHelper", "Calling onUprade, oldVersion="

@@ -10,6 +10,13 @@ import android.widget.TextView;
 public class mcDisplayFragment extends Fragment {
     TextView ans1, ans2, ans3, ans4;
 
+    /**
+     * displays the mc quiz
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

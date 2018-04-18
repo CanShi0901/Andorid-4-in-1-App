@@ -39,7 +39,10 @@ public class DisplayQuiz extends Toolbar {
     int position;
     LinearLayout editButtons;
 
-
+    /**
+     * sets the layout, displays the quiz depending on its type
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -150,6 +153,12 @@ public class DisplayQuiz extends Toolbar {
         });
     }
 
+    /**
+     * goes back to main with a modify request code
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -161,6 +170,11 @@ public class DisplayQuiz extends Toolbar {
         }
     }
 
+    /**
+     * sets the menu items
+     * @param menu
+     * @return
+     */
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         MenuItem importItem = (MenuItem) menu.findItem(R.id.import_resource);
