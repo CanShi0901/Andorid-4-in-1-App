@@ -62,6 +62,7 @@ public class OCMain extends Toolbar implements OCFragmentSearch.OCFragmentSearch
         saveHelper = new OCSavedStopDatabaseHelper(this);
         saveStopDB = saveHelper.getWritableDatabase();
         saveStopValues = new ContentValues();
+        saveHelper.onCreate(saveStopDB);
 
         saveCu = saveStopDB.query(false, OCSavedStopDatabaseHelper.TABLE_NAME, new String[]{OCSavedStopDatabaseHelper.KEY_ID, OCSavedStopDatabaseHelper.KEY_MESSAGE}, null, null, null, null, null, null);
         saveCu.moveToFirst();
@@ -77,6 +78,7 @@ public class OCMain extends Toolbar implements OCFragmentSearch.OCFragmentSearch
         saveRouteHelper = new OCSavedRouteDatabaseHelper(this);
         saveRouteDB = saveRouteHelper.getWritableDatabase();
         saveRouteValues = new ContentValues();
+        saveRouteHelper.onCreate(saveRouteDB);
 
         saveRouteCu = saveRouteDB.query(false, OCSavedRouteDatabaseHelper.TABLE_NAME, new String[]{OCSavedRouteDatabaseHelper.KEY_ID, OCSavedRouteDatabaseHelper.KEY_MESSAGE, OCSavedRouteDatabaseHelper.KEY_STAT}, null, null, null, null, null, null);
         saveRouteCu.moveToFirst();

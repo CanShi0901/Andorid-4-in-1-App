@@ -29,7 +29,7 @@ public class OCSavedRouteDatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE "+ TABLE_NAME + " ("+KEY_ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "+KEY_MESSAGE+" String ," + KEY_STAT + " INTEGER )");
+        db.execSQL("CREATE TABLE IF NOT EXISTS "+ TABLE_NAME + " ("+KEY_ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "+KEY_MESSAGE+" String ," + KEY_STAT + " INTEGER )");
     }
 
     @Override
