@@ -4,27 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.shican.quizcreator.CreateQuiz">
+    android:orientation="vertical"
+    tools:context="com.example.shican.quizcreator.QuizMain">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolBar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
         android:background="@android:color/holo_green_light"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
-
-    <ProgressBar
-        android:id="@+id/inProgress"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:visibility="visible"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/title"
-        android:progress="@android:integer/config_mediumAnimTime" />
 
     <TextView
         android:id="@+id/title"
@@ -32,17 +21,36 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/toolBar"
-        android:text="@string/oc_searchResult"
+        android:text="@string/oc_reroute"
         android:textAlignment="center"
         android:textSize="20sp" />
 
-    <fragment
-        android:id="@+id/fragment2"
-        android:name="com.example.shican.quizcreator.OCFragmentSearchResult"
+    <ProgressBar
+        android:id="@+id/inProgress"
+        style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/inProgress" />
+        android:layout_below="@+id/title"
+        android:progress="@android:integer/config_mediumAnimTime"
+        android:visibility="visible" />
+
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="416dp"
+        android:layout_below="@+id/inProgress"
+        android:layout_above="@+id/back"
+        android:stackFromBottom="true"
+        android:transcriptMode="alwaysScroll" />
+
+    <Button
+        android:id="@+id/back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:text="@string/oc_back" />
 
 
 </RelativeLayout>

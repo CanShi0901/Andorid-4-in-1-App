@@ -34,7 +34,7 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/title"
         android:progress="@android:integer/config_mediumAnimTime"
-        android:visibility="visible" />
+        android:visibility="invisible" />
 
     <EditText
         android:id="@+id/input"
