@@ -13,7 +13,11 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import static com.example.shican.quizcreator.PatientListActivity.dbBuffer;
-
+/**
+ *this class shows detailed record of a patient. It has 3 buttons that handle deleting the record, editing the record
+ * and returning to the main activity.
+ * @author Nan Jiang
+ */
 public class RecordDetailActivity extends Toolbar {
     String  name, address, age, birthday, phoneNumber, healthCardNumber, gender, description, patientType,
             surgeries, allergies, braces, medicalBenefits, glassPurchaseDate, glassPurchaseStore, question1, question2;

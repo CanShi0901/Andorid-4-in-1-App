@@ -6,7 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioGroup;
-
+/**
+ *this class is a fragment for dentist type questions
+ * @author Nan Jiang
+ */
 public class DentistFragment extends Fragment {
 
     String braces, medicalBenefits;

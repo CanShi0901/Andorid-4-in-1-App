@@ -6,7 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-
+/**
+ *this class is a fragment for doctor type questions
+ * @author Nan Jiang
+ */
 public class DoctorFragment extends Fragment {
 
     String surgery, allergy;

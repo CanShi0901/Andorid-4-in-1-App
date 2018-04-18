@@ -61,7 +61,11 @@ import static com.example.shican.quizcreator.DatabaseHelper.KEY_PATIENT_TYPE;
 import static com.example.shican.quizcreator.DatabaseHelper.KEY_PHONE_NUMBER;
 import static com.example.shican.quizcreator.DatabaseHelper.KEY_SURGERY;
 import static com.example.shican.quizcreator.DatabaseHelper.TABLE_NAME;
-
+/**
+ *this is the main activity of Patient Intake Form. It contains a listView of all patients.
+ * There are 3 buttons handling importing new patient from the internet, add new patient and show statistics of patient age.
+ * @author Nan Jiang
+ */
 
 public class PatientListActivity extends Toolbar {
 
@@ -150,10 +154,10 @@ public class PatientListActivity extends Toolbar {
             public void onClick(View v) {
                 if (doStatistics()!=null) {
                     new AlertDialog.Builder(PatientListActivity.this)
-                            .setTitle("STATISTICS")
-                            .setMessage("Minimum age:  " + doStatistics().get(0) + "\n" +
-                                    "Maximum age: " + doStatistics().get(1) + "\n" +
-                                    "Average age:    " + doStatistics().get(2))
+                            .setTitle(R.string.text_statistics)
+                            .setMessage(PatientListActivity.this.getString(R.string.text_minimum_age)+doStatistics().get(0) + "\n" +
+                                    PatientListActivity.this.getString(R.string.text_maximum_age)+doStatistics().get(1) + "\n" +
+                                    PatientListActivity.this.getString(R.string.text_average_age)+doStatistics().get(2))
                             .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {

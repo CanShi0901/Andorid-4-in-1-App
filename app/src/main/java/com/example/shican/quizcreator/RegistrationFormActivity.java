@@ -38,7 +38,11 @@ import static com.example.shican.quizcreator.DatabaseHelper.KEY_PHONE_NUMBER;
 import static com.example.shican.quizcreator.DatabaseHelper.KEY_SURGERY;
 import static com.example.shican.quizcreator.DatabaseHelper.TABLE_NAME;
 import static com.example.shican.quizcreator.PatientListActivity.dbBuffer;
-
+/**
+ *this class is used to register a new patient or edit an existing patient. there is a spinner that allows user to choose
+ * patient type, which will load corespondent fragment of the selected type.
+ * @author Nan Jiang
+ */
 public class RegistrationFormActivity extends Toolbar implements AdapterView.OnItemSelectedListener {
 
     String  name, address, age, birthday, phoneNumber, healthCardNumber, description, patientType,
