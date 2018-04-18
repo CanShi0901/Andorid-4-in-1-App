@@ -2,7 +2,10 @@ package com.example.shican.quizcreator;
 
 import android.app.Activity;
 import android.os.Bundle;
-
+/**
+ *this class handles doctor fragment layout
+ * @author Nan Jiang
+ */
 public class DoctorFragmentDetailActivity extends Activity {
 
     @Override
