@@ -4,6 +4,16 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+/*
+@file name: OCSavedRouteDatabaseHelper
+@author: yuxin zhang
+@course: cst 2335
+@assignemnt: final projact
+@date: April 18, 2018
+@professor: eric
+@purpose: saved stop database helper
+*/
+
 public class OCSavedRouteDatabaseHelper extends SQLiteOpenHelper {
     public final static String DATABASE_NAME = "db";
     public final static int VERSION_NUM = 9;

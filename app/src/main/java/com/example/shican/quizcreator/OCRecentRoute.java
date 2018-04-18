@@ -19,13 +19,24 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+/*
+@file name: OCRecentRoute
+@author: yuxin zhang
+@course: cst 2335
+@assignemnt: final projact
+@date: April 18, 2018
+@professor: eric
+@purpose:recent route shows route information that user recent view searched/saved
+*/
 
 public class OCRecentRoute extends Toolbar {
+    //recent route variables
     public ArrayList<String> saveList = new ArrayList<String>();
     public ArrayList<Integer> adj = new ArrayList<Integer>();
     public Integer total = 0;
     public long count;
 
+    //progressBar variables
     ProgressBar progress;
     int  p = 0;
     Handler handler = new Handler();
@@ -36,10 +47,12 @@ public class OCRecentRoute extends Toolbar {
         setContentView(R.layout.activity_oc_saved_route);
         initToolbar();
 
+        //layout variables
         final ListView list = (ListView) findViewById(R.id.list);
         final Button back = (Button) findViewById(R.id.back);
         progress = (ProgressBar) findViewById(R.id.inProgress);
 
+        //push/hide progress bar
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -53,18 +66,31 @@ public class OCRecentRoute extends Toolbar {
                         }
                     });
                 }
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        handler.post(new Runnable() {
+                            public void run() {
+                                progress.setVisibility(View.INVISIBLE);
+                            }
+                        });
+                    }
+                });
             }
         }).start();
 
+        //get recent data from main
         Intent i = getIntent();
         saveList= i.getStringArrayListExtra("saveRoute");
         adj = i.getIntegerArrayListExtra("adj");
         count=i.getLongExtra("count",1);
 
+        //calculate adjTime total
         for(int j = 0; j < adj.size(); j ++){
             total += adj.get(j);
         }
 
+        //show route information
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(OCRecentRoute.this, android.R.layout.simple_list_item_1, saveList) {
             public View getView(int position, View convertView, ViewGroup parent) {
                 View view = super.getView(position, convertView, parent);
@@ -92,9 +118,9 @@ public class OCRecentRoute extends Toolbar {
                 new AlertDialog.Builder(OCRecentRoute.this)
                         .setTitle("Help")
                         .setMessage("Activity developped by Yuxin Zhang "+ "\n" +
-                                "Version number v7.0 \n\nInstructions: \n1.shows recent route that related user searched/saved stop" +
+                                "Version number v7.0 \n\nInstructions: \n1.shows recent viewd route that related user searched/saved stop" +
                                 "\n2.stat shows current information's average adjustedScheduleTime" +
-                                "\n3.if is user was search/saved invalid stop number or route has no bus schedule, that route information will not show\"")
+                                "\n3.if is user was search/saved invalid stop number or route has no bus schedule, that route information will not show")
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -105,6 +131,7 @@ public class OCRecentRoute extends Toolbar {
             }
         });
 
+        //stat shows adjTime average
         menu.findItem(R.id.stats).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {

@@ -13,40 +13,54 @@ import android.widget.EditText;
 
 import java.util.ArrayList;
 
+/*
+@file name: OCAddDel
+@author: yuxin zhang
+@course: cst 2335
+@assignemnt: final projact
+@date: April 18, 2018
+@professor: eric
+@purpose:add/delete bus stop to saved stop database.if add/delete stop already exits, nothing change.
+*/
+
 public class OCAddDel extends Toolbar {
     protected static final String ACTIVITY_NAME = "OCAddDel";
     private String enterStop= "";
 
+    //intent back to main variables
     private ArrayList<String> addString;
     private ArrayList<String> delString;
     private ArrayList<String> saveList;
-
     private int addResult;
     private int delResult;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_oc_adddel);
         initToolbar();
 
+        //initial variables
         addResult = 0;
         delResult = 0;
         addString = new ArrayList<>();
         delString = new ArrayList<>();
 
+        //get intent saved Arraylist from main
         Intent i = getIntent();
         saveList= i.getStringArrayListExtra("saveList");
 
+        //layout variables
         final EditText input= (EditText) findViewById(R.id.input);
         final Button addButton = (Button) findViewById(R.id.add_button);
         final Button delButton = (Button) findViewById(R.id.del_button);
         final Button back = (Button) findViewById(R.id.back);
 
-
         //add button click, add input stop
         addButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 enterStop = input.getText().toString();
+                //handle status, show snackbar, add/del if valid input
                 if ((!enterStop.matches("[-+]?\\d*\\.?\\d+")) && (enterStop != " ")) {
                     Snackbar.make(findViewById(android.R.id.content), "Invalid Stop Number", Snackbar.LENGTH_LONG).show();
                 } else {
@@ -66,6 +80,7 @@ public class OCAddDel extends Toolbar {
         delButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 enterStop = input.getText().toString();
+                //handle status, show snackbar, add/del if valid input
                 if ((!enterStop.matches("[-+]?\\d*\\.?\\d+")) && (enterStop != " ")) {
                 } else {
                     if(saveList.contains(enterStop)){
@@ -80,7 +95,7 @@ public class OCAddDel extends Toolbar {
             }
         });
 
-        //back button click, send add&delete stop back to main
+        //back button click, send add&delete data back to main
         back.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent resultIntent = new Intent();
@@ -110,7 +125,7 @@ public class OCAddDel extends Toolbar {
                                 "Version number v7.0\n\nInstructions: \n1.add or delete stop number\n2.snackbar show if action successful\n" +
                                 "3.send data back to main and update saved stop database and listview\n" +
                                 "4.toast shows (no)changes after back to main" +
-                                "\n5.if add stop number already in saved stop database, nothing will add")
+                                "\n5.if add/delete stop number already in saved stop database, nothing change")
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {

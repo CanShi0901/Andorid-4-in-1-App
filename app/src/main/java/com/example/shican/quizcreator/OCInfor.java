@@ -30,19 +30,32 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
+/*
+@file name: OCInfor
+@author: yuxin zhang
+@course: cst 2335
+@assignemnt: final projact
+@date: April 18, 2018
+@professor: eric
+@purpose:OCinfor show route information get from url with stop number, stat shows average adjTime
+*/
+
 public class OCInfor extends Toolbar {
     protected static final String ACTIVITY_NAME = "OCInfor";
-    public ListView list;
+    //recent route pass back variables
     String savedRoute= "";
     int saveAdj = 0;
     int average = 0;
 
+    //layout variables
     TextView stopNum;
     TextView stopDes;
     TextView routeNum;
     TextView routeDes;
-    ProgressBar progress;
+    public ListView list;
 
+    //progressBar variables
+    ProgressBar progress;
     int  p = 0;
     Handler handler = new Handler();
 
@@ -62,6 +75,7 @@ public class OCInfor extends Toolbar {
         routeDes = (TextView) findViewById(R.id.routeDes);
         progress = (ProgressBar) findViewById(R.id.inProgress);
 
+        //send recent route information back
         final Button back = (Button) findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -76,6 +90,7 @@ public class OCInfor extends Toolbar {
             }
         });
 
+        //push/hide progress bar
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -89,9 +104,20 @@ public class OCInfor extends Toolbar {
                         }
                     });
                 }
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        handler.post(new Runnable() {
+                            public void run() {
+                                progress.setVisibility(View.INVISIBLE);
+                            }
+                        });
+                    }
+                });
             }
         }).start();
 
+        //excute and get from url
         getInfor getInfor = new getInfor();
         getInfor.execute("https://api.octranspo1.com/v1.2/GetNextTripsForStop?appID=223eb5c3&&apiKey=ab27db5b435b8c8819ffb8095328e775&routeNo=" + route + "&stopNo="+stop);
 
@@ -99,7 +125,9 @@ public class OCInfor extends Toolbar {
         routeNum.setText(routeNum.getText()+route);
     }
 
+    //get route information from url
     public class getInfor extends AsyncTask<String, Integer, String> {
+        //route information variables
         String getStopDes="";
         String getRouteDes="";
         ArrayList<String> distination = new ArrayList<String>();
@@ -112,7 +140,7 @@ public class OCInfor extends Toolbar {
 
         int count;
 
-        //find data in http
+        //connect url, search data
         protected String doInBackground(String... args){
             try {
                 URL url = new URL(args[0]);
@@ -183,6 +211,7 @@ public class OCInfor extends Toolbar {
             stopDes.setText(stopDes.getText()+getStopDes);
             routeDes.setText(routeDes.getText()+getRouteDes);
 
+            //handle status
             if(getStopDes==""){
                 additem.add("Invalid stop number");
             }else if(count>0) {
@@ -198,6 +227,7 @@ public class OCInfor extends Toolbar {
                 additem.add("No bus schedule");
             }
 
+            //show route information in listview
             ListView list = (ListView) findViewById(R.id.list);
             ArrayAdapter<String> adapter=new ArrayAdapter<String>(OCInfor.this, android.R.layout.simple_list_item_1, additem){
                 public View getView(int position, View convertView, ViewGroup parent) {
@@ -231,6 +261,7 @@ public class OCInfor extends Toolbar {
             }
         });
 
+        //stat toolebar shows current information's average adjTime
         menu.findItem(R.id.stats).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {

@@ -17,7 +17,18 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+/*
+@file name: OCFragmentSearch
+@author: yuxin zhang
+@course: cst 2335
+@assignemnt: final projact
+@date: April 18, 2018
+@professor: eric
+@purpose:search stop fragment, save search history in arraylist, intent to stop information with input search stop number if click search button
+*/
+
 public class OCFragmentSearch extends Fragment {
+    //layout variables
     TextView input;
     Button search;
     ListView listView;
@@ -27,6 +38,7 @@ public class OCFragmentSearch extends Fragment {
 
     OCFragmentSearchListener searchListener;
 
+    //use for button listener in main
     public interface OCFragmentSearchListener{
         public void inputSearch(String enterStop);
     }
@@ -58,10 +70,12 @@ public class OCFragmentSearch extends Fragment {
     public void buttonClicked(View v){
         searchListener.inputSearch(input.getText().toString());
 
+        //check search is already in recent arraylist
         if(list.contains(input.getText().toString())){}
         else {
             list.add(input.getText().toString());
 
+            //recent search listview
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, list) {
                 public View getView(int position, View convertView, ViewGroup parent) {
                     View view = super.getView(position, convertView, parent);
@@ -72,6 +86,7 @@ public class OCFragmentSearch extends Fragment {
             };
             listView.setAdapter(adapter);
 
+            //intent stop information
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 public void onItemClick(AdapterView<?> adapter, View v, int pos, long a) {
                     String enterStop = (String) adapter.getItemAtPosition(pos);
