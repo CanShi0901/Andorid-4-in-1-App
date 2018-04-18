@@ -30,11 +30,7 @@
         <activity android:name=".RegistrationFormActivity" />
         <activity android:name=".DoctorFragmentDetailActivity" />
         <activity android:name=".DentistFragmentDetailActivity" />
-<<<<<<< HEAD
-        <activity android:name=".OCRecentRoute"></activity>
-=======
-        <activity android:name=".OCShowSavedStop" />
->>>>>>> quizCreator
+        <activity android:name=".OCRecentRoute"/>
     </application>
 
 </manifest>
