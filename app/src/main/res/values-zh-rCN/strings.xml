@@ -81,16 +81,19 @@
     <string name="oc_delStop">删除车站</string>
     <string name="oc_enterStop">请输入车站号</string>
     <string name="oc_submit">确认</string>
-    <string name="oc_routeInfo">路线信息</string>
+    <string name="oc_routeInfo">公交信息</string>
     <string name="oc_done">完成</string>
-    <string name="oc_back">查找</string>
+    <string name="oc_back">后退</string>
+    <string name="oc_searchStop">寻找车站</string>
+    <string name="oc_adddelStop">添加/删除车站</string>
     <string name="oc_search">寻找</string>
-    <string name="viewStops">查看车站</string>
-    <string name="oc_reroute">历史路线</string>
+    <string name="oc_reroute">历史公交信息</string>
     <string name="oc_stopNum">车站号: </string>
     <string name="oc_stopDes">车站名: </string>
-    <string name="oc_searchResult">查找结果</string>
-    <string name="oc_add">添加车站</string>
+    <string name="oc_searchResult">寻找结果</string>
     <string name="oc_recentSearch">历史寻找车站</string>
+    <string name="oc_savedStop">保存车站</string>
+    <string name="oc_routeNum">公交号: </string>
+    <string name="oc_routeDes">公交名: </string>
 
 </resources>
