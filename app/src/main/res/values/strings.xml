@@ -106,8 +106,6 @@
     <string name="toast_doctor">Doctor Type Selected</string>
     <string name="toast_dentist">Dentist Type Selected</string>
     <string name="toast_optometrist">Optometrist Type Selected</string>
-<<<<<<< HEAD
-=======
     <string name="icon">icon</string>
     <string name="correctAnswerIs">Correct answer is: </string>
     <string name="title_activity_oc_show_saved_stop">activity_oc_show_saved_stop</string>
@@ -115,5 +113,4 @@
     <string name="letterb">B</string>
     <string name="letterc">C</string>
     <string name="letterd">D</string>
->>>>>>> quizCreator
 </resources>

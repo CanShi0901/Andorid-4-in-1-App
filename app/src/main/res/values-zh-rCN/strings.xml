@@ -92,11 +92,9 @@
     <string name="oc_stopDes">车站名: </string>
     <string name="oc_searchResult">寻找结果</string>
     <string name="oc_recentSearch">历史寻找车站</string>
-<<<<<<< HEAD
     <string name="oc_savedStop">保存车站</string>
     <string name="oc_routeNum">公交号: </string>
     <string name="oc_routeDes">公交名: </string>
-=======
     <string name="typeAnswerHere">输入你的问题</string>
     <string name="rememberDecimal">记得写小数点</string>
     <string name="becarefulDecimal">请输入正确的小数点</string>
@@ -107,7 +105,4 @@
     <string name="saveChange">"保存更改"</string>
     <string name="delete">删除</string>
     <string name="modify">更改</string>
-    <string name="oc_savedStop">保存车站</string>
->>>>>>> quizCreator
-
 </resources>

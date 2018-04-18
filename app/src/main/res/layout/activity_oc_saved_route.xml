@@ -11,13 +11,9 @@
         android:id="@+id/toolBar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-<<<<<<< HEAD:app/src/main/res/layout/activity_oc_saved_route.xml
-        android:background="@android:color/holo_green_light"
-=======
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:background="@android:color/holo_red_light"
->>>>>>> quizCreator:app/src/main/res/layout/activity_oc_show_saved_stop.xml
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
 
