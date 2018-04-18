@@ -78,7 +78,8 @@ public class OCResultRoute extends Toolbar {
                 new AlertDialog.Builder(OCResultRoute.this)
                         .setTitle("Help")
                         .setMessage("Activity developped by Yuxin Zhang "+ "\n" +
-                                "Version number v1.0")
+                                "Version number v7.0 \n\nInstructions: \n1.shows stop information and routes at this stop\n" +
+                                "2.click on route shows related route informaion\n" )
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -96,14 +97,15 @@ public class OCResultRoute extends Toolbar {
         if(resultCode == 100){
             savedAdj = data.getIntExtra("saveAdj",1);
             savedRoute = data.getStringExtra("savedRoute");
+            if(OCMain.adj.contains(savedAdj)){
 
-            OCMain.saveRouteValues.put(OCSavedRouteDatabaseHelper.KEY_MESSAGE, savedRoute);
-            OCMain.saveRouteValues.put(OCSavedRouteDatabaseHelper.KEY_STAT, savedAdj);
-            OCMain.saveRouteDB.insert(OCSavedRouteDatabaseHelper.TABLE_NAME, null, OCMain.saveRouteValues);
-            OCMain.saveRoute.add(savedRoute);
-            OCMain.adj.add(savedAdj);
-
-            Log.i(ACTIVITY_NAME, "ADJ search result"+ savedAdj);
+            }else {
+                OCMain.saveRouteValues.put(OCSavedRouteDatabaseHelper.KEY_MESSAGE, savedRoute);
+                OCMain.saveRouteValues.put(OCSavedRouteDatabaseHelper.KEY_STAT, savedAdj);
+                OCMain.saveRouteDB.insert(OCSavedRouteDatabaseHelper.TABLE_NAME, null, OCMain.saveRouteValues);
+                OCMain.saveRoute.add(savedRoute);
+                OCMain.adj.add(savedAdj);
+            }
         }
     }
 }

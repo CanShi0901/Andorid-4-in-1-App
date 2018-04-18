@@ -92,7 +92,9 @@ public class OCRecentRoute extends Toolbar {
                 new AlertDialog.Builder(OCRecentRoute.this)
                         .setTitle("Help")
                         .setMessage("Activity developped by Yuxin Zhang "+ "\n" +
-                                "Version number v1.0")
+                                "Version number v7.0 \n\nInstructions: \n1.shows recent route that related user searched/saved stop" +
+                                "\n2.stat shows current information's average adjustedScheduleTime" +
+                                "\n3.if is user was search/saved invalid stop number or route has no bus schedule, that route information will not show\"")
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {

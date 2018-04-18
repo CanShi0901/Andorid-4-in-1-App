@@ -219,7 +219,9 @@ public class OCInfor extends Toolbar {
                 new AlertDialog.Builder(OCInfor.this)
                         .setTitle("Help")
                         .setMessage("Activity developped by Yuxin Zhang "+ "\n" +
-                                "Version number v1.0")
+                                "Version number v7.0 \n\nInstructions: \n1.show three detail select route information at the stop. " +
+                                "\n2.add first route information to recent route database.\n3.if invalid stop number or no route bus schedule, no information add to recent route database" +
+                                " \n4.stat shows current information's average adjustedScheduleTime.")
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {

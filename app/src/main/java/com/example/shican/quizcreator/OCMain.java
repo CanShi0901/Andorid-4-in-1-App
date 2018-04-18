@@ -172,28 +172,26 @@ public class OCMain extends Toolbar implements OCFragmentSearch.OCFragmentSearch
     }
 
     //help toolbar
-    public boolean onPrepareOptionsMenu(Menu menu) {
+    public boolean onPrepareOptionsMenu (Menu menu) {
         menu.findItem(R.id.help).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 new AlertDialog.Builder(OCMain.this)
                         .setTitle("Help")
                         .setMessage("Activity developped by Yuxin Zhang " + "\n" +
-                                "Version number v1.0")
+                                "Version number v7.0 \n\nInstructions: \n1.search with stop number to see stop information and related route information" +
+                                "\n2.search has recent search, it shows user search history but it does not have database" +
+                                "\n3.add/del saved stop\n4.saved stop shows saved stop database \n" +
+                                "5.recent route shows user recent viewed routes database that related to search/saved stop.")
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-
                             }
                         }).show();
                 return true;
             }
         });
         return true;
-    }
-
-    public void onResume(){
-        super.onResume();
     }
 }
 

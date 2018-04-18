@@ -7,7 +7,7 @@ import android.util.Log;
 
 public class OCSavedStopDatabaseHelper extends SQLiteOpenHelper {
     public final static String DATABASE_NAME = "db";
-    public final static int VERSION_NUM = 6;
+    public final static int VERSION_NUM = 8;
     public final static String TABLE_NAME = "savedStopTable";
     public final static String KEY_ID = "ID";
     public final static String KEY_MESSAGE = "Stops";

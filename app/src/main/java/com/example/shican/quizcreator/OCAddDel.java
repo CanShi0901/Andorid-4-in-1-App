@@ -48,6 +48,7 @@ public class OCAddDel extends Toolbar {
             public void onClick(View v) {
                 enterStop = input.getText().toString();
                 if ((!enterStop.matches("[-+]?\\d*\\.?\\d+")) && (enterStop != " ")) {
+                    Snackbar.make(findViewById(android.R.id.content), "Invalid Stop Number", Snackbar.LENGTH_LONG).show();
                 } else {
                     if(saveList.contains(enterStop)){
                         Snackbar.make(findViewById(android.R.id.content), "Stop Already Added", Snackbar.LENGTH_LONG).show();
@@ -106,7 +107,10 @@ public class OCAddDel extends Toolbar {
                 new AlertDialog.Builder(OCAddDel.this)
                         .setTitle("Help")
                         .setMessage("Activity developped by Yuxin Zhang "+ "\n" +
-                                "Version number v1.0")
+                                "Version number v7.0\n\nInstructions: \n1.add or delete stop number\n2.snackbar show if action successful\n" +
+                                "3.send data back to main and update saved stop database and listview\n" +
+                                "4.toast shows (no)changes after back to main" +
+                                "\n5.if add stop number already in saved stop database, nothing will add")
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
