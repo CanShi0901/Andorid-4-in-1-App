@@ -13,11 +13,13 @@ import android.view.MenuItem;
 
 public class Toolbar extends AppCompatActivity {
     private MenuItem helpMenu;
-
     protected void onCreate(Bundle savedInstanceState ) {
         super.onCreate(savedInstanceState);
     }
 
+    /**
+     * displays the toolbar
+     */
     public void initToolbar(){
         android.support.v7.widget.Toolbar toolbar = (android.support.v7.widget.Toolbar)findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
@@ -30,6 +32,11 @@ public class Toolbar extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * when each item is selected, it goes to the corresponding activity
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent intent;

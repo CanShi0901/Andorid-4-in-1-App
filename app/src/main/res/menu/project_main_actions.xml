@@ -37,7 +37,7 @@
 
     <item android:id="@+id/import_resource"
         android:icon="@drawable/import_resource"
-        android:title="Import"
+        android:title="@string/importXML"
         app:showAsAction="never"/>
 
     <item android:id="@+id/stats"

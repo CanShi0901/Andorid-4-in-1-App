@@ -37,14 +37,31 @@ public class tfFragment extends Fragment {
                 }
             }
         });
+
+        Bundle bundle = getArguments();
+        if (bundle != null){
+            String correct = bundle.getString("correct");
+            questionFiled.setText(bundle.getString("question"));
+
+            if(correct.equalsIgnoreCase("true")){
+                radioGroup.check(R.id.trueAns);
+            }
+            else if (correct.equalsIgnoreCase("false")){
+                radioGroup.check(R.id.falseAns);
+            }
+        }
         return view;
     }
 
-    public ArrayList<String> getData(){
-        ArrayList<String> data = new ArrayList<>();
+    /**
+     * returns the value user entered
+     * @return
+     */
+    public String[] getData(){
+        String[] data = new String[2];
         question = questionFiled.getText().toString();
-        data.add(question);
-        data.add(answer);
+        data[0] = question;
+        data[1] = answer;
         return data;
     }
 

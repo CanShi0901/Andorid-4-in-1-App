@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/toolBar"
-        android:gravity="start"
+        android:textAlignment="center"
         android:text="@string/mc" />
 
     <Button
@@ -21,6 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/toolBar"
         android:layout_toEndOf="@+id/tf"
+        android:textAlignment="center"
         android:text="@string/nu" />
 
     <Button
@@ -28,8 +29,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/toolBar"
-        android:layout_centerHorizontal="true"
-        android:layout_toEndOf="@id/mc"
+        android:layout_toEndOf="@+id/mc"
+        android:textAlignment="center"
         android:text="@string/tf" />
 
     <android.support.v7.widget.Toolbar
@@ -56,6 +57,15 @@
         android:layout_below="@+id/mc" >
 
     </FrameLayout>
+
+    <ProgressBar
+        android:id="@+id/importProgress"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/save"
+        android:progressTint="@android:color/holo_blue_dark" />
 
 
 </RelativeLayout>

@@ -16,41 +16,52 @@
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         android:layout_alignParentTop="true"/>
 
-    <TextView
-        android:id="@+id/yourQuiz"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/hint"
-        android:layout_toStartOf="@+id/hint"
-        android:text="@string/yourQuiz"
-        android:textSize="20sp" />
+        android:orientation="horizontal"
+        android:id="@+id/edit"
+        android:layout_below="@+id/toolBar">
 
-    <Button
-        android:id="@+id/hint"
-        android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/delete"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.50"
+            android:text="@string/delete" />
+
+        <Button
+            android:id="@+id/modify"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.50"
+            android:text="@string/modify" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/quizDetail"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@+id/toolBar"
-        android:layout_marginTop="14dp"
-        android:text="@string/hint" />
-
+        android:layout_above="@+id/quizContainer"
+        android:layout_alignParentStart="true"
+        android:textSize="30sp" />
 
     <FrameLayout
         android:id="@+id/quizContainer"
         android:layout_width="match_parent"
-        android:layout_height="380dp"
-        android:layout_below="@+id/hint"
-        android:layout_marginStart="12dp">
+        android:layout_height="320dp"
+        android:layout_above="@+id/youAnswerHere"
+        android:layout_alignParentStart="true"></FrameLayout>
 
-    </FrameLayout>
-
-    <Button
-        android:id="@+id/checkAnswer"
-        android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/youAnswerHere"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:text="@string/checkAnswer" />
+        android:layout_above="@+id/checkAnswer"
+        android:layout_alignParentStart="true"
+        android:textSize="20sp"
+        android:text="@string/typeAnswerHere"/>
 
     <EditText
         android:id="@+id/enterAnswer"
@@ -62,13 +73,13 @@
         android:hint="Enter your answer here"
         android:inputType="textPersonName" />
 
-    <TextView
-        android:id="@+id/quizDetail"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/checkAnswer"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/yourQuiz"
-        android:layout_toStartOf="@+id/hint"
-        android:textSize="20sp"/>
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:text="@string/checkAnswer" />
 
 
 </RelativeLayout>

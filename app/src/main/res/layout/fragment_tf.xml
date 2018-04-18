@@ -5,8 +5,6 @@
     tools:context="com.example.shican.quizcreator.tfFragment"
     android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
-
     <EditText
         android:id="@+id/enterQuestion"
         android:layout_width="match_parent"

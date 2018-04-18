@@ -1,12 +1,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mcFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.example.shican.quizcreator.mcFragment">
-
-    <!-- TODO: Update blank fragment layout -->
 
     <EditText
         android:id="@+id/enterQuestion"
@@ -17,37 +16,134 @@
         android:hint="@string/enterQuestion"
         android:inputType="textAutoCorrect" />
 
-    <EditText
-        android:id="@+id/enterAnswer1"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:ems="10"
-        android:hint="@string/enterAnswer"
-        android:inputType="textAutoCorrect" />
+        android:orientation="horizontal">
 
-    <EditText
-        android:id="@+id/enterAnswer2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/enterAnswer"
-        android:inputType="textAutoCorrect" />
+        <ImageView
+            android:id="@+id/letterA"
+            android:layout_width="26dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/lettera"
+            android:contentDescription="@string/lettera" />
 
-    <EditText
-        android:id="@+id/enterAnswer3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/enterAnswer"
-        android:inputType="textAutoCorrect" />
+        <EditText
+            android:id="@+id/enterAnswer1"
+            android:layout_width="362dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="@string/enterAnswer"
+            android:inputType="textAutoCorrect" />
+    </LinearLayout>
 
-    <EditText
-        android:id="@+id/enterAnswer4"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/enterAnswer"
-        android:inputType="textAutoCorrect" />
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/letterB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/letterb"
+            android:contentDescription="@string/letterb"/>
+
+        <EditText
+            android:id="@+id/enterAnswer2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="@string/enterAnswer"
+            android:inputType="textAutoCorrect" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/letterC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/letterc"
+            android:contentDescription="@string/letterc"/>
+
+        <EditText
+            android:id="@+id/enterAnswer3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="@string/enterAnswer"
+            android:inputType="textAutoCorrect" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/letterD"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/letterd"
+            android:contentDescription="@string/letterd"/>
+
+        <EditText
+            android:id="@+id/enterAnswer4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="@string/enterAnswer"
+            android:inputType="textAutoCorrect" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/correctAnswerIs" />
+
+    <RadioGroup
+        android:id="@+id/correctAnswerIs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/chooseA"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lettera" />
+
+        <RadioButton
+            android:id="@+id/chooseB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/letterb" />
+
+        <RadioButton
+            android:id="@+id/chooseC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/letterc" />
+
+        <RadioButton
+            android:id="@+id/chooseD"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/letterd" />
+
+    </RadioGroup>
 
 </LinearLayout>
