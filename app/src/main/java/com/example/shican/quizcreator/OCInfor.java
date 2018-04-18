@@ -31,10 +31,14 @@ import java.net.URL;
 import java.util.ArrayList;
 
 /*
-@author yuxin zhang
-OCinfor show route information get from url with stop number
-stat shows average adjTime
- */
+@file name: OCInfor
+@author: yuxin zhang
+@course: cst 2335
+@assignemnt: final projact
+@date: April 18, 2018
+@professor: eric
+@purpose:OCinfor show route information get from url with stop number, stat shows average adjTime
+*/
 
 public class OCInfor extends Toolbar {
     protected static final String ACTIVITY_NAME = "OCInfor";
@@ -86,6 +90,7 @@ public class OCInfor extends Toolbar {
             }
         });
 
+        //push/hide progress bar
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -99,6 +104,16 @@ public class OCInfor extends Toolbar {
                         }
                     });
                 }
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        handler.post(new Runnable() {
+                            public void run() {
+                                progress.setVisibility(View.INVISIBLE);
+                            }
+                        });
+                    }
+                });
             }
         }).start();
 

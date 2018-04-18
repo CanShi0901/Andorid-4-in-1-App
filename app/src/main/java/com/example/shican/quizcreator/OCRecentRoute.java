@@ -20,9 +20,14 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 /*
-@author yuxin zhang
-recent route shows route information that user recent view searched/saved
- */
+@file name: OCRecentRoute
+@author: yuxin zhang
+@course: cst 2335
+@assignemnt: final projact
+@date: April 18, 2018
+@professor: eric
+@purpose:recent route shows route information that user recent view searched/saved
+*/
 
 public class OCRecentRoute extends Toolbar {
     //recent route variables
@@ -47,6 +52,7 @@ public class OCRecentRoute extends Toolbar {
         final Button back = (Button) findViewById(R.id.back);
         progress = (ProgressBar) findViewById(R.id.inProgress);
 
+        //push/hide progress bar
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -60,6 +66,16 @@ public class OCRecentRoute extends Toolbar {
                         }
                     });
                 }
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        handler.post(new Runnable() {
+                            public void run() {
+                                progress.setVisibility(View.INVISIBLE);
+                            }
+                        });
+                    }
+                });
             }
         }).start();
 
@@ -104,7 +120,7 @@ public class OCRecentRoute extends Toolbar {
                         .setMessage("Activity developped by Yuxin Zhang "+ "\n" +
                                 "Version number v7.0 \n\nInstructions: \n1.shows recent viewd route that related user searched/saved stop" +
                                 "\n2.stat shows current information's average adjustedScheduleTime" +
-                                "\n3.if is user was search/saved invalid stop number or route has no bus schedule, that route information will not show\"")
+                                "\n3.if is user was search/saved invalid stop number or route has no bus schedule, that route information will not show")
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {

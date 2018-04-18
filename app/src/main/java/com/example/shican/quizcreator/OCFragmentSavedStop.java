@@ -16,11 +16,14 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 /*
-@author yuxin zhang
-saved stop fragment
-shows saved stop database in listview
-click on stop intent stop information activity
- */
+@file name: OCFragmentSavedStop
+@author: yuxin zhang
+@course: cst 2335
+@assignemnt: final projact
+@date: April 18, 2018
+@professor: eric
+@purpose:saved stop fragment, shows saved stop database in listview, click on stop intent stop information activity
+*/
 
 public class OCFragmentSavedStop extends Fragment {
     ListView listView;

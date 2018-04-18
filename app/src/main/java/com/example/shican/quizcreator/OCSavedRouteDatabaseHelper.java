@@ -3,10 +3,16 @@ package com.example.shican.quizcreator;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
 /*
-@author yuxin zhang
-saved stop databse helper
- */
+@file name: OCSavedRouteDatabaseHelper
+@author: yuxin zhang
+@course: cst 2335
+@assignemnt: final projact
+@date: April 18, 2018
+@professor: eric
+@purpose: saved stop database helper
+*/
 
 public class OCSavedRouteDatabaseHelper extends SQLiteOpenHelper {
     public final static String DATABASE_NAME = "db";

@@ -19,9 +19,14 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 /*
-@author yuxin zhang
-result route has searchresult fragment
- */
+@file name: OCResultRoute
+@author: yuxin zhang
+@course: cst 2335
+@assignemnt: final projact
+@date: April 18, 2018
+@professor: eric
+@purpose: result route has searchresult fragment
+*/
 
 public class OCResultRoute extends Toolbar {
     protected static final String ACTIVITY_NAME = "OCResultRoute";
@@ -44,6 +49,7 @@ public class OCResultRoute extends Toolbar {
         initToolbar();
 
         progress = (ProgressBar) findViewById(R.id.inProgress);
+        //push/hide progress bar
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -57,6 +63,16 @@ public class OCResultRoute extends Toolbar {
                         }
                     });
                 }
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        handler.post(new Runnable() {
+                            public void run() {
+                                progress.setVisibility(View.INVISIBLE);
+                            }
+                        });
+                    }
+                });
             }
         }).start();
 

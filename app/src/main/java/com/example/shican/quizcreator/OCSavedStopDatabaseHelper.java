@@ -6,8 +6,13 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 /*
-@author yuxin zhang
-recent route database helper
+@file name: OCSavedStopDatabaseHelper
+@author: yuxin zhang
+@course: cst 2335
+@assignemnt: final projact
+@date: April 18, 2018
+@professor: eric
+@purpose: recent route database helper
  */
 
 public class OCSavedStopDatabaseHelper extends SQLiteOpenHelper {

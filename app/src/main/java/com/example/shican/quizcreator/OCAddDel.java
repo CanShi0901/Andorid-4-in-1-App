@@ -14,37 +14,43 @@ import android.widget.EditText;
 import java.util.ArrayList;
 
 /*
-@author yuxin zhang
-add/delete bus stop to saved stop database.
-if add/delete stop already exits, nothing change.
- */
+@file name: OCAddDel
+@author: yuxin zhang
+@course: cst 2335
+@assignemnt: final projact
+@date: April 18, 2018
+@professor: eric
+@purpose:add/delete bus stop to saved stop database.if add/delete stop already exits, nothing change.
+*/
 
 public class OCAddDel extends Toolbar {
     protected static final String ACTIVITY_NAME = "OCAddDel";
     private String enterStop= "";
 
+    //intent back to main variables
     private ArrayList<String> addString;
     private ArrayList<String> delString;
     private ArrayList<String> saveList;
-
     private int addResult;
     private int delResult;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_oc_adddel);
         initToolbar();
 
-        //intent back variables
+        //initial variables
         addResult = 0;
         delResult = 0;
         addString = new ArrayList<>();
         delString = new ArrayList<>();
 
-        //get intent variables
+        //get intent saved Arraylist from main
         Intent i = getIntent();
         saveList= i.getStringArrayListExtra("saveList");
 
+        //layout variables
         final EditText input= (EditText) findViewById(R.id.input);
         final Button addButton = (Button) findViewById(R.id.add_button);
         final Button delButton = (Button) findViewById(R.id.del_button);

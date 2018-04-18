@@ -20,10 +20,14 @@ import android.widget.Toast;
 import android.support.v4.app.Fragment;
 import java.util.ArrayList;
 /*
-@author yuxin zhang
-main for OCTranspo
-contians add/delete, search, saved stop, recent route
- */
+@file name: OCMain
+@author: yuxin zhang
+@course: cst 2335
+@assignemnt: final projact
+@date: April 18, 2018
+@professor: eric
+@purpose:main for OCTranspo, contians add/delete, search, saved stop, recent route
+*/
 
 public class OCMain extends Toolbar implements OCFragmentSearch.OCFragmentSearchListener {
     protected static final String ACTIVITY_NAME = "OCMain";

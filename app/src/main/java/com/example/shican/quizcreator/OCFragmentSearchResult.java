@@ -28,9 +28,14 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 /*
-@author yuxin zhang
-searchresult fragment, shows stop information that get from url
- */
+@file name: OCFragmentSearchResult
+@author: yuxin zhang
+@course: cst 2335
+@assignemnt: final projact
+@date: April 18, 2018
+@professor: eric
+@purpose:searchresult fragment, shows stop information that get from url
+*/
 
 public class OCFragmentSearchResult extends Fragment {
     //layout variables

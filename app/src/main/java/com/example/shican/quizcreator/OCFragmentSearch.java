@@ -18,10 +18,14 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 /*
-@author yuxin zhang
-search stop fragment
-save search history in arraylist, intent to stop information with input search stop number if click search button
- */
+@file name: OCFragmentSearch
+@author: yuxin zhang
+@course: cst 2335
+@assignemnt: final projact
+@date: April 18, 2018
+@professor: eric
+@purpose:search stop fragment, save search history in arraylist, intent to stop information with input search stop number if click search button
+*/
 
 public class OCFragmentSearch extends Fragment {
     //layout variables
@@ -34,6 +38,7 @@ public class OCFragmentSearch extends Fragment {
 
     OCFragmentSearchListener searchListener;
 
+    //use for button listener in main
     public interface OCFragmentSearchListener{
         public void inputSearch(String enterStop);
     }
